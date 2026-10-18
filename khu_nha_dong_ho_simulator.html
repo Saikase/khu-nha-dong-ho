@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mô Phỏng Tổng Thể Khu Nhà Dòng Họ (37m × 18m) - 2D & 3D Siêu Thực</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #ea580c;
+      --primary-hover: #c2410c;
+      --blue: #2563eb;
+      --emerald: #059669;
+      --purple: #7c3aed;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding: 16px;
+    }
+
+    .container {
+      max-width: 1380px;
+      margin: 0 auto;
+    }
+
+    /* Header styling */
+    .header-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+    .badge-green { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+    .badge-blue { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .badge-amber { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+
+    .header-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+    .header-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .metric-pill {
+      background: #f1f5f9;
+      padding: 8px 14px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      font-size: 12px;
+    }
+    .metric-pill strong { display: block; font-size: 14px; }
+
+    /* Layout grid */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 1024px) {
+      .main-grid {
+        grid-template-columns: 7.5fr 4.5fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    /* Tabs */
+    .tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .tab-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tab-btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--card-border);
+      background: #ffffff;
+      color: #334155;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tab-btn:hover { background: #f8fafc; border-color: #cbd5e1; }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #ea580c, #c2410c);
+      color: #ffffff;
+      border-color: #ea580c;
+      box-shadow: 0 2px 4px rgba(234, 88, 12, 0.25);
+    }
+
+    /* Image grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .photo-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .photo-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .photo-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .photo-card-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      min-height: 28px;
+    }
+    .photo-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      cursor: pointer;
+      display: block;
+      background: #f1f5f9;
+    }
+
+    /* Blueprint SVG */
+    .blueprint-grid {
+      background-color: #f8fafc;
+      background-size: 20px 20px;
+      background-image: 
+        linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+    }
+    #plan-svg {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      user-select: none;
+    }
+    .zone-hover {
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .zone-hover:hover {
+      filter: brightness(1.08);
+      stroke: #d97706 !important;
+      stroke-width: 2.5px !important;
+    }
+    .zone-active {
+      filter: brightness(1.15);
+      stroke: #dc2626 !important;
+      stroke-width: 3px !important;
+    }
+    .dash-setback { stroke-dasharray: 4, 3; }
+
+    /* Right Inspector Panel */
+    .inspector-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-top: 4px;
+      color: #0f172a;
+    }
+    .feature-list {
+      margin-top: 10px;
+      padding-left: 18px;
+      font-size: 12px;
+      color: #334155;
+    }
+    .feature-list li { margin-bottom: 6px; }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 12px;
+    }
+    .stat-label { color: var(--text-muted); }
+    .stat-val { font-weight: 700; color: #0f172a; }
+
+    .callout {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 14px;
+      font-size: 12px;
+      color: #1e3a8a;
+    }
+
+    .blender-banner {
+      background: linear-gradient(135deg, #fff7ed, #ffedd5);
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+    }
+    .blender-banner code {
+      background: #ffffff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #fed7aa;
+      font-weight: 700;
+      color: #9a3412;
+    }
+
+    /* Modal Image Lightbox */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0; width: 100%; height: 100%;
+      background-color: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-content {
+      max-width: 95vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      border: 2px solid #ffffff;
+      object-fit: contain;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px; right: 26px;
+      color: #ffffff;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .hidden { display: none !important; }
+
+    /* WebGL 3D Interactive Viewer Styles */
+    .ctrl-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .ctrl-btn:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+    .ctrl-btn.active {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #1d4ed8;
+      box-shadow: 0 1px 3px rgba(37,99,235,0.3);
+    }
+
+    .preset-btn {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .preset-btn:hover {
+      background: #eff6ff;
+      border-color: #93c5fd;
+      color: #1d4ed8;
+    }
+
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 4px solid #e2e8f0;
+      border-top: 4px solid #ea580c;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes pulse-green {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header-card">
+      <div>
+        <div>
+          <span class="badge badge-green">✓ Quy Hoạch Hoàn Thiện 100% (666.0 m²)</span>
+          <span class="badge badge-blue">Dãy Trái: Khu 4 (Nhà Khách) ➔ Khu 5 (Ao) ➔ Khu 6 (Vườn) ➔ Khu 7</span>
+          <span class="badge badge-amber">Dãy Phải: Khu 3 (Bếp & Ăn) ➔ Khu 2 (Đài 6m) ➔ Khu 1 (Nhà 3 Gian)</span>
+        </div>
+        <h1 class="header-title">Quy Hoạch & Mô Phỏng 3D Khu Nhà Dòng Họ (37.0m × 18.0m)</h1>
+        <p class="header-desc">
+          Góc nhìn: Đứng đối diện cổng chính nhìn vào. Trục đường chính rộng 4.0m chạy suốt 37.0m. Hai dãy Tả - Hữu phân bổ chuẩn xác từng centimet.
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <div class="metric-pill">
+          <span style="color: #64748b; font-size: 11px;">Dãy Trái (Cổng ➔ Cuối)</span>
+          <strong style="color: #2563eb;">Khu 4 (12m) + Ao (5m) + Vườn (16m) + Khu 7 (4m)</strong>
+        </div>
+        <div class="metric-pill">
+          <span style="color: #64748b; font-size: 11px;">Dãy Phải (Cổng ➔ Cuối)</span>
+          <strong style="color: #ea580c;">Khu 3 (13.5m) + Khu 2 (12m) + Khu 1 (11.5m)</strong>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="main-grid">
+      <!-- Left Panel: Tabs & Viewers -->
+      <section class="card">
+        <!-- Tab Navigation Bar -->
+        <div class="tab-bar">
+          <div class="tab-group">
+            <button id="btn-tab-interactive3d" class="tab-btn active" onclick="switchTab('interactive3d')">
+              <span>🌐 Mô Hình 3D Xoay 360°</span>
+              <span style="background: #10b981; color: white; padding: 1px 6px; border-radius: 9999px; font-size: 10px; font-weight: 700;">WebGL Trực Tiếp</span>
+            </button>
+            <button id="btn-tab-blender" class="tab-btn" onclick="switchTab('blender')">
+              <span>✨ 12 Ảnh Render Cycles</span>
+              <span style="background: rgba(0,0,0,0.06); padding: 1px 6px; border-radius: 9999px; font-size: 10px;">Siêu Thực</span>
+            </button>
+            <button id="btn-tab-plan" class="tab-btn" onclick="switchTab('plan')">
+              <span>📐 Mặt Bằng Bản Vẽ 2D</span>
+            </button>
+            <button id="btn-tab-3d" class="tab-btn" onclick="switchTab('3d')">
+              <span>🧊 OpenSCAD 3D</span>
+            </button>
+            <button id="btn-tab-photos" class="tab-btn" onclick="switchTab('photos')">
+              <span>📷 Kho Ảnh Thực Tế</span>
+            </button>
+          </div>
+
+          <div style="display: flex; gap: 6px; align-items: center; font-size: 12px;">
+            <button onclick="selectZone('khu4')" style="background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; padding:4px 8px; border-radius:6px; cursor:pointer; font-weight:600;">🏠 Khu 4</button>
+            <button onclick="selectZone('khu5')" style="background:#ecfeff; color:#0e7490; border:1px solid #a5f3fc; padding:4px 8px; border-radius:6px; cursor:pointer; font-weight:600;">🐟 Khu 5</button>
+            <button onclick="selectZone('khu6')" style="background:#ecfdf5; color:#047857; border:1px solid #a7f3d0; padding:4px 8px; border-radius:6px; cursor:pointer; font-weight:600;">🌳 Khu 6</button>
+            <label style="display: flex; align-items: center; gap: 4px; margin-left: 6px; cursor: pointer; color: #64748b;">
+              <input type="checkbox" id="toggle-dims" checked onchange="toggleDimensions()"> Thước
+            </label>
+          </div>
+        </div>
+
+        <!-- 0. TAB 3D WEBGL INTERACTIVE (MÔ HÌNH 3D XOAY 360°) -->
+        <div id="interactive3d-container">
+          <!-- Top Control Toolbar -->
+          <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; margin-bottom: 10px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+              <button id="btn-toggle-roof" class="ctrl-btn" onclick="toggleRoofs()">
+                🏠 Bóc Mái (Xem Bên Trong)
+              </button>
+              <button id="btn-toggle-autorotate" class="ctrl-btn" onclick="toggleAutoRotate()">
+                🔄 Tự Động Xoay: TẮT
+              </button>
+              <button class="ctrl-btn" onclick="resetCamera()">
+                🎯 Reset Góc Nhìn
+              </button>
+              <button id="btn-toggle-light" class="ctrl-btn" onclick="toggleDayNight()">
+                ☀️ Ban Ngày
+              </button>
+              <button class="ctrl-btn" onclick="toggleFullscreen3D()">
+                ⛶ Toàn Màn Hình
+              </button>
+            </div>
+            <div id="webgl-status-badge" style="font-size: 11px; font-weight: 700; color: #059669; display: flex; align-items: center; gap: 6px;">
+              <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#10b981; animation: pulse-green 1.5s infinite;"></span>
+              <span id="webgl-status-text">Đang tải mô hình 3D...</span>
+            </div>
+          </div>
+
+          <!-- Camera Preset Angles -->
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 12px; font-size: 12px;">
+            <span style="font-weight: 700; color: #475569; margin-right: 2px;">Góc nhanh:</span>
+            <button class="preset-btn" onclick="setPreset('nam')">🧭 Nam (Cổng vào)</button>
+            <button class="preset-btn" onclick="setPreset('bac')">🧭 Bắc (Hậu viện)</button>
+            <button class="preset-btn" onclick="setPreset('dong')">🧭 Đông (Nhìn Dãy Trái)</button>
+            <button class="preset-btn" onclick="setPreset('tay')">🧭 Tây (Nhìn Dãy Phải)</button>
+            <button class="preset-btn" onclick="setPreset('topdown')">📐 Từ Trên Xuống (Top-down)</button>
+            <button class="preset-btn" onclick="setPreset('nhakhach')">🏠 Khu 4 & Ao Cá</button>
+            <button class="preset-btn" onclick="setPreset('nha3gian')">🏛️ Khu 1: Nhà 3 Gian</button>
+            <button class="preset-btn" onclick="setPreset('lucgiac')">🍵 Khu 2: Đài Lục Giác</button>
+          </div>
+
+          <!-- WebGL 3D Canvas Viewport -->
+          <div id="webgl-viewport" style="width: 100%; height: 580px; position: relative; border-radius: 12px; overflow: hidden; background: linear-gradient(180deg, #dbeafe 0%, #f8fafc 100%); border: 1px solid #cbd5e1; box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);">
+            <!-- Loading Overlay -->
+            <div id="webgl-loading" style="position: absolute; inset: 0; background: rgba(248, 250, 252, 0.94); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 50; transition: opacity 0.3s ease;">
+              <div class="spinner"></div>
+              <div style="margin-top: 14px; font-weight: 800; color: #0f172a; font-size: 14px;">Đang Tải Mô Hình 3D Toàn Khu Đất (666.0 m²)...</div>
+              <div style="margin-top: 4px; font-size: 12px; color: #64748b;">Khởi tạo WebGL PBR Engine & Tải Vật Liệu Thực Tế</div>
+            </div>
+
+            <!-- Direction Compass Rose Overlay (Top-Right) -->
+            <div style="position: absolute; top: 12px; right: 12px; z-index: 10; background: rgba(255,255,255,0.88); backdrop-filter: blur(4px); border: 1px solid #cbd5e1; border-radius: 8px; padding: 6px 12px; font-size: 10.5px; font-weight: 700; color: #334155; pointer-events: none; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+              <div>▲ BẮC (Nhà 3 Gian)</div>
+              <div style="display:flex; justify-content:space-between; gap:16px; margin:2px 0;">
+                <span>◄ TÂY</span>
+                <span>ĐÔNG ►</span>
+              </div>
+              <div>▼ NAM (Cổng Chính)</div>
+            </div>
+
+            <!-- Hover Tooltip -->
+            <div id="webgl-tooltip" style="position: absolute; display: none; background: rgba(15, 23, 42, 0.92); color: #ffffff; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; pointer-events: none; z-index: 40; box-shadow: 0 4px 12px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.2);">
+            </div>
+
+            <!-- Bottom Instruction Bar -->
+            <div style="position: absolute; bottom: 12px; left: 12px; right: 12px; z-index: 10; background: rgba(15, 23, 42, 0.82); backdrop-filter: blur(4px); border-radius: 8px; padding: 8px 14px; font-size: 11.5px; color: #f8fafc; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; pointer-events: none;">
+              <div>
+                <span>🖱️ <strong>Chuột trái:</strong> Xoay 360°</span> &nbsp;|&nbsp; 
+                <span><strong>Chuột phải:</strong> Tịnh tiến</span> &nbsp;|&nbsp; 
+                <span><strong>Con lăn:</strong> Phóng to/nhỏ</span> &nbsp;|&nbsp; 
+                <span><strong>Click:</strong> Xem chi tiết phân khu</span>
+              </div>
+              <div style="color: #cbd5e1; font-size: 11px;">
+                Đầy đủ vật liệu PBR • Bóc mái • Xoay tự do
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1. TAB BLENDER CYCLES (12 PHỐI CẢNH TĨNH SIÊU THỰC) -->
+        <div id="blender-container" class="hidden">
+          <div style="font-size: 13px; font-weight: 700; color: #c2410c; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+            <span>📸 BỘ 12 PHỐI CẢNH KIẾN TRÚC KẾT XUẤT TỪ BLENDER 4.2 LTS (CYCLES RAYTRACING)</span>
+            <span style="font-size: 11px; font-weight: normal; color: #64748b;">(Click vào ảnh để phóng to toàn màn hình)</span>
+          </div>
+
+          <div class="gallery-grid">
+            <!-- View 1: Bóc mái -->
+            <div class="photo-card">
+              <div class="photo-card-title">
+                <span style="color: #4338ca;">1. Phối Cảnh Bóc Mái (Cutaway View)</span>
+                <span class="badge badge-blue">Hành Lang & Nội Thất</span>
+              </div>
+              <p class="photo-card-desc">Lộ rõ hành lang 1.26m, 2 phòng ngủ khép kín, đại sảnh phòng khách mở thông ra ao và toàn bộ nội thất Nhà 3 Gian.</p>
+              <img src="./blender_2_boc_mai_noi_that.png" alt="Phối cảnh bóc mái" onclick="openModal(this)">
+            </div>
+
+            <!-- View 2: Hành lang Nhà Khách -->
+            <div class="photo-card">
+              <div class="photo-card-title">
+                <span style="color: #b45309;">2. Hành Lang Nội Bộ & Cửa Phòng Ngủ</span>
+                <span class="badge badge-amber">Không Gian Mở Ra Ao</span>
+              </div>
+              <p class="photo-card-desc">Đứng từ cửa vào nhìn dọc hành lang: cửa 2 phòng ngủ có tay nắm, cuối hành lang mở toang ra phòng khách và ao.</p>
+              <img src="./blender_7_hanh_lang_nhakhach.png" alt="Hành lang nội bộ Nhà Khách" onclick="openModal(this)">
+            </div>
+
+            <!-- View 3: Từ phòng khách nhìn ra ao -->
+            <div class="photo-card">
+              <div class="photo-card-title">
+                <span style="color: #0e7490;">3. Từ Đại Sảnh Phòng Khách Ngắm Ao Cá Quê</span>
+                <span class="badge badge-blue">Khu 4 ➔ Khu 5</span>
+              </div>
+              <p class="photo-card-desc">Sofa gỗ tự nhiên, bàn trà me tây, bộ ấm chén Bát Tràng và vách kính panorama ngắm đàn cá bơi lội.</p>
+              <img src="./blender_5_view_ao_ca.png" alt="View ao từ phòng khách" onclick="openModal(this)">
+            </div>
+
+            <!-- View 4: Toàn cảnh có mái -->
+            <div class="photo-card">
+              <div class="photo-card-title">
+                <span style="color: #ea580c;">4. Toàn Cảnh Khuôn Viên (Có Mái)</span>
+                <span class="badge badge-green">37.0m × 18.0m</span>
+              </div>
+              <p class="photo-card-desc">Ngói đỏ Bát Tràng, đài lục giác mái chồng diêm đỉnh hồ lô, ao cá và vườn cây xanh mướt.</p>
+              <img src="./blender_1_tong_the_co_mai.png" alt="Toàn cảnh có mái" onclick="openModal(this)">
+            </div>
+
+            <!-- View 5: Cận cảnh Nhà Ăn ngắm kỷ vật -->
+            <div class="photo-card">
+              <div class="photo-card-title">
+                <span style="color: #047857;">5. Từ Nhà Ăn Ngắm Cối Xay & Cối Giã</span>
+                <span class="badge badge-green">Dải Lùi 1.0m Bên Hông</span>
+              </div>
+              <p class="photo-card-desc">Bàn tiệc gỗ dài, kính cường lực phản chiếu, cối xay tre, cối giã cối đá và rặng trúc rọi đèn.</p>
+              <img src="./blender_4_ky_vat_nha_an.png" alt="Cối xay và cối giã qua kính" onclick="openModal(this)">
+            </div>
+
+            <!-- View 6: Đài lục giác 6m & Nhà 3 gian -->
+            <div class="photo-card">
+              <div class="photo-card-title">
+                <span style="color: #7c3aed;">6. Cận Cảnh Đài Lục Giác 6m & Nhà 3 Gian</span>
+                <span class="badge badge-green">Khu 2 & Khu 1</span>
+              </div>
+              <p class="photo-card-desc">Mái chồng diêm 2 tầng, hồ lô thếp vàng, 6 cột gỗ lim bệ đá xanh, kế bên là hiên nhà 3 gian dài 9m.</p>
+              <img src="./blender_3_dai_luc_giac_nha3gian.png" alt="Đài lục giác và nhà 3 gian" onclick="openModal(this)">
+            </div>
+
+            <!-- View 7: Cổng Tam Quan mở rộng -->
+            <div class="photo-card">
+              <div class="photo-card-title">
+                <span style="color: #b91c1c;">7. Cổng Tam Quan Mở Rộng Nhìn Trục 4m</span>
+                <span class="badge badge-amber">Trục Thần Đạo</span>
+              </div>
+              <p class="photo-card-desc">Đôi cánh cổng gỗ lim mở rộng đón khách, nhìn xuyên suốt trục đường chính 4m thẳng tắp vào nhà thờ tổ.</p>
+              <img src="./blender_6_cong_chinh.png" alt="Cổng chính mở rộng" onclick="openModal(this)">
+            </div>
+
+            <!-- View 8: Nội thất Nhà 3 Gian Bắc Bộ -->
+            <div class="photo-card">
+              <div class="photo-card-title">
+                <span style="color: #b45309;">8. Cận Cảnh Nội Thất Nhà 3 Gian Bắc Bộ</span>
+                <span class="badge badge-amber">Án Gian & Ngũ Sự</span>
+              </div>
+              <p class="photo-card-desc">Án gian thếp vàng, hoành phi câu đối, đôi lục bình khổng tước, trường kỷ chạm cườm, tủ chè khảm ốc và sập gụ ngũ phúc.</p>
+              <img src="./blender_8_noithat_nha3gian.png" alt="Nội thất Nhà 3 Gian Bắc Bộ" onclick="openModal(this)">
+            </div>
+
+            <!-- View 9: Hướng Nam (Từ cổng nhìn vào) -->
+            <div class="photo-card">
+              <div class="photo-card-title">
+                <span style="color: #047857;">9. Phối Cảnh Hướng Nam (Từ Cổng Vào)</span>
+                <span class="badge badge-green">View Chính Diện</span>
+              </div>
+              <p class="photo-card-desc">Nhìn từ phía Nam (cổng chính) bao quát toàn cảnh hai dãy Tả - Hữu và trục đường chính 4m thẳng tắp.</p>
+              <img src="./blender_view_huong_nam.png" alt="Phối cảnh Hướng Nam" onclick="openModal(this)">
+            </div>
+
+            <!-- View 10: Hướng Bắc (Từ cuối đất nhìn ra) -->
+            <div class="photo-card">
+              <div class="photo-card-title">
+                <span style="color: #1d4ed8;">10. Phối Cảnh Hướng Bắc (Từ Cuối Đất Nhìn Về)</span>
+                <span class="badge badge-blue">View Hậu Viện</span>
+              </div>
+              <p class="photo-card-desc">Đứng từ phía Bắc phía sau Nhà 3 Gian và Khu 7 nhìn ngược về phía cổng chính, đón trọn chiều sâu 37m.</p>
+              <img src="./blender_view_huong_bac.png" alt="Phối cảnh Hướng Bắc" onclick="openModal(this)">
+            </div>
+
+            <!-- View 11: Hướng Đông (Nhìn sang Dãy Trái) -->
+            <div class="photo-card">
+              <div class="photo-card-title">
+                <span style="color: #7c3aed;">11. Phối Cảnh Hướng Đông (Nhìn Sang Dãy Trái)</span>
+                <span class="badge badge-purple">Trái Sang Phải</span>
+              </div>
+              <p class="photo-card-desc">Đứng từ Dãy Phải nhìn bao quát sang Dãy Trái: Nhà Khách, Ao Cá Vườn Quê và Vườn Cây Xanh Mát 16m.</p>
+              <img src="./blender_view_huong_dong.png" alt="Phối cảnh Hướng Đông" onclick="openModal(this)">
+            </div>
+
+            <!-- View 12: Hướng Tây (Nhìn sang Dãy Phải) -->
+            <div class="photo-card">
+              <div class="photo-card-title">
+                <span style="color: #c2410c;">12. Phối Cảnh Hướng Tây (Nhìn Sang Dãy Phải)</span>
+                <span class="badge badge-amber">Phải Sang Trái</span>
+              </div>
+              <p class="photo-card-desc">Đứng từ Dãy Trái nhìn bao quát sang Dãy Phải: Bếp & 2 WC, Nhà Ăn Gia Tộc, Đài Lục Giác 6m và Nhà 3 Gian.</p>
+              <img src="./blender_view_huong_tay.png" alt="Phối cảnh Hướng Tây" onclick="openModal(this)">
+            </div>
+          </div>
+
+          <!-- Banner hướng dẫn Blender -->
+          <div class="blender-banner">
+            <div>
+              <strong style="color: #9a3412;">🚀 Tự Do Khám Phá & Xoay 360° Trong Blender GUI:</strong>
+              <div style="margin-top: 4px; color: #78350f;">
+                Chạy <code>d:\Work\blender\blender.exe</code> và mở tệp <code>d:\Work\Khu_Nha_Dong_Ho\khu_nha_dong_ho.blend</code>.
+              </div>
+            </div>
+            <div style="color: #9a3412; font-weight: 600;">
+              Giữ chuột giữa: Xoay 360° | Phím Z: Chọn Rendered
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. TAB 2D PLAN (BLUEPRINT SVG) -->
+        <div id="plan-container" class="hidden">
+          <div class="blueprint-grid">
+            <svg id="plan-svg" viewBox="0 0 470 800">
+              <defs>
+                <pattern id="roof-tiles-red" width="9" height="7" patternUnits="userSpaceOnUse">
+                  <path d="M 0,3.5 Q 4.5,0 9,3.5 L 9,7 Q 4.5,3.5 0,7 Z" fill="#dc2626" fill-opacity="0.88" stroke="#991b1b" stroke-width="0.5"/>
+                </pattern>
+                <pattern id="he-paver" width="8" height="8" patternUnits="userSpaceOnUse">
+                  <rect width="8" height="8" fill="#ffedd5" stroke="#fdba74" stroke-width="0.5"/>
+                  <line x1="0" y1="4" x2="8" y2="4" stroke="#fb923c" stroke-width="0.5"/>
+                </pattern>
+                <pattern id="road-stone" width="12" height="12" patternUnits="userSpaceOnUse">
+                  <rect width="12" height="12" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.6"/>
+                  <line x1="0" y1="6" x2="12" y2="6" stroke="#94a3b8" stroke-width="0.5"/>
+                  <line x1="6" y1="0" x2="6" y2="12" stroke="#94a3b8" stroke-width="0.5"/>
+                </pattern>
+                <pattern id="walkway-1m" width="8" height="8" patternUnits="userSpaceOnUse">
+                  <rect width="8" height="8" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5"/>
+                  <circle cx="4" cy="4" r="1.5" fill="#ea580c"/>
+                </pattern>
+                <pattern id="water-ripple" width="16" height="10" patternUnits="userSpaceOnUse">
+                  <rect width="16" height="10" fill="#bae6fd"/>
+                  <path d="M 0,5 Q 4,2 8,5 T 16,5" fill="none" stroke="#38bdf8" stroke-width="0.8"/>
+                </pattern>
+                <pattern id="garden-grass" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <rect width="10" height="10" fill="#dcfce7"/>
+                  <circle cx="5" cy="5" r="1.2" fill="#22c55e"/>
+                </pattern>
+                <pattern id="wood-deck" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <rect width="10" height="10" fill="#fdf4ff" stroke="#e9d5ff" stroke-width="0.5"/>
+                  <line x1="0" y1="5" x2="10" y2="5" stroke="#d8b4fe" stroke-width="0.5"/>
+                </pattern>
+                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+                </marker>
+              </defs>
+
+              <!-- Outer Perimeter Wall (18m x 37m) -->
+              <g id="land-wall">
+                <rect x="60" y="44" width="324" height="666" fill="#ffffff" stroke="#0f172a" stroke-width="3" rx="3"/>
+              </g>
+
+              <!-- Setback Lines (1m = 18px from outer walls) -->
+              <g id="setback-lines" class="dash-setback" stroke="#f59e0b" fill="none" stroke-width="1.2">
+                <line x1="78" y1="44" x2="78" y2="710"/>
+                <line x1="366" y1="44" x2="366" y2="656"/>
+                <line x1="60" y1="62" x2="384" y2="62"/>
+              </g>
+
+              <!-- DIMENSIONS LABELS -->
+              <g id="dim-group">
+                <text x="222" y="36" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="10">
+                  ◄ TƯỜNG BAO CUỐI KHU ĐẤT (37.0m) ►
+                </text>
+                <line x1="60" y1="732" x2="384" y2="732" stroke="#64748b" stroke-width="1.2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+                <text x="222" y="746" text-anchor="middle" font-weight="bold" fill="#0f172a" font-size="10.5">
+                  MẶT TIỀN CỔNG CHÍNH: 18.0 m
+                </text>
+                <text x="123" y="726" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#2563eb">Bên Trái: 7.0 m</text>
+                <text x="222" y="726" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#1d4ed8">Đường: 4.0 m</text>
+                <text x="321" y="726" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#b45309">Bên Phải: 7.0 m</text>
+
+                <!-- LEFT SIDE LENGTH LABELS -->
+                <line x1="46" y1="710" x2="46" y2="494" stroke="#2563eb" stroke-width="1.2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+                <text x="32" y="602" text-anchor="middle" transform="rotate(-90, 32, 602)" font-weight="bold" fill="#1d4ed8" font-size="8.5">Khu 4 (12m Nhà Khách)</text>
+
+                <line x1="46" y1="494" x2="46" y2="404" stroke="#0284c7" stroke-width="1.2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+                <text x="32" y="449" text-anchor="middle" transform="rotate(-90, 32, 449)" font-weight="bold" fill="#0369a1" font-size="8.5">Khu 5 (5m Ao)</text>
+
+                <line x1="46" y1="404" x2="46" y2="116" stroke="#16a34a" stroke-width="1.2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+                <text x="32" y="260" text-anchor="middle" transform="rotate(-90, 32, 260)" font-weight="bold" fill="#15803d" font-size="8.5">Khu 6 (16m Vườn)</text>
+
+                <line x1="46" y1="116" x2="46" y2="44" stroke="#64748b" stroke-width="1.2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+                <text x="32" y="80" text-anchor="middle" transform="rotate(-90, 32, 80)" font-weight="bold" fill="#475569" font-size="8.5">Khu 7 (4m)</text>
+              </g>
+
+              <!-- MAIN ROAD (4.0m) -->
+              <g id="zone-main-road" class="zone-hover" onclick="selectZone('road')">
+                <rect x="186" y="44" width="72" height="666" fill="url(#road-stone)" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="186" y1="44" x2="186" y2="710" stroke="#94a3b8" stroke-width="1"/>
+                <line x1="258" y1="44" x2="258" y2="710" stroke="#94a3b8" stroke-width="1"/>
+                <text x="222" y="380" text-anchor="middle" transform="rotate(-90, 222, 380)" fill="#334155" font-weight="bold" font-size="11" letter-spacing="4">
+                  TRỤC ĐƯỜNG TRUNG TÂM (RỘNG 4.0M - DÀI 37.0M)
+                </text>
+              </g>
+
+              <!-- LEFT WING: Khu 4, 5, 6, 7 -->
+              <g id="zone-left-setback">
+                <rect x="60" y="44" width="18" height="666" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.5"/>
+              </g>
+
+              <!-- Khu 4: Nhà Khách (6m x 12m) -->
+              <g id="zone-khu4" class="zone-hover" onclick="selectZone('khu4')">
+                <rect x="78" y="494" width="108" height="216" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="2"/>
+                <line x1="78" y1="566" x2="186" y2="566" stroke="#93c5fd" stroke-width="1" stroke-dasharray="3,2"/>
+                <line x1="78" y1="638" x2="186" y2="638" stroke="#93c5fd" stroke-width="1" stroke-dasharray="3,2"/>
+                <rect x="78" y="494" width="108" height="36" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+                <text x="132" y="516" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="7">PHÒNG NGẮM CẢNH (2m)</text>
+                <text x="132" y="524" text-anchor="middle" fill="#2563eb" font-size="5.5">Vách Kính View Ao Khu 5</text>
+                <text x="132" y="605" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="7.5">KHU 4: NHÀ CHO KHÁCH Ở</text>
+                <text x="132" y="618" text-anchor="middle" fill="#3b82f6" font-size="6.5">6.0m × 12.0m (Chia 3 phần)</text>
+              </g>
+
+              <!-- Khu 5: Ao cá phong thủy (6m x 5m) -->
+              <g id="zone-khu5" class="zone-hover" onclick="selectZone('khu5')">
+                <rect x="78" y="404" width="108" height="90" fill="url(#water-ripple)" stroke="#0284c7" stroke-width="2" rx="4"/>
+                <text x="132" y="445" text-anchor="middle" fill="#0369a1" font-weight="bold" font-size="8">KHU 5: CÁI AO (6m × 5m)</text>
+                <text x="132" y="457" text-anchor="middle" fill="#0284c7" font-size="6">Ao Cá Phong Thủy - 30m²</text>
+                <rect x="120" y="480" width="24" height="14" fill="#a16207" stroke="#78350f" stroke-width="0.8" rx="1"/>
+                <text x="132" y="489" text-anchor="middle" fill="#ffffff" font-size="4.5">Cầu Gỗ</text>
+              </g>
+
+              <!-- Khu 6: Cái vườn (6m x 16m) -->
+              <g id="zone-khu6" class="zone-hover" onclick="selectZone('khu6')">
+                <rect x="78" y="116" width="108" height="288" fill="url(#garden-grass)" stroke="#16a34a" stroke-width="2" rx="2"/>
+                <text x="132" y="255" text-anchor="middle" fill="#15803d" font-weight="bold" font-size="8.5">KHU 6: CÁI VƯỜN (6m × 16m)</text>
+                <text x="132" y="269" text-anchor="middle" fill="#166534" font-size="6.5">Cây Ăn Trái & Lối Dạo Đá - 96m²</text>
+              </g>
+
+              <!-- Khu 7: Khu cuối cùng (6m x 4m) -->
+              <g id="zone-khu7" class="zone-hover" onclick="selectZone('khu7')">
+                <rect x="78" y="44" width="108" height="72" fill="#f1f5f9" stroke="#64748b" stroke-width="2" rx="2"/>
+                <text x="132" y="78" text-anchor="middle" fill="#334155" font-weight="bold" font-size="8">KHU 7: GÓC CUỐI (6m × 4m)</text>
+                <text x="132" y="90" text-anchor="middle" fill="#64748b" font-size="6">Quỹ Đất Dự Trữ - 24m²</text>
+              </g>
+
+              <!-- RIGHT WING: Khu 3, 2, 1 -->
+              <!-- Khu 3: Bếp, 2 WC, Nhà Ăn, Kỷ Vật -->
+              <g id="zone-2wc" class="zone-hover" onclick="selectZone('wc2')">
+                <rect x="357" y="656" width="27" height="54" fill="#e2e8f0" stroke="#0f172a" stroke-width="1.8"/>
+                <line x1="357" y1="683" x2="384" y2="683" stroke="#94a3b8" stroke-width="1"/>
+                <text x="370" y="672" text-anchor="middle" fill="#0f172a" font-weight="bold" font-size="5.5">WC 1</text>
+                <text x="370" y="699" text-anchor="middle" fill="#0f172a" font-weight="bold" font-size="5.5">WC 2</text>
+              </g>
+
+              <g id="zone-bep" class="zone-hover" onclick="selectZone('bep')">
+                <rect x="258" y="656" width="99" height="54" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" rx="2"/>
+                <text x="307" y="686" text-anchor="middle" fill="#991b1b" font-weight="bold" font-size="7.5">BẾP (3m × 5.5m)</text>
+              </g>
+
+              <g id="zone-kyvat" class="zone-hover" onclick="selectZone('kyvat')">
+                <rect x="366" y="467" width="18" height="189" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
+                <text x="375" y="560" text-anchor="middle" transform="rotate(-90, 375, 560)" fill="#b45309" font-weight="bold" font-size="6.5">
+                  HÀNH LANG CỐI XAY & CỐI GIÃ (1M)
+                </text>
+              </g>
+
+              <g id="zone-phong-an" class="zone-hover" onclick="selectZone('phongan')">
+                <rect x="258" y="467" width="108" height="189" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" rx="2"/>
+                <ellipse cx="312" cy="560" rx="20" ry="34" fill="#fde68a" stroke="#d97706" stroke-width="1.2"/>
+                <text x="312" y="555" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="6.5">BÀN ĂN</text>
+                <text x="312" y="565" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="6.5">THÔNG MINH</text>
+                <text x="312" y="485" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="7.5">NHÀ ĂN (63m²)</text>
+              </g>
+
+              <!-- Khu 2: Đài Lục Giác (6m) -->
+              <g id="zone-khu2-open-front" class="zone-hover" onclick="selectZone('khu2open')">
+                <rect x="258" y="425" width="108" height="42" fill="#faf5ff" stroke="#c084fc" stroke-width="1" stroke-dasharray="3,2"/>
+                <text x="312" y="448" text-anchor="middle" fill="#7c3aed" font-size="6.5" font-weight="600">[Sân Thoáng Đón Gió]</text>
+              </g>
+
+              <g id="zone-khu2-open-rear" class="zone-hover" onclick="selectZone('khu2open')">
+                <rect x="258" y="251" width="108" height="42" fill="#faf5ff" stroke="#c084fc" stroke-width="1" stroke-dasharray="3,2"/>
+                <text x="312" y="274" text-anchor="middle" fill="#7c3aed" font-size="6.5" font-weight="600">[Sân Thoáng Đón Gió]</text>
+              </g>
+
+              <g id="zone-lucgiac" class="zone-hover" onclick="selectZone('lucgiac')">
+                <polygon points="366,328 366,390 312,421 258,390 258,328 312,297" fill="url(#wood-deck)" stroke="#7e22ce" stroke-width="2.5"/>
+                <polygon points="362,330 362,388 312,417 262,388 262,330 312,301" fill="#a855f7" fill-opacity="0.15" stroke="#9333ea" stroke-width="1.2"/>
+                <polygon points="324,354 324,364 312,370 300,364 300,354 312,348" fill="#581c87" stroke="#f3e8ff" stroke-width="1"/>
+                <text x="312" y="390" text-anchor="middle" fill="#581c87" font-weight="bold" font-size="7.5">ĐÀI LỤC GIÁC (6.0m)</text>
+              </g>
+
+              <!-- Khu 1: Nhà 3 Gian Bắc Bộ -->
+              <g id="zone-he" class="zone-hover" onclick="selectZone('he')">
+                <rect x="258" y="89" width="18" height="162" fill="url(#he-paver)" stroke="#ea580c" stroke-width="1.2"/>
+                <text x="267" y="170" text-anchor="middle" transform="rotate(-90, 267, 170)" fill="#9a3412" font-weight="bold" font-size="7">HÈ 9.0m SÁT ĐƯỜNG</text>
+              </g>
+
+              <g id="zone-nha3gian" class="zone-hover" onclick="selectZone('nha3gian')">
+                <rect x="276" y="89" width="90" height="162" fill="url(#roof-tiles-red)" stroke="#991b1b" stroke-width="2" rx="2"/>
+                <rect x="335" y="158" width="26" height="24" fill="#991b1b" stroke="#fef08a" stroke-width="1"/>
+                <text x="348" y="173" text-anchor="middle" fill="#fef08a" font-weight="bold" font-size="5.5">BAN THỜ</text>
+                <text x="321" y="246" text-anchor="middle" fill="#fef08a" font-weight="bold" font-size="7.5">NHÀ 3 GIAN (5m × 9m)</text>
+              </g>
+
+              <!-- Cụm phụ trợ sau nhà 3 gian -->
+              <g id="zone-rose" class="zone-hover" onclick="selectZone('rose')">
+                <rect x="258" y="62" width="37" height="27" fill="#fce7f3" stroke="#ec4899" stroke-width="1.2" rx="2"/>
+                <text x="276" y="84" text-anchor="middle" fill="#be185d" font-weight="bold" font-size="5.5">VƯỜN HỒNG</text>
+              </g>
+
+              <g id="zone-banana" class="zone-hover" onclick="selectZone('banana')">
+                <rect x="295" y="62" width="35" height="27" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2" rx="2"/>
+                <text x="312" y="84" text-anchor="middle" fill="#15803d" font-weight="bold" font-size="5.5">BỤI CHUỐI</text>
+              </g>
+
+              <g id="zone-toilet" class="zone-hover" onclick="selectZone('toilet')">
+                <rect x="330" y="62" width="36" height="27" fill="#e2e8f0" stroke="#475569" stroke-width="1.2" rx="2"/>
+                <text x="348" y="75" text-anchor="middle" fill="#1e293b" font-weight="bold" font-size="6">TOILET</text>
+              </g>
+
+              <g id="zone-path-1m" class="zone-hover" onclick="selectZone('path1m')">
+                <rect x="258" y="44" width="126" height="18" fill="url(#walkway-1m)" stroke="#ea580c" stroke-width="1.2"/>
+                <text x="318" y="56" text-anchor="middle" fill="#7c2d12" font-weight="bold" font-size="7">ĐƯỜNG NỐI 1.0M</text>
+              </g>
+
+              <!-- Observer Avatar -->
+              <g id="observer-indicator">
+                <circle cx="222" cy="775" r="9" fill="#10b981" stroke="#047857" stroke-width="1.5"/>
+                <line x1="222" y1="764" x2="222" y2="720" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
+                <text x="222" y="792" text-anchor="middle" fill="#047857" font-weight="bold" font-size="8.5">
+                  👁 BẠN ĐANG ĐỨNG ĐỐI DIỆN CỔNG CHÍNH NHÌN VÀO
+                </text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 3. TAB OPENSCAD 3D -->
+        <div id="threed-container" class="hidden">
+          <div style="font-size: 13px; font-weight: 700; color: #475569; margin-bottom: 12px;">
+            🧊 HÌNH ẢNH MÔ HÌNH 3D OPENSCAD (KHỐI CSG THAM SỐ)
+          </div>
+          <div class="gallery-grid">
+            <div class="photo-card">
+              <div class="photo-card-title">1. Phối Cảnh Tổng Thể (Có Mái)</div>
+              <p class="photo-card-desc">Khối tích tổng thể 37m × 18m kết xuất từ file khu_nha_dong_ho.scad.</p>
+              <img src="./render_overview_roofs.png" alt="OpenSCAD có mái" onclick="openModal(this)">
+            </div>
+            <div class="photo-card">
+              <div class="photo-card-title">2. Mặt Bằng Nội Thất 3D (Không Mái)</div>
+              <p class="photo-card-desc">Mặt bằng chia phòng, bàn ăn thông minh, cụm cối xay cối giã và ban thờ tổ.</p>
+              <img src="./render_interior_no_roofs.png" alt="OpenSCAD không mái" onclick="openModal(this)">
+            </div>
+            <div class="photo-card">
+              <div class="photo-card-title">3. Dải Lùi Kỷ Vật 1.0m Bên Hông</div>
+              <p class="photo-card-desc">Cối xay thóc nan tre và cối giã gạo cần đạp chân qua vách kính.</p>
+              <img src="./render_artifacts_closeup.png" alt="Cối xay và cối giã" onclick="openModal(this)">
+            </div>
+            <div class="photo-card">
+              <div class="photo-card-title">4. Nhà 3 Gian Bắc Bộ & Cái Hè 9m</div>
+              <p class="photo-card-desc">Nền hè 9m sát trục đường 4m, cột hiên và cụm vườn sau nhà.</p>
+              <img src="./render_khu1_nha3gian.png" alt="Nhà 3 gian OpenSCAD" onclick="openModal(this)">
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. TAB KHO ẢNH THỰC TẾ -->
+        <div id="photos-container" class="hidden">
+          <div style="font-size: 13px; font-weight: 700; color: #dc2626; margin-bottom: 12px;">
+            📷 ẢNH HIỆN VẬT & KIẾN TRÚC MẪU DO BẠN CUNG CẤP
+          </div>
+          <div class="gallery-grid">
+            <div class="photo-card">
+              <div class="photo-card-title">1. Mẫu Nhà 3 Gian Truyền Thống Bắc Bộ</div>
+              <p class="photo-card-desc">Kiểu thức cột lim, cửa bức bàn và ngói đỏ mũi hài (Áp dụng cho Khu 1).</p>
+              <img src="./mau_nha_3_gian.png" alt="Nhà 3 gian mẫu" onclick="openModal(this)">
+            </div>
+            <div class="photo-card">
+              <div class="photo-card-title">2. Chòi / Đài Lục Giác Sân Vườn</div>
+              <p class="photo-card-desc">Kiểu dáng lục giác rộng đủ 6.0m mái chồng diêm 2 tầng (Áp dụng cho Khu 2).</p>
+              <img src="./mau_choi_luc_giac.png" alt="Đài lục giác mẫu" onclick="openModal(this)">
+            </div>
+            <div class="photo-card">
+              <div class="photo-card-title">3. Cối Xay Thóc Cổ Truyền Nan Tre</div>
+              <p class="photo-card-desc">Kỷ vật nan tre bọc đất nện (Đặt tại dải lùi 1m cạnh Nhà Ăn Khu 3).</p>
+              <img src="./mau_coi_xay_thoc.png" alt="Cối xay thóc mẫu" onclick="openModal(this)">
+            </div>
+            <div class="photo-card">
+              <div class="photo-card-title">4. Cối Giã Gạo Cần Đạp Chân</div>
+              <p class="photo-card-desc">Kỷ vật cối đá và cần đạp chân chữ Y (Đặt tại dải lùi 1m cạnh Nhà Ăn Khu 3).</p>
+              <img src="./mau_coi_gia_gao.png" alt="Cối giã gạo mẫu" onclick="openModal(this)">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Panel: Zone Inspector -->
+      <aside class="card">
+        <div style="border-bottom: 1px solid var(--card-border); padding-bottom: 12px; margin-bottom: 14px;">
+          <span id="zone-category" class="badge badge-blue">Khu 4: Nhà Khách Lưu Trú</span>
+          <span id="zone-badge" class="badge badge-green">6.0m × 12.0m</span>
+          <h2 id="zone-title" class="inspector-title">Khu 4: Nhà Khách Lưu Trú Gia Tộc</h2>
+          <p id="zone-desc" style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">
+            Căn nhà dành riêng cho khách và con cháu từ xa về nghỉ ngơi, rộng đúng 6m × dài 12m. Chia làm 3 phần đều nhau (mỗi phần dài 4m), trong đó phần cuối sát Khu 5 là phòng ngắm cảnh rộng cỡ 2m nhìn ra ao cá.
+          </p>
+        </div>
+
+        <div>
+          <div class="stat-row">
+            <span class="stat-label">Kích thước:</span>
+            <span id="zone-dimensions" class="stat-val">Dài 12.0m × Rộng 6.0m</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Diện tích sàn:</span>
+            <span id="zone-area" class="stat-val">72.0 m²</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Phân chia công năng:</span>
+            <span id="zone-he-stat" class="stat-val">3 phần × 4.0m</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Điểm nhấn cảnh quan:</span>
+            <span id="zone-setback-stat" class="stat-val">Phòng ngắm cảnh 2m sát ao</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 16px;">
+          <strong style="font-size: 12px; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px;">Chi tiết thiết kế & Bố trí:</strong>
+          <ul id="zone-features" class="feature-list">
+            <li>Phần 1 (sát cổng): Phòng ngủ khách 1 (4m × 6m = 24m²) có giường đôi, tủ kệ.</li>
+            <li>Phần 2 (ở giữa): Phòng ngủ khách 2 (4m × 6m = 24m²) ấm cúng, thoáng mát.</li>
+            <li>Phần 3 (sát ao): Dài 4m, gồm phòng đệm và 1 căn phòng trà bệt rộng cỡ 2m view trực diện ra ao cá qua vách kính lớn.</li>
+            <li>Cửa sổ mở ra đường chính 4m và dải lùi 1m ven tường ngoài.</li>
+          </ul>
+        </div>
+
+        <div class="callout">
+          💡 <strong>Mẹo tương tác:</strong> Nhấp chuột vào bất kỳ khu vực nào trên <strong>Mặt bằng 2D</strong> để xem chi tiết thông số kích thước và diện tích của phân khu đó!
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Image Lightbox Modal -->
+  <div id="image-modal" class="modal" onclick="closeModal()">
+    <span class="modal-close">&times;</span>
+    <img id="modal-img" class="modal-content" src="" alt="Zoom Image">
+  </div>
+
+  <!-- Three.js WebGL 3D Engine & Local Model Base64 Scripts -->
+  <script src="./three.min.js"></script>
+  <script src="./OrbitControls.js"></script>
+  <script src="./GLTFLoader.js"></script>
+  <script src="./model_glb_base64.js"></script>
+
+  <!-- Fallback to CDN if opened in environments missing local JS -->
+  <script>
+    if (typeof THREE === "undefined") {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\\/script>');
+      document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"><\\/script>');
+      document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"><\\/script>');
+    }
+  </script>
+
+  <script>
+    const zoneData = {
+      khu4: {
+        category: "Khu 4: Nghỉ Dưỡng Gia Tộc (Dãy Trái)",
+        title: "Khu 4: Nhà Khách Nghỉ Dưỡng & Đại Sảnh View Ao Cá",
+        badge: "6.0m × 12.0m (72 m²)",
+        desc: "Nhà khách cao cấp gồm Hành lang kết nối nội bộ 1.26m, 2 Phòng ngủ khép kín độc lập có tường ngăn và cửa đi riêng biệt, và Đại sảnh Phòng Khách mở thông hoàn toàn ngắm trọn vẹn ao cá quê qua vách kính panorama kịch trần.",
+        dimensions: "Dài 12.0m × Rộng 6.0m",
+        area: "72.0 m² sàn",
+        heStat: "Hành lang dọc & 2 cửa phòng",
+        setbackStat: "Phòng khách mở thông ra ao cá",
+        features: [
+          "Hành lang nội bộ (rộng 1.26m, dài 8.0m): Kết nối xuyên suốt từ cửa chính vào các phòng ngủ và dẫn thẳng ra đại sảnh phòng khách ngắm cảnh.",
+          "Phòng ngủ Master 1 (16.5m²): Khép kín độc lập, có tường ngăn cách âm và cửa đi riêng biệt từ hành lang. Đầy đủ giường King-size, tủ áo, bàn làm việc, TV và WC khép kín riêng biệt.",
+          "Phòng ngủ Khách 2 (16.5m²): Khép kín độc lập, có tường ngăn và cửa đi riêng biệt từ hành lang. Bố trí 2 giường đơn (Twin beds), tủ áo, kệ hành lý và WC khép kín tiện nghi.",
+          "Đại sảnh Phòng Khách mở thông (22.5m², Y = 8.0 -> 12.0m): Hành lang kết thúc mở toang 100% vào không gian phòng khách sinh hoạt chung như phòng khách trong nhà ở hiện đại. Trang bị bộ sofa gỗ tự nhiên sang trọng, bàn trà me tây, bộ ấm chén Bát Tràng, quầy bar mini-pantry và kệ bonsai.",
+          "Vách kính Panorama kịch trần: Toàn bộ mặt tiền phòng khách hướng ra ao cá Khu 5 được lắp kính trong suốt, mở tầm nhìn tuyệt đối ra mặt nước, đàn cá bơi lội và hoa sen."
+        ]
+      },
+      khu5: {
+        category: "Khu 5: Cảnh Quan Thủy Đình (Dãy Trái)",
+        title: "Khu 5: Cái Ao Cá Vườn Quê Truyền Thống",
+        badge: "6.0m × 5.0m (30 m²)",
+        desc: "Ao cá bình thường theo phong cách nhà vườn thôn quê Bắc Bộ, kích thước rộng 6.0m x dài 5.0m. Tiếp giáp trực tiếp với phòng ngắm cảnh của Nhà Khách Khu 4 và Vườn cây Khu 6.",
+        dimensions: "Dài 5.0m × Rộng 6.0m",
+        area: "30.0 m² mặt nước",
+        heStat: "Ao cá & hoa sen",
+        setbackStat: "Kế bên Khu 4 & Khu 6",
+        features: [
+          "Lòng ao sâu tự nhiên, nước trong xanh mát phản chiếu bóng cây xanh và mây trời.",
+          "Thả các loại cá ao quê truyền thống: Cá chép đồng ánh bạc, cá chép vàng, cá chép đỏ bơi lội thanh bình.",
+          "Bờ kè đá cuội sông tự nhiên mộc mạc bo viền mép ao.",
+          "Cầu ao ván gỗ lim dân dã bắc ra mép nước (nét văn hóa cầu ao thôn quê thân thuộc).",
+          "Cụm hoa súng, hoa sen nở rộ tỏa hương và khóm thủy trúc ven bờ.",
+          "Điều hòa vi khí hậu mát mẻ tự nhiên cho toàn bộ khu nhà khách và khuôn viên."
+        ]
+      },
+      khu6: {
+        category: "Khu 6: Sinh Thái Sân Vườn (Dãy Trái)",
+        title: "Khu 6: Vườn Cây Xanh Mát (Kế Bên Ao)",
+        badge: "6.0m × 16.0m (96 m²)",
+        desc: "Khu vườn cây rộng lớn nhất trong khuôn viên, nằm kế bên ao cá Khu 5. Chiều dài lên tới 16.0m x rộng 6.0m. Nằm đối diện trực tiếp với Đài Lục Giác và Nhà 3 gian qua trục đường chính 4m.",
+        dimensions: "Dài 16.0m × Rộng 6.0m",
+        area: "96.0 m² cây xanh",
+        heStat: "Đối diện Đài Lục Giác & Nhà 3 Gian",
+        setbackStat: "Lối dạo đá phiến",
+        features: [
+          "Trồng các loại cây ăn trái bóng mát cổ truyền: Bưởi Diễn, khế ngọt, cam chanh, hoa mộc hương.",
+          "Lối dạo quanh co lát đá phiến tự nhiên trên nền thảm cỏ xanh mướt.",
+          "Tạo tầm nhìn xanh ngút ngàn khi ngồi thưởng trà từ Đài Lục Giác nhìn sang."
+        ]
+      },
+      khu7: {
+        category: "Khu 7: Góc Cuối Đất (Dãy Trái)",
+        title: "Khu 7: Khu Cuối Cùng Dãy Trái",
+        badge: "6.0m × 4.0m (24 m²)",
+        desc: "Nằm ở góc cuối cùng của khu đất bên tay trái. Kích thước rộng đúng 6.0m x dài 4.0m (diện tích 24.0 m²). Gia chủ dặn 'để đó đi, công năng tôi sẽ nói sau'.",
+        dimensions: "Dài 4.0m × Rộng 6.0m",
+        area: "24.0 m²",
+        heStat: "Góc cuối khu đất",
+        setbackStat: "Thụt lùi 1m tường",
+        features: [
+          "Vị trí yên tĩnh, kín đáo ở góc cuối khu đất.",
+          "Bãi sân cỏ xanh phẳng sạch sẽ chờ gia chủ chỉ định công năng sau."
+        ]
+      },
+      bep: {
+        category: "Khu 3: Dãy Bên Phải (Cổng vào)",
+        title: "Khu Bếp Nấu Hiện Đại (Cạnh Cổng)",
+        badge: "3.0m × 5.5m (16.5 m²)",
+        desc: "Khu bếp nấu được lấy 3.0m chiều dài nằm ngay sát cổng vào. Nối liền với 2 buồng WC bên cạnh và liên thông với phòng ăn rộng rãi.",
+        dimensions: "3.0m × 5.5m",
+        area: "16.5 m²",
+        heStat: "Cửa mở ra đường 4m",
+        setbackStat: "Thụt vào 1m",
+        features: ["Bàn bếp chữ L đá hoa cương, bồn rửa đôi, máy hút mùi công suất lớn.", "Cửa thông tiện lợi sang bàn soạn phòng ăn."]
+      },
+      wc2: {
+        category: "Khu 3: Dãy Bên Phải",
+        title: "2 Nhà Vệ Sinh (Xây Sát Tường Ngoài)",
+        badge: "3.0m × 1.5m (2 buồng)",
+        desc: "Được xây dựng trực tiếp trên luôn phần 1m sát với tường rào ngoài theo chỉ đạo của bạn. Gồm 2 buồng vệ sinh riêng biệt cạnh bếp.",
+        dimensions: "Dài 3.0m × Rộng 1.5m",
+        area: "4.5 m²",
+        heStat: "Sát bên cổng & bếp",
+        setbackStat: "Xây sát tường rào 100%",
+        features: ["2 buồng độc lập tiện dụng.", "Hệ thống kỹ thuật thoát nước riêng biệt."]
+      },
+      phongan: {
+        category: "Khu 3: Dãy Bên Phải",
+        title: "Phòng Ăn Gia Tộc Rộng Rãi",
+        badge: "10.5m × 6.0m (63.0 m²)",
+        desc: "Phòng ăn rộng rãi chiếm toàn bộ phần đất còn lại của Khu 3. Nơi tụ họp con cháu ngày giỗ chạp, lễ tết với bàn ăn thông minh biến hình.",
+        dimensions: "10.5m × 6.0m",
+        area: "63.0 m² sàn",
+        heStat: "Vách kính lớn ra đường 4m",
+        setbackStat: "Thụt vào 1.0m",
+        features: [
+          "Bàn ăn thông minh tròn mở rộng thành oval/chữ nhật dài 5.2m.",
+          "Vách kính lớn nhìn thẳng sang Hành lang Kỷ vật 1m bên hông ngắm cối xay thóc và cối giã gạo."
+        ]
+      },
+      kyvat: {
+        category: "Khu 3: Dãy Bên Phải",
+        title: "Hành Lang Trưng Bày Kỷ Vật Xưa",
+        badge: "1.0m × 10.5m (10.5 m²)",
+        desc: "Dải lùi 1.0m thụt vào bên hông Nhà Ăn. Trưng bày Cối Xay Thóc và Cối Giã Gạo để mọi người vừa ngồi ăn vừa ngắm nhìn qua vách kính lớn.",
+        dimensions: "Rộng 1.0m × Dài 10.5m",
+        area: "10.5 m²",
+        heStat: "Nhìn qua vách kính",
+        setbackStat: "Dải lùi 1m có rải sỏi trắng",
+        features: [
+          "Cối xay thóc nan tre truyền thống.",
+          "Cối giã gạo cần đạp chân gỗ lim chữ Y.",
+          "Rặng trúc quân tử xanh mát và đèn rọi ấm áp."
+        ]
+      },
+      khu2open: {
+        category: "Khu 2: Dãy Bên Phải",
+        title: "2 Khoảng Sân Thoáng Đón Gió (Khu 2)",
+        badge: "2 sân × (3.0m × 6.0m)",
+        desc: "Hai bên trước và sau Đài Lục Giác được để trống hoàn toàn để đón gió mát, tạo sự thoáng đãng cho khuôn viên.",
+        dimensions: "Mỗi sân: 3.0m × 6.0m",
+        area: "36.0 m² tổng cộng",
+        heStat: "Mở thông ra đường 4m",
+        setbackStat: "Để trống theo yêu cầu",
+        features: ["Lát đá tự nhiên, không gian đệm đón gió cho Đài Lục Giác."]
+      },
+      lucgiac: {
+        category: "Khu 2: Dãy Bên Phải",
+        title: "Đài Lục Giác Sân Vườn Rộng 6.0m",
+        badge: "Đường kính đúng 6.0m",
+        desc: "Đài lục giác mái 2 tầng chồng diêm lợp ngói đỏ, đắp đỉnh hồ lô thếp vàng. Rộng đều và đủ 6m chiều ngang đất.",
+        dimensions: "Đường kính 6.0m (Bán kính 3.0m)",
+        area: "Khoảng 27.5 m²",
+        heStat: "Chiếm trọn bề ngang 6m",
+        setbackStat: "Sân thoáng 2 bên",
+        features: [
+          "Bệ đá xanh 6 cạnh giật cấp vững chãi.",
+          "6 cột gỗ lim đỡ mái chồng diêm 2 tầng truyền thống.",
+          "Bàn trà lục giác ở giữa cùng 6 ghế đôn thưởng trà ngắm cảnh vườn ao."
+        ]
+      },
+      nha3gian: {
+        category: "Khu 1: Dãy Bên Phải (Cuối Đất)",
+        title: "Nhà 3 Gian Truyền Thống Bắc Bộ (Nội Thất Đầy Đủ)",
+        badge: "5.0m × 9.0m (45 m²)",
+        desc: "Công trình trung tâm tâm linh cội nguồn dòng họ ở cuối khu đất. Kết cấu 3 gian gỗ lim, mái ngói mũi hài Bát Tràng, kê chân tảng đá hoa sen bồng, cửa bức bàn thượng song hạ bản. Nội thất bài trí chuẩn mực phong thủy cổ truyền Bắc Bộ.",
+        dimensions: "5.0m × 9.0m",
+        area: "45.0 m² sàn",
+        heStat: "Hè dài 9.0m sát đường",
+        setbackStat: "Nhà ➔ Vườn/WC ➔ Đường 1m",
+        features: [
+          "Gian Giữa (Thờ Tổ Uy Nghiêm): Án gian gỗ gụ sơn son thếp vàng 9999, ngai thờ tổ, bộ ngũ sự đồng cổ (đỉnh đồng đốt trầm, đôi chân nến, đôi hạc ngậm cành sen đứng mai rùa), cửa võng chạm tứ linh lộng lẫy, hoành phi sơn then 'Đức Lưu Quang', câu đối lòng máng chạm rồng, đôi lục bình gốm men lam cao 1.8m vẽ khổng tước, bàn tiền dâng lễ và chiếu cói hoa dệt thủ công.",
+          "Gian Tả (Bên Trái - Tiếp Khách Trọng Thể): Bộ trường kỷ gỗ lim chạm hạt cườm bóng loáng, khay trà gốm mộc Bát Tràng tráng men lam, điếu bát thuốc lào truyền thống, tủ chè gỗ gụ khảm ốc xà cừ ngũ sắc chạm tích xưa, bộ tranh tứ bình Xuân - Hạ - Thu - Đông treo tường.",
+          "Gian Hữu (Bên Phải - Tĩnh Dưỡng & Gia Phả): Sập gụ đại ba thành chạm ngũ phúc lâm môn nguyên tấm, gối xếp gấm đỏ hoa cúc dệt kim tuyến, bàn cờ tướng/bàn trà chân quỳ thấp, tủ kính lưu giữ gia phả dòng họ, bức thư pháp đại tự 'Tổ Đức Trường Tồn'.",
+          "Hệ khung vì kèo gỗ truyền thống: Cột cái, cột quân, cột hiên, câu đầu, xà lòng, rui mè và hệ đèn lồng gỗ lục giác tỏa ánh sáng vàng ấm cúng hoài niệm.",
+          "Cái hè dài 9m có 4 cột hiên gỗ lim trên chân tảng hoa sen bồng và bậc tam cấp đá xanh Thanh Hóa."
+        ]
+      },
+      he: {
+        category: "Khu 1: Dãy Bên Phải",
+        title: "Cái Hè Dài 9.0m Kế Đường Đi Chính",
+        badge: "Dài 9.0m × Rộng 1.0m",
+        desc: "Hàng hiên/hè nhà chạy suốt chiều dài 9m của ngôi nhà 3 gian, nằm sát ngay mép trục đường chính 4m.",
+        dimensions: "1.0m × 9.0m",
+        area: "9.0 m²",
+        heStat: "Tiếp giáp đường 4m",
+        setbackStat: "Kế bên nhà 3 gian",
+        features: ["Lát gạch chống trơn, hàng cột hiên gỗ lim và bậc tam cấp đá xanh."]
+      },
+      rose: {
+        category: "Khu 1: Dãy Bên Phải",
+        title: "Vườn Hoa Hồng Ngát Hương (Kế Sát Nhà)",
+        badge: "Kế sát đầu hè",
+        desc: "Dải vườn hoa hồng cổ bố trí nằm kế sát ngay đầu hiên và tường nhà 3 gian.",
+        dimensions: "Dài 1.5m × Rộng 2.0m",
+        area: "Khoảng 3.0 m²",
+        heStat: "Kế sát hè nhà",
+        setbackStat: "Giữa nhà và đường 1m",
+        features: ["Hoa hồng thơm ngát đón gió vào nhà."]
+      },
+      banana: {
+        category: "Khu 1: Dãy Bên Phải",
+        title: "Bụi Chuối Thôn Quê Bắc Bộ (Kế Sát Nhà)",
+        badge: "Trước cau sau chuối",
+        desc: "Nằm kế sát ngay hông nhà 3 gian theo phong thủy 'Trước cau, sau chuối'.",
+        dimensions: "Dài 1.5m × Rộng 2.0m",
+        area: "Khoảng 3.0 m²",
+        heStat: "Kế sát vách nhà",
+        setbackStat: "Cạnh vườn hồng & WC",
+        features: ["Che mát tường hồi và giữ nét bình yên quê nhà."]
+      },
+      toilet: {
+        category: "Khu 1: Dãy Bên Phải",
+        title: "Toilet Khu 1 (Kế Sát Nhà)",
+        badge: "Khép kín & Kín đáo",
+        desc: "Bố trí kế sát ngay góc sau nhà 3 gian để tiện sinh hoạt, kín đáo và có lối đi riêng.",
+        dimensions: "1.5m × 2.0m",
+        area: "3.0 m²",
+        heStat: "Kế sát góc sau",
+        setbackStat: "Tiện dụng cho gia đình",
+        features: ["Thiết bị vệ sinh hiện đại, thông gió tự nhiên."]
+      },
+      path1m: {
+        category: "Khu 1: Dãy Bên Phải",
+        title: "Đường Đi 1.0m (Xong Mới Đến Đường Này)",
+        badge: "Rộng 1.0m thông suốt",
+        desc: "Nằm sau cụm Vườn hoa hồng, Bụi chuối và Toilet. Nối dải lùi 1m ven tường ra trục đường chính 4m.",
+        dimensions: "Rộng 1.0m",
+        area: "Lối đi thông hành",
+        heStat: "Nối thẳng đường 4m",
+        setbackStat: "Sau cụm vườn hoa & WC",
+        features: ["Lát đá tự nhiên bước dạo cao cấp."]
+      },
+      road: {
+        category: "Trục Xương Sống Giao Thông",
+        title: "Đường Chính Rộng 4.0m Kéo Dài Suốt 37m",
+        badge: "4.0m × 37.0m",
+        desc: "Trục đường trung tâm chạy thẳng một mạch từ cổng vào đến tận cuối đất (37m). Kết nối giao thông giữa Dãy Trái và Dãy Phải.",
+        dimensions: "4.0m × 37.0m",
+        area: "148.0 m²",
+        heStat: "Ở tim khu đất",
+        setbackStat: "Nối liền 7 phân khu",
+        features: ["Lát đá bazan xám đen chịu lực, có trụ đèn đá phong cách cổ truyền dẫn lối."]
+      }
+    };
+
+    function selectZone(zoneKey) {
+      const data = zoneData[zoneKey];
+      if (!data) return;
+
+      document.getElementById("zone-category").innerText = data.category;
+      document.getElementById("zone-badge").innerText = data.badge;
+      document.getElementById("zone-title").innerText = data.title;
+      document.getElementById("zone-desc").innerText = data.desc;
+      document.getElementById("zone-dimensions").innerText = data.dimensions;
+      document.getElementById("zone-area").innerText = data.area;
+      document.getElementById("zone-he-stat").innerText = data.heStat;
+      document.getElementById("zone-setback-stat").innerText = data.setbackStat;
+
+      const featList = document.getElementById("zone-features");
+      featList.innerHTML = "";
+      data.features.forEach(f => {
+        const li = document.createElement("li");
+        li.innerText = f;
+        featList.appendChild(li);
+      });
+
+      document.querySelectorAll(".zone-hover").forEach(el => {
+        el.classList.remove("zone-active");
+      });
+      const targetId = "zone-" + (zoneKey === "khu4" ? "khu4" : (zoneKey === "khu5" ? "khu5" : (zoneKey === "khu6" ? "khu6" : (zoneKey === "khu7" ? "khu7" : (zoneKey === "phongan" ? "phong-an" : (zoneKey === "bep" ? "bep" : (zoneKey === "wc2" ? "2wc" : (zoneKey === "nha3gian" ? "nha3gian" : (zoneKey === "path1m" ? "path-1m" : (zoneKey === "road" ? "main-road" : (zoneKey === "setback" ? "setback-strip" : (zoneKey === "khu2open" ? "khu2-open-front" : zoneKey))))))))))));
+      const activeEl = document.getElementById(targetId);
+      if (activeEl) {
+        activeEl.classList.add("zone-active");
+      }
+
+      // Smoothly fly 3D camera to zone if interactive 3D tab is open
+      if (autoFly && typeof flyToZone === "function") {
+        flyToZone(zoneKey);
+      }
+    }
+
+    function toggleDimensions() {
+      const show = document.getElementById("toggle-dims").checked;
+      const dimGroup = document.getElementById("dim-group");
+      if (dimGroup) dimGroup.style.display = show ? "block" : "none";
+    }
+
+    function switchTab(tab) {
+      const btn3DInteractive = document.getElementById("btn-tab-interactive3d");
+      const btnBlender = document.getElementById("btn-tab-blender");
+      const btnPlan = document.getElementById("btn-tab-plan");
+      const btn3D = document.getElementById("btn-tab-3d");
+      const btnPhotos = document.getElementById("btn-tab-photos");
+
+      const interactive3dCont = document.getElementById("interactive3d-container");
+      const blenderCont = document.getElementById("blender-container");
+      const planCont = document.getElementById("plan-container");
+      const threedCont = document.getElementById("threed-container");
+      const photosCont = document.getElementById("photos-container");
+
+      if (btn3DInteractive) btn3DInteractive.classList.toggle("active", tab === "interactive3d");
+      if (btnBlender) btnBlender.classList.toggle("active", tab === "blender");
+      if (btnPlan) btnPlan.classList.toggle("active", tab === "plan");
+      if (btn3D) btn3D.classList.toggle("active", tab === "3d");
+      if (btnPhotos) btnPhotos.classList.toggle("active", tab === "photos");
+
+      if (interactive3dCont) interactive3dCont.classList.toggle("hidden", tab !== "interactive3d");
+      if (blenderCont) blenderCont.classList.toggle("hidden", tab !== "blender");
+      if (planCont) planCont.classList.toggle("hidden", tab !== "plan");
+      if (threedCont) threedCont.classList.toggle("hidden", tab !== "3d");
+      if (photosCont) photosCont.classList.toggle("hidden", tab !== "photos");
+
+      if (tab === "interactive3d" && typeof onWindowResize === "function") {
+        setTimeout(onWindowResize, 60);
+      }
+    }
+
+    function openModal(imgEl) {
+      const modal = document.getElementById("image-modal");
+      const modalImg = document.getElementById("modal-img");
+      modal.style.display = "flex";
+      modalImg.src = imgEl.src;
+    }
+
+    function closeModal() {
+      document.getElementById("image-modal").style.display = "none";
+    }
+
+    // ==========================================
+    // THREE.JS 3D WEBGL INTERACTIVE ENGINE
+    // ==========================================
+    let scene, camera, renderer, controls;
+    let modelScene = null;
+    let roofMeshes = [];
+    let roofsVisible = true;
+    let isNight = false;
+    let hemiLight, sunLight, fillLight, nightLight;
+    let tweenCam = null;
+
+    function base64ToArrayBuffer(base64) {
+      const binary_string = window.atob(base64);
+      const len = binary_string.length;
+      const bytes = new Uint8Array(len);
+      for (let i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+      }
+      return bytes.buffer;
+    }
+
+    function init3D() {
+      const container = document.getElementById("webgl-viewport");
+      if (!container) return;
+
+      if (typeof THREE === "undefined") {
+        console.warn("THREE not loaded yet, retrying in 200ms...");
+        setTimeout(init3D, 200);
+        return;
+      }
+
+      const width = container.clientWidth || 700;
+      const height = container.clientHeight || 580;
+
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xdbeafe);
+      scene.fog = new THREE.FogExp2(0xdbeafe, 0.007);
+
+      camera = new THREE.PerspectiveCamera(45, width / height, 0.2, 500);
+      camera.position.set(9.0, 24.0, 24.0);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      if (THREE.sRGBEncoding) renderer.outputEncoding = THREE.sRGBEncoding;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.05;
+
+      const oldCanvas = container.querySelector("canvas");
+      if (oldCanvas) oldCanvas.remove();
+      container.appendChild(renderer.domElement);
+
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.06;
+      controls.maxPolarAngle = Math.PI / 2 - 0.03;
+      controls.minDistance = 2;
+      controls.maxDistance = 180;
+      controls.target.set(9.0, 1.2, -18.5);
+
+      // Natural Sky & Sun Light
+      hemiLight = new THREE.HemisphereLight(0xffffff, 0xcfd8dc, 0.75);
+      hemiLight.position.set(0, 50, 0);
+      scene.add(hemiLight);
+
+      sunLight = new THREE.DirectionalLight(0xfff7ed, 1.35);
+      sunLight.position.set(28, 48, 22);
+      sunLight.castShadow = true;
+      sunLight.shadow.mapSize.width = 2048;
+      sunLight.shadow.mapSize.height = 2048;
+      sunLight.shadow.camera.near = 1;
+      sunLight.shadow.camera.far = 160;
+      const d = 35;
+      sunLight.shadow.camera.left = -d;
+      sunLight.shadow.camera.right = d;
+      sunLight.shadow.camera.top = d;
+      sunLight.shadow.camera.bottom = -d;
+      sunLight.shadow.bias = -0.0006;
+      scene.add(sunLight);
+
+      fillLight = new THREE.DirectionalLight(0xbfdbfe, 0.45);
+      fillLight.position.set(-25, 20, -25);
+      scene.add(fillLight);
+
+      nightLight = new THREE.PointLight(0xf59e0b, 0, 40);
+      nightLight.position.set(9.0, 6.0, -18.5);
+      scene.add(nightLight);
+
+      // Ground plane shadow catcher
+      const groundGeo = new THREE.PlaneGeometry(160, 160);
+      const groundMat = new THREE.ShadowMaterial({ opacity: 0.16 });
+      const ground = new THREE.Mesh(groundGeo, groundMat);
+      ground.rotation.x = -Math.PI / 2;
+      ground.position.y = -0.02;
+      ground.receiveShadow = true;
+      scene.add(ground);
+
+      // Subtle ground grid
+      const grid = new THREE.GridHelper(100, 50, 0x94a3b8, 0xe2e8f0);
+      grid.position.y = -0.025;
+      scene.add(grid);
+
+      setupRaycaster(container);
+      loadModelData();
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        if (tweenCam) {
+          const now = performance.now();
+          const progress = Math.min(1, (now - tweenCam.startTime) / tweenCam.duration);
+          const ease = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+          camera.position.lerpVectors(tweenCam.startPos, tweenCam.endPos, ease);
+          controls.target.lerpVectors(tweenCam.startTarget, tweenCam.endTarget, ease);
+
+          if (progress >= 1) {
+            tweenCam = null;
+          }
+        }
+
+        controls.update();
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener("resize", onWindowResize);
+    }
+
+    function onWindowResize() {
+      const container = document.getElementById("webgl-viewport");
+      if (!container || !renderer || !camera) return;
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    }
+
+    function loadModelData() {
+      const loader = new THREE.GLTFLoader();
+      const loadingEl = document.getElementById("webgl-loading");
+      const statusText = document.getElementById("webgl-status-text");
+
+      function onModelLoaded(gltf) {
+        modelScene = gltf.scene;
+
+        roofMeshes = [];
+        modelScene.traverse(child => {
+          if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+
+            const n = child.name;
+            if (n.startsWith("Mai_") || n.startsWith("MaiChoi_") || n.startsWith("BoNoc_") || n.startsWith("KimNoc_") || n.startsWith("DinhHoLo")) {
+              roofMeshes.push(child);
+            }
+          }
+        });
+
+        scene.add(modelScene);
+
+        if (loadingEl) {
+          loadingEl.style.opacity = "0";
+          setTimeout(() => { loadingEl.style.display = "none"; }, 350);
+        }
+        if (statusText) statusText.innerText = "✓ Sẵn sàng (Xoay 360°)";
+      }
+
+      if (window.MODEL_GLB_BASE64) {
+        try {
+          const buffer = base64ToArrayBuffer(window.MODEL_GLB_BASE64);
+          loader.parse(buffer, "", onModelLoaded, err => {
+            console.error("GLTF parse error:", err);
+            loader.load("./khu_nha_dong_ho.glb", onModelLoaded);
+          });
+        } catch (e) {
+          console.error("Error decoding base64:", e);
+          loader.load("./khu_nha_dong_ho.glb", onModelLoaded);
+        }
+      } else {
+        loader.load("./khu_nha_dong_ho.glb", onModelLoaded, null, err => {
+          console.error("GLTF load error:", err);
+          if (loadingEl) {
+            loadingEl.innerHTML = '<div style="color:#ef4444; font-weight:700;">Không thể tải mô hình 3D. Vui lòng mở bằng HTTP server hoặc kiểm tra file model_glb_base64.js</div>';
+          }
+        });
+      }
+    }
+
+    function toggleRoofs() {
+      roofsVisible = !roofsVisible;
+      roofMeshes.forEach(mesh => { mesh.visible = roofsVisible; });
+      const btn = document.getElementById("btn-toggle-roof");
+      if (btn) {
+        btn.innerHTML = roofsVisible ? "🏠 Bóc Mái (Xem Bên Trong)" : "🏠 Đậy Mái (Xem Ngoại Thất)";
+        btn.classList.toggle("active", !roofsVisible);
+      }
+    }
+
+    function toggleAutoRotate() {
+      if (!controls) return;
+      controls.autoRotate = !controls.autoRotate;
+      controls.autoRotateSpeed = 1.2;
+      const btn = document.getElementById("btn-toggle-autorotate");
+      if (btn) {
+        btn.innerHTML = controls.autoRotate ? "⏸ Dừng Xoay 360°" : "🔄 Tự Động Xoay: BẬT";
+        btn.classList.toggle("active", controls.autoRotate);
+      }
+    }
+
+    function resetCamera() {
+      flyCameraTo(new THREE.Vector3(9.0, 24.0, 24.0), new THREE.Vector3(9.0, 1.2, -18.5), 900);
+    }
+
+    function toggleDayNight() {
+      isNight = !isNight;
+      const btn = document.getElementById("btn-toggle-light");
+      if (isNight) {
+        scene.background = new THREE.Color(0x0f172a);
+        scene.fog = new THREE.FogExp2(0x0f172a, 0.008);
+        sunLight.intensity = 0.15;
+        hemiLight.intensity = 0.25;
+        fillLight.intensity = 0.1;
+        nightLight.intensity = 2.5;
+        if (btn) {
+          btn.innerHTML = "🌙 Ban Đêm (Đèn Ấm)";
+          btn.classList.add("active");
+        }
+      } else {
+        scene.background = new THREE.Color(0xdbeafe);
+        scene.fog = new THREE.FogExp2(0xdbeafe, 0.007);
+        sunLight.intensity = 1.35;
+        hemiLight.intensity = 0.75;
+        fillLight.intensity = 0.45;
+        nightLight.intensity = 0;
+        if (btn) {
+          btn.innerHTML = "☀️ Ban Ngày";
+          btn.classList.remove("active");
+        }
+      }
+    }
+
+    function toggleFullscreen3D() {
+      const container = document.getElementById("webgl-viewport");
+      if (!document.fullscreenElement) {
+        container.requestFullscreen().catch(err => alert("Không thể mở toàn màn hình: " + err.message));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    const presets = {
+      nam: { pos: [9.0, 16.0, 16.0], target: [9.0, 1.5, -18.5] },
+      bac: { pos: [9.0, 18.0, -52.0], target: [9.0, 1.5, -18.5] },
+      dong: { pos: [38.0, 18.0, -18.5], target: [9.0, 1.5, -18.5] },
+      tay: { pos: [-20.0, 18.0, -18.5], target: [9.0, 1.5, -18.5] },
+      topdown: { pos: [9.0, 48.0, -18.5], target: [9.0, 0, -18.5] },
+      nhakhach: { pos: [-3.0, 7.5, -5.0], target: [3.0, 1.2, -10.0] },
+      nha3gian: { pos: [15.0, 6.0, -25.0], target: [15.0, 1.8, -30.0] },
+      lucgiac: { pos: [18.0, 7.5, -14.0], target: [14.0, 2.0, -18.0] }
+    };
+
+    function setPreset(name) {
+      const p = presets[name];
+      if (!p) return;
+      flyCameraTo(new THREE.Vector3(...p.pos), new THREE.Vector3(...p.target), 900);
+    }
+
+    function flyToZone(zoneKey) {
+      const zonePresets = {
+        khu4: { pos: [-3.0, 7.5, -5.0], target: [3.0, 1.2, -7.0] },
+        khu5: { pos: [-2.0, 6.0, -10.5], target: [3.0, 0.8, -14.5] },
+        khu6: { pos: [-4.0, 11.0, -20.0], target: [3.0, 1.0, -25.0] },
+        khu7: { pos: [-2.0, 8.0, -32.0], target: [3.0, 1.0, -35.0] },
+        bep: { pos: [18.0, 6.0, -1.0], target: [14.0, 1.2, -3.0] },
+        wc2: { pos: [18.0, 5.0, -1.0], target: [16.5, 1.2, -3.0] },
+        phongan: { pos: [20.0, 7.0, -8.0], target: [14.0, 1.5, -9.0] },
+        kyvat: { pos: [18.5, 3.5, -9.0], target: [17.2, 0.8, -9.0] },
+        lucgiac: { pos: [18.0, 7.5, -14.0], target: [14.0, 2.0, -18.0] },
+        khu2open: { pos: [18.0, 7.5, -14.0], target: [14.0, 2.0, -18.0] },
+        nha3gian: { pos: [15.0, 6.0, -25.0], target: [15.0, 1.8, -30.0] },
+        he: { pos: [14.0, 4.0, -26.0], target: [12.0, 1.0, -28.0] },
+        rose: { pos: [15.0, 4.0, -33.0], target: [14.0, 1.0, -35.0] },
+        banana: { pos: [15.0, 4.0, -33.0], target: [14.0, 1.0, -35.0] },
+        toilet: { pos: [15.0, 4.0, -33.0], target: [15.5, 1.0, -35.0] },
+        path1m: { pos: [15.0, 4.0, -35.0], target: [14.0, 1.0, -36.0] },
+        road: { pos: [9.0, 16.0, 16.0], target: [9.0, 1.5, -18.5] }
+      };
+      const p = zonePresets[zoneKey];
+      if (p) {
+        flyCameraTo(new THREE.Vector3(...p.pos), new THREE.Vector3(...p.target), 800);
+      }
+    }
+
+    function flyCameraTo(endPos, endTarget, duration = 800) {
+      if (!camera || !controls) return;
+      tweenCam = {
+        startPos: camera.position.clone(),
+        endPos: endPos.clone(),
+        startTarget: controls.target.clone(),
+        endTarget: endTarget.clone(),
+        startTime: performance.now(),
+        duration: duration
+      };
+    }
+
+    function setupRaycaster(container) {
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+      const tooltip = document.getElementById("webgl-tooltip");
+
+      function updateMousePos(e) {
+        const rect = container.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      }
+
+      container.addEventListener("mousemove", e => {
+        if (!modelScene) return;
+        updateMousePos(e);
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(modelScene.children, true);
+
+        if (intersects.length > 0) {
+          const zoneInfo = getZoneFromMesh(intersects[0].object);
+          if (zoneInfo) {
+            container.style.cursor = "pointer";
+            if (tooltip) {
+              tooltip.style.display = "block";
+              const rect = container.getBoundingClientRect();
+              tooltip.style.left = (e.clientX - rect.left + 14) + "px";
+              tooltip.style.top = (e.clientY - rect.top + 14) + "px";
+              tooltip.innerHTML = zoneInfo.label;
+            }
+            return;
+          }
+        }
+        container.style.cursor = "default";
+        if (tooltip) tooltip.style.display = "none";
+      });
+
+      container.addEventListener("mouseleave", () => {
+        if (tooltip) tooltip.style.display = "none";
+      });
+
+      container.addEventListener("click", e => {
+        if (!modelScene) return;
+        updateMousePos(e);
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(modelScene.children, true);
+
+        if (intersects.length > 0) {
+          const zoneInfo = getZoneFromMesh(intersects[0].object);
+          if (zoneInfo) {
+            selectZone(zoneInfo.key, false);
+          }
+        }
+      });
+    }
+
+    function getZoneFromMesh(mesh) {
+      let curr = mesh;
+      while (curr) {
+        const n = curr.name || "";
+        if (n.includes("NhaKhach") || n.includes("Giuong") || n.includes("Sofa") || n.includes("TuAo") || n.includes("Lavabo") || n.includes("WC1") || n.includes("WC2") || n.includes("HanhLang") || n.includes("KhungCua1") || n.includes("KhungCua2")) {
+          return { key: "khu4", label: "🏠 Khu 4: Nhà Khách Nghỉ Dưỡng Gia Tộc" };
+        }
+        if (n.includes("Ao") || n.includes("MatNuoc") || n.includes("CauAo") || n.includes("DaBoAo") || n.includes("Ca")) {
+          return { key: "khu5", label: "🐟 Khu 5: Cái Ao Cá Vườn Quê Truyền Thống" };
+        }
+        if (n.includes("VuonKhu6") || n.includes("ThamCo") || n.includes("DaBuocDao") || n.includes("CayMai")) {
+          return { key: "khu6", label: "🌳 Khu 6: Cái Vườn Cây Xanh Mát (16m)" };
+        }
+        if (n.includes("Khu7") || n.includes("DuTru")) {
+          return { key: "khu7", label: "🌾 Khu 7: Góc Cuối Đất Dãy Trái (24m²)" };
+        }
+        if (n.includes("NhaAn") || n.includes("BanAn")) {
+          return { key: "phongan", label: "🍽️ Khu 3: Nhà Ăn Gia Tộc & Bàn Ăn Thông Minh" };
+        }
+        if (n.includes("CoiXay") || n.includes("CoiGia") || n.includes("KyVat")) {
+          return { key: "kyvat", label: "🌾 Khu 3: Hành Lang Kỷ Vật Cối Xay & Cối Giã" };
+        }
+        if (n.includes("Bep") || n.includes("WC_Khu3")) {
+          return { key: "bep", label: "🍳 Khu 3: Bếp Nấu & 2 WC Sát Tường" };
+        }
+        if (n.includes("Choi") || n.includes("DaiLucGiac") || n.includes("LucGiac") || n.includes("San_Khu2")) {
+          return { key: "lucgiac", label: "🍵 Khu 2: Đài Lục Giác Sân Vườn (6.0m)" };
+        }
+        if (n.includes("Nha3Gian") || n.includes("BanTho") || n.includes("AnGian") || n.includes("TruongKy") || n.includes("SapGu") || n.includes("He_Nha3Gian") || n.includes("CuaBucBan") || n.includes("HoanhPhi") || n.includes("CauDoi") || n.includes("LucBinh") || n.includes("NguSu")) {
+          return { key: "nha3gian", label: "🏛️ Khu 1: Nhà 3 Gian Truyền Thống Bắc Bộ" };
+        }
+        if (n.includes("VuonHong")) return { key: "rose", label: "🌹 Khu 1: Vườn Hoa Hồng" };
+        if (n.includes("Chuoi")) return { key: "banana", label: "🍌 Khu 1: Bụi Chuối Thôn Quê" };
+        if (n.includes("Toilet")) return { key: "toilet", label: "🚻 Khu 1: Toilet Kế Sát Nhà" };
+        if (n.includes("Cong") || n.includes("TruCong") || n.includes("CanhCong")) return { key: "road", label: "⛩️ Cổng Chính Tam Quan Mở Rộng" };
+        if (n.includes("Duong") || n.includes("Truc") || n.includes("Stone")) return { key: "road", label: "🛣️ Trục Đường Chính Rộng 4.0m" };
+
+        curr = curr.parent;
+      }
+      return null;
+    }
+
+    // Default load: Select tab Interactive 3D & select Khu 4
+    window.addEventListener("DOMContentLoaded", () => {
+      init3D();
+      switchTab("interactive3d");
+      selectZone("khu4", false);
+    });
+  </script>
+</body>
+</html>

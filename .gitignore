@@ -1,0 +1,8 @@
+*.blend1
+test_*.py
+test_*.png
+test_*.glb
+check_*.py
+export_web_3d.py
+make_all_in_one.js
+*.tmp
