@@ -298,9 +298,18 @@ def build_compound():
     mat_paver_gray  = create_pbr_material("Stone_DaSanNoiBo",    (0.75, 0.73, 0.70, 1.0), roughness=0.65)
     mat_grass       = create_pbr_material("Nature_CoNhungXanh",   (0.18, 0.50, 0.12, 1.0), roughness=0.85)
     
-    mat_pond_bottom = create_pbr_material("Nature_DayAoDatCat",   (0.48, 0.52, 0.45, 1.0), roughness=0.65)
-    mat_pond_wall   = create_pbr_material("Nature_BoAoDatKeDa",   (0.42, 0.45, 0.40, 1.0), roughness=0.60)
-    mat_water       = create_pbr_material("Nature_NuocAoQue",     (0.08, 0.55, 0.48, 1.0), roughness=0.04, transmission=0.88, ior=1.333)
+    # Màu nước ao xanh dương rực rỡ & dễ nhận diện
+    mat_pond_bottom = create_pbr_material("Nature_DayAoDatCat",   (0.12, 0.38, 0.65, 1.0), roughness=0.65)
+    mat_pond_wall   = create_pbr_material("Nature_BoAoDatKeDa",   (0.20, 0.42, 0.58, 1.0), roughness=0.60)
+    mat_water       = create_pbr_material("Nature_NuocAoQue",     (0.02, 0.46, 0.90, 1.0), roughness=0.06, transmission=0.65, ior=1.333, emission_color=(0.02, 0.32, 0.72, 1.0), emission_strength=0.25)
+    
+    # Vật liệu Nhà Ăn Mái Lá & Cầu Ao Bến Giặt Xưa
+    mat_thatch_leaf = create_pbr_material("Roof_MaiLaQue",        (0.62, 0.46, 0.22, 1.0), roughness=0.92)
+    mat_thatch_ridge= create_pbr_material("Roof_NepBoNocLa",      (0.44, 0.30, 0.14, 1.0), roughness=0.95)
+    mat_bamboo      = create_pbr_material("Wood_TreTrucQue",      (0.45, 0.48, 0.22, 1.0), roughness=0.45)
+    mat_wash_stone  = create_pbr_material("Stone_PhienDaGiat",    (0.35, 0.42, 0.48, 1.0), roughness=0.25)
+    mat_wash_tub    = create_pbr_material("Metal_ThauDongGiat",   (0.85, 0.64, 0.20, 1.0), roughness=0.30, metallic=0.82)
+    mat_cotton_cloth= create_pbr_material("Int_VaiChamGiat",      (0.18, 0.26, 0.45, 1.0), roughness=0.85)
     
     mat_glass       = create_pbr_material("Arch_KinhCuongLuc",    (0.92, 0.97, 1.00, 1.0), roughness=0.02, transmission=0.96, ior=1.52)
     mat_gold        = create_pbr_material("Deco_ThepVang9999",    (0.95, 0.75, 0.10, 1.0), roughness=0.22, metallic=0.85)
@@ -403,27 +412,48 @@ def build_compound():
     add_box("Bep_BanL2", (13.9, 0.2, 0.0), (2.8, 0.7, 0.85), mat_blue_stone)
     add_gabled_roof("Mai_Bep_WC", 12.8, 18.0, 0.0, 3.0, 3.2, 4.1, overhang=0.35, material=mat_roof_red)
 
-    # Nhà Ăn Gia Tộc Rộng Rãi (4.0m x 10.5m = 42m²)
-    add_box("NhaAn_Nen", (13.0, 3.0, 0.02), (4.0, 10.5, 0.08), mat_paver_gray)
-    add_box("NhaAn_TuongDau", (13.0, 3.0, 0.0), (4.0, 0.2, 3.4), mat_wall)
-    add_box("NhaAn_TuongCuoi", (13.0, 13.3, 0.0), (4.0, 0.2, 3.4), mat_wall)
-    for yp in [3.0, 5.6, 8.25, 10.8, 13.3]:
-        add_cylinder(f"Cot_NhaAn_{yp}", (13.15, yp, 0.0), 0.13, 3.4, mat_wood_dark)
-    add_box("Kinh_NhaAn_Duong8m", (13.2, 3.2, 0.0), (0.04, 10.0, 3.3), mat_glass)
-    add_box("Kinh_NhaAn_ViewKyVat", (16.96, 3.2, 0.0), (0.04, 10.0, 3.3), mat_glass)
-    add_gabled_roof("Mai_NhaAn", 12.8, 17.2, 3.0, 13.5, 3.4, 4.4, overhang=0.35, material=mat_roof_red)
+    # Nhà Ăn Mái Lá Thôn Quê (4.0m x 10.5m = 42m²) - DẠNG MÁI LÁ Ở QUÊ, CÁC CỘT XONG MÁI LÁ, KHÔNG TƯỜNG
+    # Nền gạch Bát Tràng truyền thống có gờ đá xanh
+    add_box("NhaAn_Nen_Gach", (13.0, 3.0, 0.02), (4.0, 10.5, 0.08), mat_terracotta_floor)
+    add_box("NhaAn_GoDa_Vien", (12.95, 2.95, 0.0), (4.10, 10.60, 0.03), mat_blue_stone)
 
-    add_light_source("Den_NhaAn_1", (15.0, 6.5, 2.7), energy=40.0, color=(1.0, 0.92, 0.80))
-    add_light_source("Den_NhaAn_2", (15.0, 10.0, 2.7), energy=40.0, color=(1.0, 0.92, 0.80))
+    # Hệ cột gỗ tròn tự nhiên vững chãi (KHÔNG TƯỜNG - MỞ TOANG 4 BỀ ĐÓN GIÓ)
+    # Hàng cột phía đường 8m (X = 13.20) và hàng cột phía dải kỷ vật (X = 16.80)
+    cot_y_list = [3.2, 5.7, 8.25, 10.8, 13.3]
+    for yp in cot_y_list:
+        # Chân tảng đá xanh hoa sen
+        add_cylinder(f"ChanTang_CotAn_Trai_{yp}", (13.20, yp, 0.10), 0.16, 0.12, mat_blue_stone)
+        add_cylinder(f"Cot_NhaAn_Trai_{yp}",      (13.20, yp, 0.22), 0.11, 2.95, mat_wood_dark)
+        add_cylinder(f"ChanTang_CotAn_Phai_{yp}", (16.80, yp, 0.10), 0.16, 0.12, mat_blue_stone)
+        add_cylinder(f"Cot_NhaAn_Phai_{yp}",      (16.80, yp, 0.22), 0.11, 2.95, mat_wood_dark)
+        # Xà ngang giằng khung vì kèo
+        add_box(f"XaNgang_NhaAn_{yp}", (13.20, yp - 0.06, 3.08), (3.60, 0.12, 0.14), mat_wood_dark)
 
-    # Bàn ăn thông minh
-    add_box("BanAn_ThongMinh_Than", (14.2, 5.8, 0.0), (1.6, 4.9, 0.72), mat_wood_warm)
-    add_box("BanAn_ThongMinh_Mat",  (14.1, 5.6, 0.72), (1.8, 5.3, 0.06), mat_wood_dark)
+    # Xà dọc giằng mái 2 bên
+    add_box("XaDoc_NhaAn_Trai", (13.14, 3.1, 3.10), (0.12, 10.3, 0.14), mat_wood_dark)
+    add_box("XaDoc_NhaAn_Phai", (16.74, 3.1, 3.10), (0.12, 10.3, 0.14), mat_wood_dark)
+
+    # Mái lá ở quê (Mái dốc 2 mái rơm rạ / lá cọ dày dặn, độ vươn mái lớn che mưa nắng)
+    add_gabled_roof("Mai_NhaAn_MaiLa", 12.6, 17.4, 2.65, 13.85, 3.15, 4.45, overhang=0.45, material=mat_thatch_leaf)
+    # Nẹp bờ nóc lá bằng tre bó
+    add_box("BoNoc_MaiLa", (14.90, 2.45, 4.45), (0.20, 11.60, 0.16), mat_thatch_ridge)
+    for ybn in range(3, 14, 2):
+        add_cylinder(f"BoNoc_DayCot_{ybn}", (15.0, ybn, 4.45), 0.12, 0.18, mat_bamboo)
+
+    # Đèn nơm tre dân dã treo thả trần ấm áp
+    for y_light, l_idx in [(5.5, 1), (8.25, 2), (11.0, 3)]:
+        add_cylinder(f"DayTreo_Den_{l_idx}", (15.0, y_light, 3.5), 0.015, 0.6, mat_wood_dark)
+        add_cone(f"DenNomTre_{l_idx}", (15.0, y_light, 2.9), 0.28, 0.45, mat_bamboo)
+        add_light_source(f"Den_NhaAn_{l_idx}", (15.0, y_light, 2.7), energy=45.0, color=(1.0, 0.88, 0.70))
+
+    # Bàn ăn tiệc gỗ me tây nguyên tấm dân dã thôn quê
+    add_box("BanAn_ThonQue_Than", (14.25, 5.6, 0.0), (1.50, 5.3, 0.72), mat_wood_warm)
+    add_box("BanAn_ThonQue_Mat",  (14.10, 5.4, 0.72), (1.80, 5.7, 0.08), mat_wood_dark)
     for ig in range(5):
-        add_chair(f"GheAn_Trai_{ig}", (13.6, 6.0 + ig*1.0, 0.0), mat_wood_dark)
-        add_chair(f"GheAn_Phai_{ig}", (16.2, 6.0 + ig*1.0, 0.0), mat_wood_dark)
-    add_chair("GheAn_Dau1", (15.0, 5.0, 0.0), mat_wood_dark)
-    add_chair("GheAn_Dau2", (15.0, 11.4, 0.0), mat_wood_dark)
+        add_chair(f"GheAn_Trai_{ig}", (13.55, 5.8 + ig*1.1, 0.0), mat_wood_dark)
+        add_chair(f"GheAn_Phai_{ig}", (16.25, 5.8 + ig*1.1, 0.0), mat_wood_dark)
+    add_chair("GheAn_Dau1", (15.0, 4.8, 0.0), mat_wood_dark)
+    add_chair("GheAn_Dau2", (15.0, 11.6, 0.0), mat_wood_dark)
 
     # Hành lang kỷ vật xưa (1.0m bên hông)
     add_box("NenSoi_KyVat", (17.02, 3.0, 0.02), (0.96, 10.5, 0.04), mat_pebble)
@@ -707,10 +737,44 @@ def build_compound():
     for c_name, c_pos in lotus_clusters:
         add_lotus_cluster(c_name, c_pos, mat_lotus_leaf, mat_lotus_pink, mat_lotus_yellow)
 
-    # Cầu ao gỗ lim bắc ra mép nước từ hướng đường 8m
-    add_box("CauAo_GoLim", (3.6, 12.0, 0.01), (1.2, 1.8, 0.06), mat_wood_deck)
-    for (cx, cy) in [(3.7, 13.6), (4.7, 13.6)]:
-        add_cylinder(f"CocCauAo_{cx}", (cx, cy, -0.65), 0.05, 0.70, mat_wood_dark)
+    # =========================================================================
+    # CẦU AO ĐỂ ĐI LÊN NGẮM CẢNH & CHỖ GIẶT ĐỒ Ở CẦU AO NHƯ Ở QUÊ NGÀY XƯA
+    # =========================================================================
+    # 1. BẬC BƯỚC XUỐNG CẦU AO TỪ ĐẠI LỘ 8M
+    add_box("TamCap_CauAo_1", (4.70, 13.5, 0.02), (0.28, 1.60, 0.06), mat_blue_stone)
+    add_box("TamCap_CauAo_2", (4.45, 13.5, -0.02), (0.25, 1.60, 0.06), mat_blue_stone)
+
+    # 2. SÀN CẦU AO GỖ LIM VƯƠN RA LÒNG AO ĐỂ ĐI LÊN NGẮM CẢNH
+    # Sàn vươn từ X = 2.40 -> 4.45 (dài hơn 2m ra mặt nước), rộng Y = 13.6 -> 15.1
+    add_box("San_CauAo_GoLim", (2.40, 13.6, 0.01), (2.05, 1.50, 0.06), mat_wood_deck)
+    # Các cọc trụ gỗ lim đóng xuống lòng ao đỡ sàn
+    for (px, py) in [(2.50, 13.70), (2.50, 15.00), (3.50, 13.70), (3.50, 15.00), (4.40, 13.70), (4.40, 15.00)]:
+        add_cylinder(f"CocTru_CauAo_{px}_{py}", (px, py, -0.68), 0.06, 0.75, mat_wood_dark)
+
+    # Lan can tay vịn tre / gỗ lim mộc mạc phía bắc cầu ao để vịn ngắm cá
+    add_cylinder("CocLanCan_1", (2.50, 15.05, 0.05), 0.04, 0.85, mat_bamboo)
+    add_cylinder("CocLanCan_2", (3.50, 15.05, 0.05), 0.04, 0.85, mat_bamboo)
+    add_cylinder("CocLanCan_3", (4.45, 15.05, 0.05), 0.04, 0.85, mat_bamboo)
+    add_box("TayVin_CauAo", (2.45, 15.02, 0.85), (2.05, 0.06, 0.06), mat_bamboo)
+
+    # 3. CHỖ GIẶT ĐỒ Ở CẦU AO NHƯ Ở QUÊ NGÀY XƯA
+    # Bậc đá hạ thấp sát mấp mé mặt nước (Z = -0.05m, nước Z = -0.10m)
+    add_box("BacBen_DaXanh_Giat", (3.20, 12.60, -0.06), (1.20, 0.95, 0.06), mat_blue_stone)
+    
+    # Phiến đá giặt đồ (bàn đập giặt xưa) phẳng lì nhẵn bóng nằm sát mép nước
+    add_box("PhienDa_GiatDo", (2.55, 12.65, -0.05), (0.65, 0.85, 0.06), mat_wash_stone)
+
+    # Chiếc thau đồng / chậu giặt cổ truyền đặt trên phiến đá
+    add_cylinder("ThauDong_GiatDo_Day", (2.85, 12.95, 0.01), 0.22, 0.02, mat_wash_tub)
+    add_cylinder("ThauDong_GiatDo_Vanh", (2.85, 12.95, 0.03), 0.24, 0.12, mat_wash_tub, vertices=16)
+
+    # Chiếc chày gỗ đập giặt đồ cổ truyền
+    add_cylinder("ChayDap_GiatDo", (2.70, 13.30, 0.02), 0.03, 0.35, mat_wood_dark)
+
+    # Cọc tre cắm lòng ao cạnh phiến đá để vịn tay khi giặt giũ
+    add_cylinder("CocTre_VinTay_Giat", (2.45, 12.65, -0.68), 0.04, 1.45, mat_bamboo)
+    # Khăn vải chàm / quần áo vắt trên cọc phơi
+    add_box("VaiCham_Phoi_Giat", (2.42, 12.62, 0.60), (0.06, 0.16, 0.25), mat_cotton_cloth)
 
     # 4. CĂN NHÀ 3 (6x4): Y = 17.0 -> 23.0m (Nằm sau ao, trước vườn)
     add_house_6x4("NhaKhach3_6x4", 17.0, room_type="view_ao_vuon")

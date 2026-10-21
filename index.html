@@ -568,10 +568,10 @@
             <!-- View 3: Cận cảnh Ao cá quê -->
             <div class="photo-card">
               <div class="photo-card-title">
-                <span style="color: #0e7490;">3. Cận Cảnh Ao Cá Quê Giữa Căn 2 & Căn 3</span>
-                <span class="badge badge-blue">Ao Cá Thôn Quê</span>
+                <span style="color: #0284c7;">3. Cận Cảnh Ao Cá Xanh Biếc, Cầu Ao & Bến Giặt Xưa</span>
+                <span class="badge badge-blue">Nước Xanh Dương • Cầu Ao</span>
               </div>
-              <p class="photo-card-desc">Mặt nước trong xanh, cầu ao gỗ lim mộc mạc, kè đá sông tự nhiên và khóm hoa súng, hoa sen tỏa hương.</p>
+              <p class="photo-card-desc">Mặt nước xanh dương nổi bật, cầu ao vươn ra giữa lòng ao để ngắm cá và bến giặt đồ với phiến đá đập giặt, thau đồng cổ truyền.</p>
               <img src="./blender_5_view_ao_ca.png" alt="Cận cảnh ao cá quê" onclick="openModal(this)">
             </div>
 
@@ -585,14 +585,14 @@
               <img src="./blender_1_tong_the_co_mai.png" alt="Toàn cảnh có mái" onclick="openModal(this)">
             </div>
 
-            <!-- View 5: Cận cảnh Nhà Ăn ngắm kỷ vật -->
+            <!-- View 5: Cận cảnh Nhà Ăn Mái Lá ngắm kỷ vật -->
             <div class="photo-card">
               <div class="photo-card-title">
-                <span style="color: #047857;">5. Từ Nhà Ăn Ngắm Cối Xay & Cối Giã</span>
-                <span class="badge badge-green">Dải Lùi 1.0m Bên Hông</span>
+                <span style="color: #b45309;">5. Nhà Ăn Mái Lá Ở Quê (Không Tường, Cột Gỗ)</span>
+                <span class="badge badge-amber">Mái Lá Thôn Quê</span>
               </div>
-              <p class="photo-card-desc">Bàn tiệc gỗ dài, kính cường lực phản chiếu, cối xay nan tre, cối giã gạo cần đạp và rặng trúc rọi đèn.</p>
-              <img src="./blender_4_ky_vat_nha_an.png" alt="Cối xay và cối giã qua kính" onclick="openModal(this)">
+              <p class="photo-card-desc">Mái lá cọ dày dặn, các cột gỗ tròn vững chãi, không tường đón trọn gió mát và nhìn trực tiếp sang cối xay cối giã bên hông.</p>
+              <img src="./blender_4_ky_vat_nha_an.png" alt="Nhà ăn mái lá thôn quê" onclick="openModal(this)">
             </div>
 
             <!-- View 6: Chòi vuông 4m & Nhà 3 gian -->
@@ -701,9 +701,15 @@
                   <rect width="8" height="8" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5"/>
                   <circle cx="4" cy="4" r="1.5" fill="#ea580c"/>
                 </pattern>
+                <pattern id="thatched-roof" width="12" height="10" patternUnits="userSpaceOnUse">
+                  <rect width="12" height="10" fill="#fef3c7"/>
+                  <line x1="0" y1="3" x2="12" y2="3" stroke="#d97706" stroke-width="0.8"/>
+                  <line x1="0" y1="7" x2="12" y2="10" stroke="#b45309" stroke-width="0.6"/>
+                  <line x1="6" y1="0" x2="6" y2="6" stroke="#92400e" stroke-width="0.5"/>
+                </pattern>
                 <pattern id="water-ripple" width="16" height="10" patternUnits="userSpaceOnUse">
-                  <rect width="16" height="10" fill="#bae6fd"/>
-                  <path d="M 0,5 Q 4,2 8,5 T 16,5" fill="none" stroke="#38bdf8" stroke-width="0.8"/>
+                  <rect width="16" height="10" fill="#0284c7"/>
+                  <path d="M 0,5 Q 4,2 8,5 T 16,5" fill="none" stroke="#38bdf8" stroke-width="1.2"/>
                 </pattern>
                 <pattern id="garden-grass" width="10" height="10" patternUnits="userSpaceOnUse">
                   <rect width="10" height="10" fill="#dcfce7"/>
@@ -797,15 +803,24 @@
                 <text x="136" y="588" text-anchor="middle" fill="#475569" font-size="5">WC</text>
               </g>
 
-              <!-- Cái Ao Cá Quê: Y in [12, 17m] -> y in [404, 494] -->
+              <!-- Cái Ao Cá Quê Xanh Dương: Y in [12, 17m] -> y in [404, 494] -->
               <g id="zone-ao" class="zone-hover" onclick="selectZone('ao')">
-                <rect x="69" y="404" width="81" height="90" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5" rx="6"/>
-                <rect x="73" y="408" width="73" height="82" fill="url(#water-ripple)" stroke="#0284c7" stroke-width="1" rx="4"/>
-                <text x="110" y="445" text-anchor="middle" fill="#0369a1" font-weight="bold" font-size="8">CÁI AO (5m × 4.5m)</text>
-                <text x="110" y="457" text-anchor="middle" fill="#0284c7" font-size="6">Ao Cá Thôn Quê - 22.5m²</text>
-                <!-- Cầu ao ván gỗ -->
-                <rect x="100" y="474" width="20" height="14" fill="#a16207" stroke="#78350f" stroke-width="0.8" rx="1"/>
-                <text x="110" y="483" text-anchor="middle" fill="#ffffff" font-size="4.5">Cầu Ao</text>
+                <rect x="69" y="404" width="81" height="90" fill="#0284c7" stroke="#0369a1" stroke-width="2" rx="6"/>
+                <rect x="73" y="408" width="73" height="82" fill="url(#water-ripple)" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
+                <text x="110" y="425" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="7.5">CÁI AO (XANH BIẾC)</text>
+                <text x="110" y="435" text-anchor="middle" fill="#e0f2fe" font-size="5.5">5.0m × 4.5m - 22.5m²</text>
+
+                <!-- Cầu ao gỗ lim vươn ra lòng ao ngắm cảnh -->
+                <rect x="96" y="440" width="48" height="24" fill="#a16207" stroke="#78350f" stroke-width="1" rx="1"/>
+                <line x1="96" y1="440" x2="144" y2="440" stroke="#fde047" stroke-width="1.2"/>
+                <text x="120" y="455" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="5">CẦU AO NGẮM CẢNH</text>
+
+                <!-- Chỗ giặt đồ ở cầu ao như ở quê ngày xưa -->
+                <rect x="106" y="468" width="34" height="18" fill="#475569" stroke="#334155" stroke-width="1" rx="1"/>
+                <rect x="92" y="470" width="18" height="14" fill="#64748b" stroke="#1e293b" stroke-width="1"/>
+                <circle cx="99" cy="477" r="3.5" fill="#f59e0b" stroke="#b45309" stroke-width="0.8"/>
+                <line x1="90" y1="470" x2="90" y2="484" stroke="#65a30d" stroke-width="1.5"/>
+                <text x="118" y="480" text-anchor="middle" fill="#fef08a" font-weight="bold" font-size="4.5">BẾN GIẶT ĐỒ XƯA</text>
               </g>
 
               <!-- Căn 3 (6x4): Y in [17, 23m] -> y in [296, 404] -->
@@ -848,13 +863,28 @@
                 </text>
               </g>
 
-              <!-- Nhà Ăn Gia Tộc: Y in [3, 13.5m] -> y in [467, 656] -->
+              <!-- Nhà Ăn Mái Lá Thôn Quê: Y in [3, 13.5m] -> y in [467, 656] (KHÔNG TƯỜNG - MÁI LÁ Ở QUÊ) -->
               <g id="zone-phong-an" class="zone-hover" onclick="selectZone('phongan')">
-                <rect x="294" y="467" width="72" height="189" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" rx="2"/>
-                <ellipse cx="330" cy="560" rx="18" ry="30" fill="#fde68a" stroke="#d97706" stroke-width="1.2"/>
+                <rect x="294" y="467" width="72" height="189" fill="url(#thatched-roof)" stroke="#b45309" stroke-width="2.5" rx="3"/>
+                <!-- Các cột gỗ tròn không tường -->
+                <circle cx="298" cy="474" r="3" fill="#78350f" stroke="#fed7aa" stroke-width="0.8"/>
+                <circle cx="298" cy="516" r="3" fill="#78350f" stroke="#fed7aa" stroke-width="0.8"/>
+                <circle cx="298" cy="560" r="3" fill="#78350f" stroke="#fed7aa" stroke-width="0.8"/>
+                <circle cx="298" cy="606" r="3" fill="#78350f" stroke="#fed7aa" stroke-width="0.8"/>
+                <circle cx="298" cy="650" r="3" fill="#78350f" stroke="#fed7aa" stroke-width="0.8"/>
+
+                <circle cx="362" cy="474" r="3" fill="#78350f" stroke="#fed7aa" stroke-width="0.8"/>
+                <circle cx="362" cy="516" r="3" fill="#78350f" stroke="#fed7aa" stroke-width="0.8"/>
+                <circle cx="362" cy="560" r="3" fill="#78350f" stroke="#fed7aa" stroke-width="0.8"/>
+                <circle cx="362" cy="606" r="3" fill="#78350f" stroke="#fed7aa" stroke-width="0.8"/>
+                <circle cx="362" cy="650" r="3" fill="#78350f" stroke="#fed7aa" stroke-width="0.8"/>
+
+                <ellipse cx="330" cy="560" rx="16" ry="28" fill="#fed7aa" stroke="#d97706" stroke-width="1.2"/>
                 <text x="330" y="555" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="6">BÀN ĂN</text>
-                <text x="330" y="565" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="6">GIA TỘC</text>
-                <text x="330" y="485" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="7.5">NHÀ ĂN (42m²)</text>
+                <text x="330" y="565" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="6">DÂN DÃ</text>
+                <text x="330" y="485" text-anchor="middle" fill="#78350f" font-weight="bold" font-size="7.5">NHÀ ĂN MÁI LÁ</text>
+                <text x="330" y="496" text-anchor="middle" fill="#9a3412" font-size="5.5">[Cột Gỗ • Không Tường]</text>
+                <text x="330" y="640" text-anchor="middle" fill="#78350f" font-size="5.5">4 Bề Lộng Gió - 42m²</text>
               </g>
 
               <!-- Khu 2: Chòi Vuông 4m & 2 Sân Thoáng -->
@@ -1085,19 +1115,19 @@
       },
       ao: {
         category: "Dãy Trái: Cảnh Quan Thôn Quê Thủy Đình",
-        title: "Cái Ao Cá Vườn Quê Truyền Thống (Nằm Giữa Căn 2 & Căn 3)",
+        title: "Cái Ao Cá Quê Xanh Mát (Cầu Ao Ngắm Cảnh & Bến Giặt Đồ Xưa)",
         badge: "5.0m × 4.5m (22.5 m²)",
-        desc: "Ao cá bình thường theo phong cách nhà vườn thôn quê Bắc Bộ, nằm giữa Căn 2 và Căn 3 (Y = 12.0m -> 17.0m). Kè đá cuội tự nhiên, cầu ao ván gỗ lim và hoa sen hoa súng.",
+        desc: "Ao cá nước ngọt xanh biếc theo phong cách làng quê Bắc Bộ (Y = 12m -> 17m). Mặt nước xanh dương tươi tắn dễ nhận diện, có cầu ao gỗ lim vươn ra lòng ao để đi lên ngắm cá, và bến cầu ao hạ sát mép nước với phiến đá giặt đồ, thau đồng, chày gỗ và cọc tre vịn tay như ở quê ngày xưa.",
         dimensions: "Dài 5.0m × Rộng 4.5m",
         area: "22.5 m² mặt nước",
         heStat: "Nằm giữa Căn 2 và Căn 3",
-        setbackStat: "Tiếp giáp đại lộ 8m",
+        setbackStat: "Cầu ao vươn từ bờ đại lộ 8m",
         features: [
-          "Lòng ao sâu tự nhiên, mặt nước trong mát phản chiếu trời mây và rặng trúc.",
-          "Bờ kè đá cuội sông tự nhiên bo viền mép ao mộc mạc.",
-          "Cầu ao ván gỗ lim mộc mạc bắc ra mép nước tạo nét văn hóa thôn quê thân thương.",
-          "Thả cá ao quê truyền thống: Cá chép đồng, chép vàng, chép đỏ bơi lội thanh bình.",
-          "Khóm sen, hoa súng nở hoa tỏa hương thơm ngát và điều hòa vi khí hậu toàn khuôn viên."
+          "Mặt nước ao màu xanh dương tươi sáng, trong mát phản chiếu trời mây và rặng trúc, dễ dàng nhận diện từ xa.",
+          "Cầu ao gỗ lim vươn sâu ra lòng ao: bậc tam cấp từ bờ dẫn lên sàn cầu ao rộng rãi, có lan can tay vịn tre để đứng tựa ngắm đàn cá bơi lội và hoa sen.",
+          "Bến giặt đồ xưa ở cầu ao: Bậc đá hạ thấp sát mấp mé mặt nước, phiến đá xanh phẳng lì nhẵn bóng để đập giặt quần áo.",
+          "Chiếc thau đồng cổ truyền, chày gỗ đập giặt đồ và cọc tre cắm lòng ao vịn tay đậm nét hoài niệm thôn quê ngày trước.",
+          "Bờ kè đá cuội sông tự nhiên bo viền mộc mạc, khóm sen hoa súng nở thơm ngát."
         ]
       },
       nha3: {
@@ -1158,18 +1188,20 @@
         features: ["2 buồng độc lập tiện dụng.", "Hệ thống kỹ thuật thoát nước riêng biệt."]
       },
       phongan: {
-        category: "Dãy Phải: Không Gian Gia Tộc",
-        title: "Nhà Ăn Gia Tộc Rộng Rãi (4.0m × 10.5m)",
+        category: "Dãy Phải: Không Gian Gia Tộc Thôn Quê",
+        title: "Nhà Ăn Mái Lá Thôn Quê (Cột Gỗ, Mái Lá, Không Tường)",
         badge: "4.0m × 10.5m (42.0 m²)",
-        desc: "Phòng ăn rộng rãi chiếm trọn phần đất Y = 3.0m -> 13.5m của Dãy Phải. Nơi tụ họp con cháu ngày giỗ chạp, lễ tết với bàn ăn thông minh biến hình.",
+        desc: "Nhà ăn thiết kế chuẩn phong cách nhà ăn mái lá ở quê xưa: khung cột gỗ vững chãi kê chân tảng đá xanh, lợp mái lá cọ / rơm rạ dày dặn, hoàn toàn không có tường hay vách kính bao quanh, mở toang 4 bề đón trọn gió mát lành tự nhiên. Kết nối trực tiếp với đại lộ 8m và dải lùi kỷ vật cối xay cối giã bên hông.",
         dimensions: "Dài 10.5m × Rộng 4.0m",
         area: "42.0 m² sàn",
-        heStat: "Cửa kính lớn ra đại lộ 8m",
-        setbackStat: "Vách kính nhìn ra dải lùi kỷ vật 1m",
+        heStat: "Mở thông 100% ra đại lộ 8m",
+        setbackStat: "Nhìn thẳng sang cối xay cối giã bên hông",
         features: [
-          "Bàn ăn thông minh tròn mở rộng thành oval/chữ nhật dài 5.2m.",
-          "Vách kính lớn nhìn thẳng sang Hành lang Kỷ vật 1m bên hông ngắm cối xay thóc và cối giã gạo.",
-          "Sức chứa 25 - 40 người trong các dịp đại lễ dòng họ."
+          "Hệ cột gỗ tròn tự nhiên vững chãi trên chân tảng đá hoa sen, liên kết vì kèo xà giằng kiên cố.",
+          "Mái lá tranh / dừa nước / lá cọ dày dặn, độ vươn mái lớn che nắng mưa và cách nhiệt cực mát mẻ.",
+          "Không tường: Không gian mở 100%, lộng gió tự nhiên, hòa quyện trọn vẹn với cảnh quan sân vườn.",
+          "Từ bàn ăn nhìn ngắm trực tiếp sang dãy cối xay thóc, cối giã gạo và rặng trúc ở dải lùi 1m bên hông.",
+          "Bàn ăn tiệc gỗ me tây nguyên tấm dân dã, đèn nơm tre treo trần tỏa ánh sáng vàng ấm cúng."
         ]
       },
       kyvat: {
@@ -1755,8 +1787,8 @@
         if (n.includes("Nha2") || n.includes("Sofa_Nha2") || n.includes("WC2_Left")) {
           return { key: "nha2", label: "🏠 Dãy Trái: Căn 2 (6×4) - Liền Kề View Hướng Ao" };
         }
-        if (n.includes("Ao") || n.includes("Nuoc_Ao") || n.includes("CauAo") || n.includes("BoKe") || n.includes("Ca_") || n.includes("Sen_")) {
-          return { key: "ao", label: "🐟 Dãy Trái: Cái Ao Cá Vườn Quê Truyền Thống" };
+        if (n.includes("Ao") || n.includes("Nuoc_Ao") || n.includes("CauAo") || n.includes("BoKe") || n.includes("Ca_") || n.includes("Sen_") || n.includes("GiatDo") || n.includes("PhienDa") || n.includes("ThauDong")) {
+          return { key: "ao", label: "🐟 Dãy Trái: Cái Ao Cá Xanh Biếc, Cầu Ao & Bến Giặt Xưa" };
         }
         if (n.includes("Nha3_") || n.includes("Giuong_Nha3") || n.includes("WC3")) {
           return { key: "nha3", label: "🏡 Dãy Trái: Căn 3 (6×4) - View Ao & Vườn Cây" };
@@ -1764,8 +1796,8 @@
         if (n.includes("Vuon") || n.includes("ThamCo_Vuon") || n.includes("Cay_") || n.includes("TanCay_") || n.includes("DaBuoc_")) {
           return { key: "vuon", label: "🌳 Dãy Trái: Cái Vườn Cây Xanh Mát (Dài 14m)" };
         }
-        if (n.includes("NhaAn") || n.includes("BanAn")) {
-          return { key: "phongan", label: "🍽️ Dãy Phải: Nhà Ăn Gia Tộc & Bàn Ăn Thông Minh (4m × 10.5m)" };
+        if (n.includes("NhaAn") || n.includes("BanAn") || n.includes("MaiLa") || n.includes("DenNomTre")) {
+          return { key: "phongan", label: "🍽️ Dãy Phải: Nhà Ăn Mái Lá Ở Quê (Không Tường, Cột Gỗ - 42m²)" };
         }
         if (n.includes("CoiXay") || n.includes("CoiGia") || n.includes("KyVat")) {
           return { key: "kyvat", label: "🌾 Dãy Phải: Hành Lang Kỷ Vật Cối Xay & Cối Giã" };

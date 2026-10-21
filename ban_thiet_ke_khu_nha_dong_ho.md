@@ -43,9 +43,11 @@ flowchart TD
 • Xây LIỀN KỀ Căn 1 (Y = 6m -> 12m)
 • Phòng khách / nghỉ ngơi VIEW HƯỚNG AO"]
 
-        AO["CÁI AO CÁ QUÊ (5m × 4.5m = 22.5m²)
+        AO["CÁI AO CÁ QUÊ XANH DƯƠNG (5m × 4.5m = 22.5m²)
 • Nằm ngay sau Căn 2 (Y = 12m -> 17m)
-• Kè đá cuội, cầu ao gỗ, hoa sen hoa súng"]
+• Mặt nước XANH DƯƠNG tươi sáng dễ nhận diện
+• Cầu ao gỗ lim vươn ra lòng ao để đi lên ngắm cảnh
+• Chỗ giặt đồ ở cầu ao: Phiến đá đập giặt, thau đồng, chày gỗ, cọc tre như ở quê xưa"]
 
         C3["CĂN 3 (6m × 4m = 24m²)
 • Xây ngay sau Ao (Y = 17m -> 23m)
@@ -60,10 +62,10 @@ flowchart TD
 
     subgraph TAY_PHAI["BÊN TAY PHẢI CỦA BẠN (RỘNG 5.0M - DÀI 37.0M)"]
         direction TB
-        K3["KHU 3: BẾP, 2 WC & NHÀ ĂN (Dài 13.5m)
+        K3["KHU 3: BẾP, 2 WC & NHÀ ĂN MÁI LÁ Ở QUÊ (Dài 13.5m)
 • Bếp (4m × 3m) & 2 WC sát tường ngoài (1m × 3m)
-• Nhà Ăn Gia Tộc (4m × 10.5m = 42m²)
-• Dải lùi 1m bên hông: Cối xay & Cối giã gạo"]
+• Nhà Ăn Mái Lá Ở Quê (4m × 10.5m = 42m²): Cột gỗ, mái lá cọ, KHÔNG TƯỜNG đón gió
+• Dải lùi 1m bên hông: Cối xay & Cối giã gạo (ngồi ăn ngắm trực tiếp)"]
 
         K2["KHU 2: CHÒI VUÔNG 4m & 2 SÂN THOÁNG (Dài 12.0m)
 • Sân trước (4m × 4m)
