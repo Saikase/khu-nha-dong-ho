@@ -15,11 +15,16 @@ Dự án quy hoạch tổng thể khuôn viên nhà thờ họ và quần thể 
   * **Tường mặt trước song sắt & Cây xanh:** Hệ song sắt nghệ thuật kéo ra 2m mỗi bên cổng: Sau song sắt bên phải trồng **Cây Bưởi** trĩu quả vàng tài lộc; Sau song sắt bên trái trồng **Cây Lộc Vừng** hoa buông rủ đỏ rực may mắn.
 * **Bên tay trái (Dãy Trái - Rộng 5.0m, Dài 37.0m):**
   * **Khoảng lùi 2m (Y = 0 -> 2m):** Thụt vào 2m tính từ tường cổng để trồng **Hàng Cau Ta** truyền thống (4 cây cau thẳng tắp cao 4m, thảm cỏ, đá bước dạo).
-  * **Căn 1 (6×4m, Y = 2 -> 8m):** Nhà nghỉ dưỡng khép kín, nội thất giường King-size, tủ áo, bàn làm việc, WC riêng.
-  * **Căn 2 (6×4m, Y = 8 -> 14m):** Nhà nghỉ dưỡng liền kề Căn 1, view hướng ao, sofa bàn trà me tây, WC riêng.
-  * **Cái Ao Cá Quê Xanh Biếc (5×4.5m, Y = 14 -> 19m):** Mặt nước xanh dương tươi mát, đàn cá chép, hoa sen, **Cầu ao ngắm cảnh** gỗ lim vươn ra lòng ao và **Bến giặt đồ xưa** với phiến đá đập giặt, thau đồng cổ truyền. Nằm đối diện trực tiếp Chòi Vuông 4x4 Dãy Phải.
-  * **Căn 3 (6×4m, Y = 19 -> 25m):** Nhà nghỉ biệt lập sau ao cá, cửa sổ kính mở ra ngắm cảnh ao và vườn cây.
-  * **Cái Vườn Cây Xanh (12×5m, Y = 25 -> 37m):** Vườn cây ăn trái bóng mát (bưởi Diễn, khế ngọt, hoa mộc), lối dạo đá sa thạch chạy suốt đến tường bao cuối đất (60 m²).
+  * **Căn 1 (6×4m, Y = 2 -> 8m):** Nhà nghỉ dưỡng khép kín, **cửa vào bên trái** (phía gần cổng), WC đặt ở phía Bắc tựa vách $Y=8.0\text{m}$.
+  * **Căn 2 (6×4m, Y = 8 -> 14m):** Xây liền kề Căn 1, **WC đặt ở phía Nam tựa lưng vào WC Căn 1**, **cửa vào bên phải** (phía gần ao), vách kính view ao cá.
+  * **Khoảng đệm 1m (Y = 14 -> 15m):** Lối đi dạo kết nối sang bờ ao cá.
+  * **Cái Ao Cá Quê 6×5 (Y = 15 -> 21m, Rộng 5m = 30 m²):** Mở rộng lấy luôn lối đi 1m, bờ nhỏ kè đá cuội tự nhiên, **bậc thang đá xanh đi xuống ao với nước ngập tầm giữa bậc 2** giống hệt ao quê xưa, bến giặt phiến đá, thau đồng, cọc tre, cá chép bơi lội và hoa sen nở ngát. Nằm đối diện trực tiếp Chòi Vuông 4x4m Dãy Phải.
+  * **Khoảng đệm 1m (Y = 21 -> 22m):** Lối đi dạo ven bờ Bắc của ao.
+  * **Căn 3 (6×4m, Y = 22 -> 28m):** Nhà nghỉ biệt lập view ao cá phía Nam và view hàng rào hoa phía Bắc.
+  * **Cái Vườn Rút Gọn 9m (Y = 28 -> 37m, Rộng 5m = 45 m²):**
+    * Mặt trước có hàng rào bụi hoa cao khoảng 70cm và đường đi vào ở giữa (hai bên lối vào trồng hoa).
+    * Nhìn vào từ lối đi: Bên phải trồng các **luống rau sạch** (cải bẹ, mồng tơi, rau muống, giàn mướp), bên trái trồng **cây ăn trái** (Bưởi Diễn, Khế ngọt, Hoa Mộc Hương).
+    * Cuối gần dãy tường bên phải vườn có **Chuồng Gà quê** truyền thống ($1.8\text{m} \times 2.2\text{m}$) khung tre gỗ mái ngói, lưới mắt cáo, ổ rơm đẻ trứng và đàn gà trống mái sinh động.
 * **Bên tay phải (Dãy Phải - Rộng 5.0m, Dài 37.0m):**
   * **Khối Bếp Mở & WC (Y = 0 -> 2m, Rộng 5m):** Bếp mở dân dã ngày xưa 3.5m (bếp lò củi đôi đất nung) + WC kín 1.5m (cửa hướng nhà ăn).
   * **Khoảng đệm 2m (Y = 2 -> 4m):** Sân đệm thoáng đãng trồng hàng cây kiểng thanh lịch.

@@ -907,158 +907,323 @@ def build_compound():
 
     # =========================================================================
     # 6. DÃY BÊN TRÁI (X = 0.0 -> 5.0m, Rộng 5.0m, Dài 37.0m)
-    # THIẾT KẾ CẢI TẠO THEO YÊU CẦU:
-    # 1. DÃY NHÀ BÊN TRÁI THỤT VÀO 2M tính từ tường cổng để có chỗ TRỒNG HÀNG CAU
-    # 2. Khoảng lùi 2m (Y = 0.0 -> 2.0m): Trồng HÀNG CÂY CAU truyền thống Bắc Bộ
-    # 3. Căn Nhà 1 (6x4): Y = 2.0 -> 8.0m (Thụt vào 2m)
-    # 4. Căn Nhà 2 (6x4): Y = 8.0 -> 14.0m (Liền kề Căn 1)
-    # 5. Cái Ao Cá Quê: Y = 14.0 -> 19.0m (Dài 5.0m, Cầu ao & Bến giặt đồ xưa)
-    # 6. Căn Nhà 3 (6x4): Y = 19.0 -> 25.0m (Dài 6.0m)
-    # 7. Cái Vườn Cây: Y = 25.0 -> 37.0m (Dài 12.0m)
+    # THIẾT KẾ CẢI TẠO THEO CHỈ ĐẠO CỦA GIA CHỦ:
+    # 1. Dãy Trái thụt vào 2m: Hàng Cau Ta truyền thống (Y = 0.0 -> 2.0m)
+    # 2. Căn 1 (6x4, Y = 2.0 -> 8.0m): Cửa vào bên trái (gần cổng), WC ở phía Bắc
+    # 3. Căn 2 (6x4, Y = 8.0 -> 14.0m): Cửa vào bên phải (gần ao), WC ở phía Nam
+    #    ==> 2 NHÀ VỆ SINH CỦA 2 PHÒNG DỰA LƯNG VÀO NHAU TẠI VÁCH CHUNG Y = 8.0M!
+    # 4. Khoảng cách 1m: Lối đi giữa Cụm 2 phòng và Ao cá (Y = 14.0 -> 15.0m)
+    # 5. Cái Ao Cá Quê 6x5 (Y = 15.0 -> 21.0m, X = 0.0 -> 5.0m, lấy luôn lối đi 1m):
+    #    Bờ nhỏ kè đá, bậc thang đá đi xuống (mặt nước ngập giữa bậc 2), cá chép, hoa sen, bến giặt xưa
+    # 6. Khoảng cách 1m: Lối đi giữa Ao cá và Căn 3 (Y = 21.0 -> 22.0m)
+    # 7. Căn 3 (6x4, Y = 22.0 -> 28.0m): Nhà nghỉ view ao và vườn hoa
+    # 8. Cái Vườn Rút Gọn 9m (Y = 28.0 -> 37.0m):
+    #    Hàng rào hoa 70cm mặt trước, lối vào ở giữa, hoa 2 bên lối vào;
+    #    Nhìn vào: Bên phải trồng rau sạch, bên trái trồng cây ăn trái,
+    #    Cuối góc phải gần tường là Chuồng Gà quê truyền thống!
     # =========================================================================
-    add_box("DaiLui_Trai_1m", (0.0, 0.0, 0.005), (1.0, 37.0, 0.02), mat_paver_gray)
+
+    # Thêm vật liệu cho Vườn Rau, Hoa và Chuồng Gà
+    mat_soil         = create_pbr_material("Nature_DatTrongRau",  (0.24, 0.16, 0.10, 1.0), roughness=0.95)
+    mat_veggie       = create_pbr_material("Nature_RauXanhNon",   (0.20, 0.62, 0.12, 1.0), roughness=0.55)
+    mat_flower_red   = create_pbr_material("Flower_HoaDoTham",    (0.88, 0.10, 0.14, 1.0), roughness=0.45)
+    mat_flower_ylw   = create_pbr_material("Flower_HoaVangRuc",   (0.96, 0.82, 0.08, 1.0), roughness=0.45)
+    mat_flower_pur   = create_pbr_material("Flower_HoaTimBiec",   (0.68, 0.22, 0.75, 1.0), roughness=0.45)
+    mat_chicken_coop = create_pbr_material("Wood_ChuongGaQue",   (0.30, 0.18, 0.10, 1.0), roughness=0.75)
+    mat_straw        = create_pbr_material("Deco_RomRaONam",      (0.78, 0.62, 0.28, 1.0), roughness=0.90)
+    mat_chicken_comb = create_pbr_material("Animal_MaoGaDoTuoi",  (0.92, 0.06, 0.04, 1.0), roughness=0.35)
+    mat_chicken_body = create_pbr_material("Animal_LongGaTia",    (0.65, 0.22, 0.08, 1.0), roughness=0.60)
+    mat_chicken_gold = create_pbr_material("Animal_LongGaMaiVang",(0.82, 0.60, 0.15, 1.0), roughness=0.65)
+    mat_wire_mesh    = create_pbr_material("Metal_LuoiMatCao",    (0.40, 0.42, 0.44, 1.0), roughness=0.40, metallic=0.75)
+
+    # Dải lùi ngoài tường rào (chỉ ở khu vực nhà)
+    add_box("DaiLui_Trai_Nha1_2", (0.0, 2.0, 0.005), (1.0, 12.0, 0.02), mat_paver_gray)
+    add_box("DaiLui_Trai_Nha3",   (0.0, 22.0, 0.005), (1.0, 6.0, 0.02), mat_paver_gray)
 
     # --- KHU 6A: KHOẢNG LÙI 2M TRỒNG HÀNG CÂY CAU TRUYỀN THỐNG (Y = 0.0 -> 2.0m) ---
     add_box("SanCo_HangCau", (0.0, 0.0, 0.01), (5.0, 2.0, 0.04), mat_grass)
     add_box("BoDa_HangCau", (4.88, 0.0, 0.0), (0.12, 2.0, 0.08), mat_blue_stone)
-    # Hàng cây cau ta truyền thống thẳng tắp cao vút (4 cây cau duyên dáng)
     add_areca_palm("CauTa_1", (1.0, 1.0, 0.04), height=4.2, mat_trunk=mat_wood_dark, mat_frond=mat_grass, mat_fruit=mat_lotus_yellow)
     add_areca_palm("CauTa_2", (2.0, 1.0, 0.04), height=4.0, mat_trunk=mat_wood_dark, mat_frond=mat_grass, mat_fruit=mat_lotus_yellow)
     add_areca_palm("CauTa_3", (3.0, 1.0, 0.04), height=4.4, mat_trunk=mat_wood_dark, mat_frond=mat_grass, mat_fruit=mat_lotus_yellow)
     add_areca_palm("CauTa_4", (4.0, 1.0, 0.04), height=3.8, mat_trunk=mat_wood_dark, mat_frond=mat_grass, mat_fruit=mat_lotus_yellow)
-    # Đá bước dạo tự nhiên giữa thảm cỏ
     add_cylinder("DaBuoc_HangCau_1", (2.5, 0.5, 0.04), 0.25, 0.03, mat_blue_stone)
     add_cylinder("DaBuoc_HangCau_2", (2.5, 1.5, 0.04), 0.25, 0.03, mat_blue_stone)
 
-    # HÀM TẠO 1 CĂN NHÀ NGHỈ DƯỠNG GIA TỘC 6x4 (Rộng 4m, Dài 6m)
-    def add_house_6x4(prefix, y_start, room_type="master"):
+    # --- HÀM TẠO CĂN NHÀ NGHỈ DƯỠNG CẢI TẠO BỐ CỤC THEO YÊU CẦU ---
+    # door_pos: "left" (cửa bên trái) hoặc "right" (cửa bên phải)
+    # wc_pos: "north" (WC ở đầu Bắc) hoặc "south" (WC ở đầu Nam)
+    def build_custom_house_6x4(prefix, y_start, door_pos="left", wc_pos="south", room_type="master"):
+        # Sàn nhà & khung tường bao
         add_box(f"{prefix}_San", (1.0, y_start, 0.01), (4.0, 6.0, 0.06), mat_wood_floor)
         add_box(f"{prefix}_TuongTrai", (1.0, y_start, 0.0), (0.18, 6.0, 3.2), mat_wall)
         add_box(f"{prefix}_TuongDau",  (1.0, y_start, 0.0), (4.0, 0.18, 3.2), mat_wall)
         add_box(f"{prefix}_TuongCuoi", (1.0, y_start + 5.82, 0.0), (4.0, 0.18, 3.2), mat_wall)
         add_box(f"{prefix}_TuongPhai_Thap",    (4.82, y_start, 0.0), (0.18, 6.0, 0.8), mat_wall)
         add_box(f"Mai_{prefix}_TuongPhai_Cao", (4.82, y_start, 0.8), (0.18, 6.0, 2.4), mat_wall)
-        add_box(f"{prefix}_KhungCua", (4.78, y_start + 1.0, 0.0), (0.06, 1.20, 2.20), mat_wood_dark)
-        add_box(f"{prefix}_Cua",      (4.80, y_start + 1.05, 0.02), (0.04, 1.10, 2.15), mat_wood_dark)
-        add_box(f"{prefix}_CuaSoKinh", (4.80, y_start + 3.0, 1.0), (0.04, 2.0, 1.5), mat_glass)
-        add_box(f"{prefix}_WC_TuongDoc",   (2.68, y_start + 0.18, 0.0), (0.10, 1.70, 2.6), mat_wall)
-        add_box(f"{prefix}_WC_TuongNgang", (1.18, y_start + 1.88, 0.0), (1.60, 0.10, 2.6), mat_wall)
-        add_box(f"{prefix}_WC_Cua",        (1.88, y_start + 1.86, 0.0), (0.75, 0.04, 2.1), mat_wood_dark)
-        add_box(f"{prefix}_WC_San",        (1.18, y_start + 0.18, 0.02), (1.50, 1.70, 0.04), mat_slate_wc)
-        add_box(f"{prefix}_WC_Lavabo",     (2.10, y_start + 0.30, 0.05), (0.50, 0.45, 0.82), mat_black_marble)
-        add_cylinder(f"{prefix}_WC_Chau",  (2.35, y_start + 0.52, 0.85), 0.15, 0.10, mat_ceramic_wc)
-        add_box(f"{prefix}_WC_Toilet",     (2.10, y_start + 1.20, 0.05), (0.45, 0.55, 0.45), mat_ceramic_wc)
-        if room_type == "master":
-            add_box(f"{prefix}_Giuong_Khung", (1.80, y_start + 2.60, 0.05), (1.90, 2.10, 0.40), mat_wood_warm)
-            add_box(f"{prefix}_Giuong_Nem",   (1.88, y_start + 2.68, 0.45), (1.74, 1.94, 0.22), mat_white_linen)
-            add_box(f"{prefix}_Giuong_Goi1",  (2.05, y_start + 2.75, 0.67), (0.55, 0.38, 0.10), mat_pillow)
-            add_box(f"{prefix}_Giuong_Goi2",  (2.85, y_start + 2.75, 0.67), (0.55, 0.38, 0.10), mat_pillow)
-        elif room_type == "twin":
-            add_box(f"{prefix}_GiuongA_Khung", (1.30, y_start + 2.60, 0.05), (1.10, 2.00, 0.40), mat_wood_warm)
-            add_box(f"{prefix}_GiuongA_Nem",   (1.35, y_start + 2.65, 0.45), (1.00, 1.90, 0.22), mat_white_linen)
-            add_box(f"{prefix}_GiuongB_Khung", (2.65, y_start + 2.60, 0.05), (1.10, 2.00, 0.40), mat_wood_warm)
-            add_box(f"{prefix}_GiuongB_Nem",   (2.70, y_start + 2.65, 0.45), (1.00, 1.90, 0.22), mat_white_linen)
-        else:
-            add_box(f"{prefix}_Giuong_Khung", (1.50, y_start + 2.80, 0.05), (1.80, 2.00, 0.40), mat_wood_warm)
-            add_box(f"{prefix}_Giuong_Nem",   (1.55, y_start + 2.85, 0.45), (1.70, 1.90, 0.22), mat_white_linen)
-            add_box(f"{prefix}_BanTraView",   (3.60, y_start + 2.20, 0.05), (0.80, 1.20, 0.45), mat_wood_dark)
-        add_box(f"{prefix}_TuAo", (1.18, y_start + 4.70, 0.05), (1.20, 0.55, 2.30), mat_wood_dark)
+
+        # Cửa ra vào mặt tiền (giáp đại lộ X = 4.82m):
+        # "left": cửa ở phía bên trái (gần cổng hơn / Y nhỏ hơn)
+        # "right": cửa ở phía bên phải (gần ao hơn / Y lớn hơn)
+        if door_pos == "left":
+            door_y = y_start + 0.65
+            win_y  = y_start + 3.0
+            add_box(f"{prefix}_KhungCua", (4.78, door_y, 0.0), (0.06, 1.20, 2.20), mat_wood_dark)
+            add_box(f"{prefix}_Cua",      (4.80, door_y + 0.05, 0.02), (0.04, 1.10, 2.15), mat_wood_dark)
+            add_box(f"{prefix}_CuaSoKinh", (4.80, win_y, 1.0), (0.04, 2.2, 1.5), mat_glass)
+        else: # "right"
+            door_y = y_start + 4.15
+            win_y  = y_start + 1.2
+            add_box(f"{prefix}_KhungCua", (4.78, door_y, 0.0), (0.06, 1.20, 2.20), mat_wood_dark)
+            add_box(f"{prefix}_Cua",      (4.80, door_y + 0.05, 0.02), (0.04, 1.10, 2.15), mat_wood_dark)
+            add_box(f"{prefix}_CuaSoKinh", (4.80, win_y, 1.0), (0.04, 2.2, 1.5), mat_glass)
+
+        # Cửa sổ kính view ao cá ở tường đầu/cuối nếu có
+        if room_type == "view_ao":
+            add_box(f"{prefix}_CuaSo_ViewAo", (2.0, y_start + 5.80, 0.9), (2.0, 0.06, 1.6), mat_glass)
+
+        # Nhà vệ sinh (WC): Rộng 1.6m (X: 1.18 -> 2.78m), Sâu 1.7m
+        # Nếu wc_pos == "north": WC đặt ở đầu Bắc (giáp vách y_start + 6.0m)
+        # Nếu wc_pos == "south": WC đặt ở đầu Nam (giáp vách y_start)
+        if wc_pos == "north":
+            wc_y_min = y_start + 4.12
+            wc_y_max = y_start + 5.82
+            # Vách ngăn WC
+            add_box(f"{prefix}_WC_TuongDoc",   (2.68, wc_y_min, 0.0), (0.10, 1.70, 2.6), mat_wall)
+            add_box(f"{prefix}_WC_TuongNgang", (1.18, wc_y_min, 0.0), (1.60, 0.10, 2.6), mat_wall)
+            add_box(f"{prefix}_WC_Cua",        (1.88, wc_y_min - 0.02, 0.0), (0.75, 0.04, 2.1), mat_wood_dark)
+            add_box(f"{prefix}_WC_San",        (1.18, wc_y_min, 0.02), (1.50, 1.70, 0.04), mat_slate_wc)
+            add_box(f"{prefix}_WC_Lavabo",     (2.10, wc_y_min + 0.20, 0.05), (0.50, 0.45, 0.82), mat_black_marble)
+            add_cylinder(f"{prefix}_WC_Chau",  (2.35, wc_y_min + 0.42, 0.85), 0.15, 0.10, mat_ceramic_wc)
+            add_box(f"{prefix}_WC_Toilet",     (2.10, wc_y_min + 1.05, 0.05), (0.45, 0.55, 0.45), mat_ceramic_wc)
+        else: # "south"
+            wc_y_min = y_start + 0.18
+            wc_y_max = y_start + 1.88
+            add_box(f"{prefix}_WC_TuongDoc",   (2.68, wc_y_min, 0.0), (0.10, 1.70, 2.6), mat_wall)
+            add_box(f"{prefix}_WC_TuongNgang", (1.18, wc_y_max, 0.0), (1.60, 0.10, 2.6), mat_wall)
+            add_box(f"{prefix}_WC_Cua",        (1.88, wc_y_max - 0.02, 0.0), (0.75, 0.04, 2.1), mat_wood_dark)
+            add_box(f"{prefix}_WC_San",        (1.18, wc_y_min, 0.02), (1.50, 1.70, 0.04), mat_slate_wc)
+            add_box(f"{prefix}_WC_Lavabo",     (2.10, wc_y_min + 0.30, 0.05), (0.50, 0.45, 0.82), mat_black_marble)
+            add_cylinder(f"{prefix}_WC_Chau",  (2.35, wc_y_min + 0.52, 0.85), 0.15, 0.10, mat_ceramic_wc)
+            add_box(f"{prefix}_WC_Toilet",     (2.10, wc_y_min + 1.15, 0.05), (0.45, 0.55, 0.45), mat_ceramic_wc)
+
+        # Nội thất phòng ngủ
+        if wc_pos == "north":
+            # Giường ngủ đặt ở phần phía Nam (Y nhỏ hơn)
+            add_box(f"{prefix}_Giuong_Khung", (1.60, y_start + 1.30, 0.05), (1.90, 2.10, 0.40), mat_wood_warm)
+            add_box(f"{prefix}_Giuong_Nem",   (1.68, y_start + 1.38, 0.45), (1.74, 1.94, 0.22), mat_white_linen)
+            add_box(f"{prefix}_Giuong_Goi1",  (1.85, y_start + 1.45, 0.67), (0.55, 0.38, 0.10), mat_pillow)
+            add_box(f"{prefix}_Giuong_Goi2",  (2.65, y_start + 1.45, 0.67), (0.55, 0.38, 0.10), mat_pillow)
+            add_box(f"{prefix}_TuAo",         (3.70, y_start + 0.25, 0.05), (0.95, 0.55, 2.30), mat_wood_dark)
+        else: # wc_pos == "south"
+            # Giường ngủ đặt ở phần phía Bắc (Y lớn hơn)
+            add_box(f"{prefix}_Giuong_Khung", (1.60, y_start + 2.80, 0.05), (1.90, 2.10, 0.40), mat_wood_warm)
+            add_box(f"{prefix}_Giuong_Nem",   (1.68, y_start + 2.88, 0.45), (1.74, 1.94, 0.22), mat_white_linen)
+            add_box(f"{prefix}_Giuong_Goi1",  (1.85, y_start + 4.35, 0.67), (0.55, 0.38, 0.10), mat_pillow)
+            add_box(f"{prefix}_Giuong_Goi2",  (2.65, y_start + 4.35, 0.67), (0.55, 0.38, 0.10), mat_pillow)
+            add_box(f"{prefix}_TuAo",         (3.70, y_start + 2.30, 0.05), (0.95, 0.55, 2.30), mat_wood_dark)
+            if room_type == "view_ao":
+                add_box(f"{prefix}_BanTraView", (3.60, y_start + 4.50, 0.05), (0.80, 1.00, 0.45), mat_wood_dark)
+
         add_light_source(f"Light_{prefix}", (3.0, y_start + 3.0, 2.5), energy=30.0, color=(1.0, 0.92, 0.82))
         add_gabled_roof(f"Mai_{prefix}", 0.8, 5.2, y_start, y_start + 6.0, 3.2, 4.35, overhang=0.35, material=mat_roof_red)
 
-    # 1. CĂN NHÀ 1 (6x4): Thụt vào 2m -> Y = 2.0 -> 8.0m
-    add_house_6x4("NhaKhach1_6x4", 2.0, room_type="master")
+    # 1. CĂN 1 (6x4, Y = 2.0 -> 8.0m): Phòng gần cổng, Cửa vào bên trái, WC phía Bắc (tựa vào vách Y = 8.0m)
+    build_custom_house_6x4("NhaKhach1_6x4", 2.0, door_pos="left", wc_pos="north", room_type="master")
 
-    # 2. CĂN NHÀ 2 (6x4): Y = 8.0 -> 14.0m (Liền kề Căn 1)
-    add_house_6x4("NhaKhach2_6x4", 8.0, room_type="twin")
+    # 2. CĂN 2 (6x4, Y = 8.0 -> 14.0m): Phòng nối tiếp, Cửa vào bên phải, WC phía Nam (tựa vào vách Y = 8.0m)
+    # ==> 2 WC DỰA LƯNG NHAU HOÀN TOÀN TẠI VÁCH Y = 8.0M!
+    build_custom_house_6x4("NhaKhach2_6x4", 8.0, door_pos="right", wc_pos="south", room_type="view_ao")
 
-    # 3. CÁI AO CÁ QUÊ (Y = 14.0 -> 19.0m, Dài 5.0m x Rộng 4.5m)
-    add_box("DayAo_SanDatCat", (0.8, 14.15, -0.70), (4.0, 4.7, 0.05), mat_pond_bottom)
-    add_box("ThanhAo_Nam",     (0.8, 14.00, -0.70), (4.0, 0.15, 0.70), mat_pond_wall)
-    add_box("ThanhAo_Bac",     (0.8, 18.85, -0.70), (4.0, 0.15, 0.70), mat_pond_wall)
-    add_box("ThanhAo_Tay",     (0.65, 14.00, -0.70), (0.15, 5.0, 0.70), mat_pond_wall)
-    add_box("ThanhAo_Dong",    (4.85, 14.00, -0.70), (0.15, 5.0, 0.70), mat_pond_wall)
+    # 3. KHOẢNG CÁCH 1M GIỮA CỤM 2 PHÒNG VÀ AO CÁ (Y = 14.0 -> 15.0m)
+    add_box("SanDem_Nha2_AoCa", (0.0, 14.0, 0.01), (5.0, 1.0, 0.04), mat_grass)
+    add_cylinder("DaBuoc_Dem1_1", (1.8, 14.5, 0.04), 0.25, 0.03, mat_blue_stone)
+    add_cylinder("DaBuoc_Dem1_2", (3.2, 14.5, 0.04), 0.25, 0.03, mat_blue_stone)
+    add_cylinder("BuiHoa_Dem1_1", (0.8, 14.5, 0.04), 0.20, 0.35, mat_flower_red)
+    add_cylinder("BuiHoa_Dem1_2", (4.4, 14.5, 0.04), 0.20, 0.35, mat_flower_ylw)
 
-    for ix in range(7):
-        rx = 1.0 + ix * 0.60
-        add_sphere(f"DaBoAo_Nam_{ix}", (rx, 14.06, -0.04), radius=0.20, scale=(1.2, 0.9, 0.65), material=mat_rock_river)
-        add_sphere(f"DaBoAo_Bac_{ix}", (rx, 18.94, -0.04), radius=0.22, scale=(1.1, 0.8, 0.70), material=mat_rock_river)
-    for iy in range(7):
-        ry = 14.5 + iy * 0.65
-        add_sphere(f"DaBoAo_Tay_{iy}", (0.75, ry, -0.04), radius=0.22, scale=(0.8, 1.2, 0.65), material=mat_rock_river)
-        add_sphere(f"DaBoAo_Dong_{iy}", (4.86, ry, -0.04), radius=0.22, scale=(0.85, 1.1, 0.65), material=mat_rock_river)
+    # 4. CÁI AO CÁ QUÊ 6x5 (Y = 15.0 -> 21.0m, X = 0.0 -> 5.0m, LẤY LUÔN LỐI ĐI 1M)
+    # Đáy ao sâu -0.70m, cát sỏi tự nhiên
+    add_box("DayAo_SanDatCat", (0.15, 15.15, -0.70), (4.70, 5.70, 0.05), mat_pond_bottom)
+    # Bờ tường ao xung quanh
+    add_box("ThanhAo_Nam",  (0.00, 15.00, -0.70), (5.00, 0.15, 0.75), mat_pond_wall)
+    add_box("ThanhAo_Bac",  (0.00, 20.85, -0.70), (5.00, 0.15, 0.75), mat_pond_wall)
+    add_box("ThanhAo_Tay",  (0.00, 15.00, -0.70), (0.15, 6.00, 0.75), mat_pond_wall)
+    add_box("ThanhAo_Dong", (4.85, 15.00, -0.70), (0.15, 6.00, 0.75), mat_pond_wall)
 
-    # Mặt nước ao cá (Z = -0.10m)
-    add_box("MatNuoc_AoCa_TrongSuot", (0.82, 14.16, -0.10), (3.98, 4.68, 0.04), mat_water)
+    # Bờ nhỏ xếp đá cuội tự nhiên bo quanh ao
+    for ix in range(9):
+        rx = 0.30 + ix * 0.55
+        add_sphere(f"DaBoAo_Nam_{ix}", (rx, 15.08, 0.02), radius=0.18, scale=(1.2, 0.9, 0.65), material=mat_rock_river)
+        add_sphere(f"DaBoAo_Bac_{ix}", (rx, 20.92, 0.02), radius=0.20, scale=(1.1, 0.8, 0.70), material=mat_rock_river)
+    for iy in range(9):
+        ry = 15.45 + iy * 0.60
+        add_sphere(f"DaBoAo_Tay_{iy}", (0.10, ry, 0.02), radius=0.20, scale=(0.8, 1.2, 0.65), material=mat_rock_river)
+        # Chừa khoảng bờ phía đông cho bậc thang đá đi xuống
+        if not (17.0 <= ry <= 19.0):
+            add_sphere(f"DaBoAo_Dong_{iy}", (4.90, ry, 0.02), radius=0.20, scale=(0.85, 1.1, 0.65), material=mat_rock_river)
 
-    # Đàn cá chép đồng bơi lội (+2m Y offset)
+    # MẶT NƯỚC AO CÁ: Đặt ở Z = -0.08m
+    # Nước ngập đến tầm giữa bậc 2 (bậc 2 đỉnh -0.04m, đáy -0.12m, nước -0.08m chính giữa!)
+    add_box("MatNuoc_AoCa_TrongSuot", (0.16, 15.16, -0.08), (4.68, 5.68, 0.04), mat_water)
+
+    # BẬC THANG ĐÁ ĐI XUỐNG AO NGÀY XƯA (Thay thế cầu ao cũ)
+    # Bờ hè đại lộ ở Z = +0.05m
+    add_box("BoHe_CauAoDa", (4.82, 17.2, 0.0), (0.18, 1.60, 0.08), mat_blue_stone)
+    # Bậc 1 (trên cạn): Đỉnh Z = +0.02m, dày 0.06m
+    add_box("BacThangDa_1", (4.50, 17.3, -0.02), (0.35, 1.40, 0.07), mat_blue_stone)
+    # Bậc 2 (nước đến tầm giữa bậc 2!): Đỉnh Z = -0.04m, đáy Z = -0.12m, nước Z = -0.08m!
+    add_box("BacThangDa_2", (4.15, 17.3, -0.12), (0.35, 1.40, 0.08), mat_wash_stone)
+    # Bậc 3 (ngập dưới nước): Đỉnh Z = -0.12m, đáy Z = -0.22m
+    add_box("BacThangDa_3", (3.80, 17.3, -0.22), (0.35, 1.40, 0.10), mat_blue_stone)
+    # Cọc tre vịn tay ngày xưa cắm nghiêng cạnh bậc thang
+    add_cylinder("CocTre_VinTay_Ao", (4.15, 17.15, -0.65), 0.04, 1.55, mat_bamboo)
+    # Phiến đá giặt đồ, thau đồng và chày đập vải ở bậc thang
+    add_box("PhienDa_GiatDo_Bac2", (4.18, 18.15, -0.04), (0.30, 0.45, 0.04), mat_wash_stone)
+    add_cylinder("ThauDong_GiatDo_Day", (4.25, 17.55, -0.03), 0.16, 0.02, mat_wash_tub)
+    add_cylinder("ThauDong_GiatDo_Vanh", (4.25, 17.55, -0.01), 0.18, 0.09, mat_wash_tub, vertices=16)
+    add_cylinder("ChayDap_GiatDo", (4.35, 17.90, 0.01), 0.025, 0.32, mat_wood_dark)
+
+    # Đàn cá chép đồng bơi lội trong ao 6x5
     carp_data = [
-        ("CaChep_Bac1",    (2.4, 15.0, -0.14), 55.0,   0.85, mat_carp_silver, mat_carp_fin),
-        ("CaChep_VangDong",(3.4, 15.4, -0.13), -40.0,  0.90, mat_carp_gold,   mat_carp_fin),
-        ("CaChep_Bac2",    (2.8, 16.2, -0.15), 125.0,  0.80, mat_carp_silver, mat_carp_fin),
-        ("CaChep_DoQue1",  (4.0, 16.0, -0.14), -75.0,  0.75, mat_carp_red,    mat_carp_fin),
-        ("CaChep_Dong3",   (1.8, 16.5, -0.15), 15.0,   0.82, mat_carp_silver, mat_carp_fin),
-        ("CaChep_Vang2",   (3.5, 17.0, -0.14), -120.0, 0.85, mat_carp_gold,   mat_carp_fin),
-        ("CaChep_DoQue2",  (2.6, 17.4, -0.15), 85.0,   0.78, mat_carp_red,    mat_carp_fin),
+        ("CaChep_Bac1",    (2.4, 16.5, -0.12), 55.0,   0.85, mat_carp_silver, mat_carp_fin),
+        ("CaChep_VangDong",(3.4, 17.0, -0.11), -40.0,  0.90, mat_carp_gold,   mat_carp_fin),
+        ("CaChep_Bac2",    (2.0, 18.2, -0.13), 125.0,  0.80, mat_carp_silver, mat_carp_fin),
+        ("CaChep_DoQue1",  (3.8, 18.0, -0.12), -75.0,  0.75, mat_carp_red,    mat_carp_fin),
+        ("CaChep_Dong3",   (1.6, 19.5, -0.13), 15.0,   0.82, mat_carp_silver, mat_carp_fin),
+        ("CaChep_Vang2",   (3.2, 19.8, -0.12), -120.0, 0.85, mat_carp_gold,   mat_carp_fin),
+        ("CaChep_DoQue2",  (2.5, 20.2, -0.13), 85.0,   0.78, mat_carp_red,    mat_carp_fin),
     ]
     for c_name, c_loc, c_yaw, c_sc, c_mb, c_mf in carp_data:
         add_carp_fish(c_name, c_loc, c_yaw, c_sc, c_mb, c_mf)
 
-    add_light_source("Light_AoCa_Fill", (2.8, 16.2, 0.20), energy=35.0, color=(0.92, 0.98, 0.95))
+    add_light_source("Light_AoCa_Fill", (2.5, 18.0, 0.25), energy=40.0, color=(0.92, 0.98, 0.95))
 
-    # Cụm hoa sen & hoa súng (+2m Y offset)
+    # Cụm hoa sen & hoa súng nổi trên mặt ao
     lotus_clusters = [
-        ("Sen_Cum1", (1.4, 15.2, -0.09)),
-        ("Sen_Cum2", (4.2, 17.8, -0.09)),
-        ("Sen_Cum3", (1.5, 17.6, -0.09))
+        ("Sen_Cum1", (1.2, 16.2, -0.07)),
+        ("Sen_Cum2", (3.8, 19.8, -0.07)),
+        ("Sen_Cum3", (1.2, 19.5, -0.07)),
+        ("Sen_Cum4", (2.8, 15.8, -0.07))
     ]
     for c_name, c_pos in lotus_clusters:
         add_lotus_cluster(c_name, c_pos, mat_lotus_leaf, mat_lotus_pink, mat_lotus_yellow)
 
-    # CẦU AO ĐI LÊN NGẮM CẢNH (+2m Y offset)
-    add_box("TamCap_CauAo_1", (4.70, 15.5, 0.02), (0.28, 1.60, 0.06), mat_blue_stone)
-    add_box("TamCap_CauAo_2", (4.45, 15.5, -0.02), (0.25, 1.60, 0.06), mat_blue_stone)
-    add_box("San_CauAo_GoLim", (2.40, 15.6, 0.01), (2.05, 1.50, 0.06), mat_wood_deck)
-    for (px, py) in [(2.50, 15.70), (2.50, 17.00), (3.50, 15.70), (3.50, 17.00), (4.40, 15.70), (4.40, 17.00)]:
-        add_cylinder(f"CocTru_CauAo_{px}_{py}", (px, py, -0.68), 0.06, 0.75, mat_wood_dark)
+    # 5. KHOẢNG CÁCH 1M GIỮA AO CÁ VÀ CĂN 3 (Y = 21.0 -> 22.0m)
+    add_box("SanDem_AoCa_Nha3", (0.0, 21.0, 0.01), (5.0, 1.0, 0.04), mat_grass)
+    add_cylinder("DaBuoc_Dem2_1", (1.8, 21.5, 0.04), 0.25, 0.03, mat_blue_stone)
+    add_cylinder("DaBuoc_Dem2_2", (3.2, 21.5, 0.04), 0.25, 0.03, mat_blue_stone)
+    add_cylinder("BuiHoa_Dem2_1", (0.8, 21.5, 0.04), 0.20, 0.35, mat_flower_pur)
+    add_cylinder("BuiHoa_Dem2_2", (4.4, 21.5, 0.04), 0.20, 0.35, mat_flower_red)
 
-    add_cylinder("CocLanCan_1", (2.50, 17.05, 0.05), 0.04, 0.85, mat_bamboo)
-    add_cylinder("CocLanCan_2", (3.50, 17.05, 0.05), 0.04, 0.85, mat_bamboo)
-    add_cylinder("CocLanCan_3", (4.45, 17.05, 0.05), 0.04, 0.85, mat_bamboo)
-    add_box("TayVin_CauAo", (2.45, 17.02, 0.85), (2.05, 0.06, 0.06), mat_bamboo)
+    # 6. CĂN 3 (6x4, Y = 22.0 -> 28.0m): Nhà nghỉ view ao và view vườn hoa
+    build_custom_house_6x4("NhaKhach3_6x4", 22.0, door_pos="left", wc_pos="north", room_type="view_ao")
 
-    # CHỖ GIẶT ĐỒ Ở CẦU AO (+2m Y offset)
-    add_box("BacBen_DaXanh_Giat", (3.20, 14.60, -0.06), (1.20, 0.95, 0.06), mat_blue_stone)
-    add_box("PhienDa_GiatDo", (2.55, 14.65, -0.05), (0.65, 0.85, 0.06), mat_wash_stone)
-    add_cylinder("ThauDong_GiatDo_Day", (2.85, 14.95, 0.01), 0.22, 0.02, mat_wash_tub)
-    add_cylinder("ThauDong_GiatDo_Vanh", (2.85, 14.95, 0.03), 0.24, 0.12, mat_wash_tub, vertices=16)
-    add_cylinder("ChayDap_GiatDo", (2.70, 15.30, 0.02), 0.03, 0.35, mat_wood_dark)
-    add_cylinder("CocTre_VinTay_Giat", (2.45, 14.65, -0.68), 0.04, 1.45, mat_bamboo)
-    add_box("VaiCham_Phoi_Giat", (2.42, 14.62, 0.60), (0.06, 0.16, 0.25), mat_cotton_cloth)
+    # 7. CÁI VƯỜN RÚT GỌN 9M (Y = 28.0 -> 37.0m, Rộng 5.0m = 45 m²)
+    # Thảm cỏ nền vườn
+    add_box("ThamCo_Vuon9m", (0.0, 28.0, 0.01), (5.0, 9.0, 0.03), mat_grass)
 
-    # 4. CĂN NHÀ 3 (6x4): Y = 19.0 -> 25.0m
-    add_house_6x4("NhaKhach3_6x4", 19.0, room_type="view_ao_vuon")
+    # A. HÀNG RÀO BỤI HOA CAO 70CM MẶT TRƯỚC VƯỜN (Y = 28.0 -> 28.3m)
+    # Đoạn rào hoa bên trái (X: 0.0 -> 2.2m)
+    add_box("HangRaoHoa_Trai_Goc", (0.0, 28.0, 0.02), (2.2, 0.30, 0.65), mat_grass)
+    for ifl in range(6):
+        fx = 0.20 + ifl * 0.35
+        add_sphere(f"HoaRao_Trai_{ifl}", (fx, 28.15, 0.68), radius=0.10, material=mat_flower_red if ifl % 2 == 0 else mat_flower_ylw)
 
-    # 5. CÁI VƯỜN CÂY XANH MÁT (Y = 25.0 -> 37.0m, Dài 12.0m x Rộng 5.0m = 60 m²)
-    add_box("ThamCo_VuonKhu6", (0.0, 25.0, 0.01), (5.0, 12.0, 0.03), mat_grass)
-    path_points = [
-        (3.5, 25.8), (3.0, 27.5), (3.8, 29.2), (2.8, 31.0),
-        (3.2, 33.0), (2.5, 35.2)
-    ]
-    for idx, (px, py) in enumerate(path_points):
-        add_cylinder(f"DaBuocDao_{idx}", (px, py, 0.03), 0.38, 0.04, mat_blue_stone)
+    # Đoạn rào hoa bên phải (X: 2.8 -> 5.0m)
+    add_box("HangRaoHoa_Phai_Goc", (2.8, 28.0, 0.02), (2.2, 0.30, 0.65), mat_grass)
+    for ifl in range(6):
+        fx = 3.00 + ifl * 0.35
+        add_sphere(f"HoaRao_Phai_{ifl}", (fx, 28.15, 0.68), radius=0.10, material=mat_flower_pur if ifl % 2 == 0 else mat_flower_ylw)
 
-    trees_data = [
-        ("CayBuoi_1",    (1.8, 26.8, 0.0), 0.22, 3.6, 1.7),
-        ("CayMocHuong",  (4.0, 29.0, 0.0), 0.18, 3.2, 1.5),
-        ("CayKheNgot",   (1.6, 31.5, 0.0), 0.24, 3.8, 1.9),
-        ("CayMaiVang",   (3.8, 34.5, 0.0), 0.16, 3.0, 1.4),
-        ("CayBuoi_2",    (2.0, 36.2, 0.0), 0.20, 3.4, 1.6),
-    ]
-    for t_name, loc, tr, h, fr in trees_data:
-        add_tree(t_name, loc, tr, h, fr, mat_wood_dark, mat_grass)
+    # B. ĐƯỜNG ĐI VÀO VƯỜN Ở GIỮA (X = 2.2 -> 2.8m, Y = 28.0 -> 36.5m)
+    garden_path_y = [28.2, 29.2, 30.3, 31.5, 32.7, 33.9, 35.1, 36.3]
+    for idx, py in enumerate(garden_path_y):
+        add_cylinder(f"DaLoiDiVuon_{idx}", (2.5, py, 0.03), 0.28, 0.03, mat_blue_stone)
 
-    # =========================================================================
+    # C. HOA TRỒNG 2 BÊN PHẦN TRƯỚC LỐI ĐI VÀO VƯỜN (Y: 28.3 -> 30.0m)
+    # Bên trái lối đi
+    add_box("BonHoa_Truoc_Trai", (1.2, 28.5, 0.02), (0.9, 1.4, 0.15), mat_soil)
+    for ih in range(4):
+        hx = 1.4 + (ih % 2) * 0.45
+        hy = 28.8 + (ih // 2) * 0.60
+        add_sphere(f"HoaBon_Trai_{ih}", (hx, hy, 0.28), radius=0.12, material=mat_flower_red if ih % 2 == 0 else mat_flower_ylw)
+
+    # Bên phải lối đi
+    add_box("BonHoa_Truoc_Phai", (2.9, 28.5, 0.02), (0.9, 1.4, 0.15), mat_soil)
+    for ih in range(4):
+        hx = 3.1 + (ih % 2) * 0.45
+        hy = 28.8 + (ih // 2) * 0.60
+        add_sphere(f"HoaBon_Phai_{ih}", (hx, hy, 0.28), radius=0.12, material=mat_flower_pur if ih % 2 == 0 else mat_flower_ylw)
+
+    # D. NHÌN VÀO TỪ LỐI ĐI: BÊN TRÁI TRỒNG CÂY ĂN TRÁI (X: 0.0 -> 2.2m)
+    # Cây Bưởi Diễn trĩu quả
+    add_grapefruit_tree("CayBuoi_VuonTrai", (1.1, 31.0, 0.0), trunk_r=0.14, height=3.3, mat_wood=mat_wood_dark, mat_leaf=mat_grass, mat_fruit=mat_lotus_yellow)
+    # Cây Khế Ngọt hoa tím trĩu cành
+    add_tree("CayKhe_VuonTrai", (1.1, 33.6, 0.0), 0.16, 3.4, 1.6, mat_wood_dark, mat_grass)
+    # Cây Hoa Mộc Hương thơm ngát
+    add_tree("CayMoc_VuonTrai", (1.1, 36.0, 0.0), 0.15, 3.1, 1.4, mat_wood_dark, mat_grass)
+
+    # E. NHÌN VÀO TỪ LỐI ĐI: BÊN PHẢI TRỒNG RAU (X: 2.8 -> 5.0m, Y: 30.2 -> 34.2m)
+    # Luống rau cải xanh 1: Y = 30.3 -> 32.0m
+    add_box("LuongDat_Rau1", (3.0, 30.3, 0.02), (1.8, 1.7, 0.14), mat_soil)
+    for ir in range(12):
+        rx = 3.2 + (ir % 4) * 0.42
+        ry = 30.6 + (ir // 4) * 0.48
+        add_cylinder(f"CayRauCai_{ir}", (rx, ry, 0.16), 0.12, 0.14, mat_veggie)
+
+    # Luống rau muống / mồng tơi 2: Y = 32.4 -> 34.1m
+    add_box("LuongDat_Rau2", (3.0, 32.4, 0.02), (1.8, 1.7, 0.14), mat_soil)
+    for ir in range(12):
+        rx = 3.2 + (ir % 4) * 0.42
+        ry = 32.7 + (ir // 4) * 0.48
+        add_cylinder(f"CayRauMuong_{ir}", (rx, ry, 0.16), 0.11, 0.15, mat_grass)
+
+    # F. CUỐI GẦN DÃY TƯỜNG BÊN PHẢI VƯỜN: CHUỒNG GÀ (X: 3.1 -> 4.9m, Y: 34.6 -> 36.8m)
+    # Nền đất cát chuồng gà
+    add_box("NenDat_ChuongGa", (3.1, 34.6, 0.02), (1.8, 2.2, 0.05), mat_soil)
+    # 4 Cột trụ chuồng gà gỗ tre
+    for (cx, cy) in [(3.15, 34.65), (4.80, 34.65), (3.15, 36.75), (4.80, 36.75)]:
+        add_cylinder(f"Cot_ChuongGa_{cx}_{cy}", (cx, cy, 0.02), 0.05, 1.60, mat_chicken_coop)
+    # Khung xà giằng chuồng gà
+    add_box("Xa_ChuongGa_Duoi", (3.15, 34.65, 0.05), (1.65, 2.10, 0.06), mat_chicken_coop)
+    add_box("Xa_ChuongGa_Giua", (3.15, 34.65, 0.75), (1.65, 2.10, 0.05), mat_chicken_coop)
+    add_box("Xa_ChuongGa_Tren", (3.15, 34.65, 1.55), (1.65, 2.10, 0.06), mat_chicken_coop)
+    # Lưới mắt cáo bao quanh chuồng gà
+    add_box("Luoi_ChuongGa_Truoc", (3.18, 34.68, 0.06), (1.60, 0.02, 1.48), mat_wire_mesh)
+    add_box("Luoi_ChuongGa_Phai",  (4.78, 34.68, 0.06), (0.02, 2.05, 1.48), mat_wire_mesh)
+    # Mái che chuồng gà lợp mái lá / ngói dốc
+    add_gabled_roof("Mai_ChuongGa", 3.0, 4.95, 34.5, 36.9, 1.55, 1.95, overhang=0.15, material=mat_roof_red)
+
+    # Nội thất chuồng gà:
+    # Ổ rơm cho gà đẻ trứng
+    add_cylinder("ORom_DeTrung_1", (3.5, 36.3, 0.08), 0.25, 0.12, mat_straw)
+    add_cylinder("ORom_DeTrung_2", (4.2, 36.3, 0.08), 0.25, 0.12, mat_straw)
+    # Vài quả trứng gà quê trắng hồng
+    add_sphere("TrungGa_1", (3.50, 36.30, 0.18), radius=0.035, scale=(0.85, 0.85, 1.15), material=mat_white_linen)
+    add_sphere("TrungGa_2", (4.18, 36.28, 0.18), radius=0.035, scale=(0.85, 0.85, 1.15), material=mat_white_linen)
+    # Sào tre cho gà đậu ngủ
+    add_cylinder("SaoTre_GaDau", (4.0, 35.5, 0.55), 0.035, 1.70, mat_bamboo)
+    # Máng ăn tre & máng nước cho gà
+    add_box("MangAn_ThocGa", (3.4, 34.9, 0.05), (0.80, 0.15, 0.08), mat_bamboo)
+    add_cylinder("MangNuoc_GaUong", (4.4, 35.0, 0.05), 0.12, 0.08, mat_blue_stone)
+
+    # Đàn gà thôn quê sinh động:
+    # 1. Chú Gà Trống Thiến oai vệ (lông tía đỏ, mào cờ)
+    add_sphere("GaTrong_Than", (3.7, 35.4, 0.22), radius=0.14, scale=(1.2, 0.85, 0.95), material=mat_chicken_body)
+    add_sphere("GaTrong_Co",   (3.6, 35.25, 0.32), radius=0.07, scale=(0.8, 0.8, 1.3), material=mat_chicken_body)
+    add_sphere("GaTrong_Dau",  (3.58, 35.20, 0.40), radius=0.055, material=mat_chicken_comb)
+    add_cone("GaTrong_Mao",    (3.58, 35.20, 0.46), 0.03, 0.06, mat_chicken_comb)
+    add_cone("GaTrong_Duoi",   (3.85, 35.60, 0.35), 0.08, 0.24, mat_chicken_body)
+
+    # 2. Cô Gà Mái Mơ vàng ươm đang mổ thóc
+    add_sphere("GaMai_Than", (4.3, 35.2, 0.18), radius=0.12, scale=(1.1, 0.8, 0.85), material=mat_chicken_gold)
+    add_sphere("GaMai_Dau",  (4.25, 35.05, 0.18), radius=0.05, material=mat_chicken_gold)
+    add_cone("GaMai_Mao",    (4.25, 35.05, 0.23), 0.02, 0.035, mat_chicken_comb)
+
+    # Ánh sáng ấm cho khu vực Vườn & Chuồng Gà
+    add_light_source("Light_Vuon_ChuongGa", (2.5, 33.0, 3.5), energy=35.0, color=(1.0, 0.96, 0.88))
+# =========================================================================
     # 7. ÁNH SÁNG MẶT TRỜI TỰ NHIÊN
     # =========================================================================
     bpy.ops.object.light_add(type='SUN', location=(20.0, -12.0, 30.0))
@@ -1114,14 +1279,14 @@ def build_compound():
     setup_camera("Cam_NhaAn_MaiLa", (10.2, 7.5, 1.65), (15.2, 7.5, 1.50), focal_length=24)
 
     # 5. Cận cảnh Ao Cá Quê nhìn từ hiên Căn Nhà 2
-    setup_camera("Cam_5_ViewAo_PhongNgam", (3.0, 10.5, 1.4), (3.0, 14.5, 0.10), focal_length=22)
+    setup_camera("Cam_5_ViewAo_PhongNgam", (4.8, 14.2, 1.5), (2.5, 18.0, 0.0), focal_length=24)
 
     # 6. Phối cảnh cổng chính mở rộng 8m nhìn sâu vào trục đại lộ
     setup_camera("Cam_6_CongChinh", (9.0, -7.5, 1.9), (9.0, 4.0, 1.6), focal_length=26)
     setup_camera("Cam_HangCau_Cong", (2.5, -4.5, 1.75), (2.5, 2.5, 1.8), focal_length=24)
 
     # 7. Cận cảnh 2 Căn Nhà 6x4 và Ao Cá Dãy Trái
-    setup_camera("Cam_7_HanhLang_NhaKhach", (5.5, 0.8, 1.8), (3.0, 12.0, 1.2), focal_length=24)
+    setup_camera("Cam_7_HanhLang_NhaKhach", (5.8, 1.2, 1.9), (3.0, 14.0, 1.2), focal_length=26)
 
     # 8. Cận cảnh nội thất Nhà 3 Gian Bắc Bộ
     setup_camera("Cam_8_NoiThat_Nha3Gian", (12.5, 30.0, 1.55), (15.5, 30.0, 1.65), focal_length=18)
@@ -1137,6 +1302,9 @@ def build_compound():
 
     # 12. PHỐI CẢNH HƯỚNG TÂY (Nhìn sang Dãy Phải: Bếp, Nhà Ăn, Chòi Vuông 4m, Nhà 3 Gian)
     setup_camera("Cam_Huong_Tay", (-16.0, 18.5, 14.0), (9.0, 18.5, 2.0), focal_length=28)
+
+    # 13. CẬN CẢNH VƯỜN RAU, CÂY ĂN TRÁI & CHUỒNG GÀ (Y = 28 -> 37m)
+    setup_camera("Cam_12_VuonRau_ChuongGa", (2.5, 26.5, 1.65), (2.8, 33.5, 1.25), focal_length=24)
 
     blend_path = "d:/Work/Khu_Nha_Dong_Ho/khu_nha_dong_ho.blend"
     bpy.ops.wm.save_as_mainfile(filepath=blend_path)
