@@ -6,19 +6,29 @@
 ---
 
 ## 📌 Giới Thiệu Dự Án
-Dự án quy hoạch tổng thể khuôn viên nhà thờ họ và quần thể nghỉ dưỡng gia tộc trên khu đất chuẩn **$37.0\text{m} \times 18.0\text{m}$ (Tổng diện tích $666.0\text{ m}^2$)**.
+Dự án quy hoạch tổng thể khuôn viên nhà thờ họ và quần thể nghỉ dưỡng gia tộc trên khu đất chuẩn **37.0m × 18.0m (Tổng diện tích 666.0 m²)**.
 
-* **Góc nhìn quan sát:** Đứng đối diện cổng chính nhìn thẳng vào khuôn viên.
-* **Trục thần đạo:** Đường chính rộng **$4.0\text{m}$** kéo dài thông suốt **$37.0\text{m}$** từ cổng vào đến cuối đất.
-* **Bên tay trái (Dãy Trái - Rộng 7m):**
-  * **Khu 4:** Nhà Khách Nghỉ Dưỡng Gia Tộc ($12\text{m} \times 6\text{m}$) gồm hành lang nội bộ $1.26\text{m}$, 2 phòng ngủ Master khép kín độc lập và Đại sảnh phòng khách mở toang ngắm ao.
-  * **Khu 5:** Cái Ao Cá Vườn Quê Truyền Thống ($5\text{m} \times 6\text{m}$), kè đá cuội, cầu ao gỗ lim và hoa sen.
-  * **Khu 6:** Vườn Cây Xanh Mát ($16\text{m} \times 6\text{m}$) với lối dạo đá phiến, bóng mát bưởi Diễn, khế ngọt.
-  * **Khu 7:** Góc Đất Cuối Cùng Dãy Trái ($4\text{m} \times 6\text{m}$).
-* **Bên tay phải (Dãy Phải - Rộng 7m):**
-  * **Khu 3:** Bếp nấu ($3\text{m}$), 2 WC xây sát tường ngoài, Nhà Ăn Gia Tộc ($10.5\text{m}$) với bàn ăn thông minh và Hành lang Kỷ vật Xưa (Cối xay thóc & Cối giã gạo qua vách kính).
-  * **Khu 2:** Đài Lục Giác Sân Vườn rộng đủ $6.0\text{m}$, mái chồng diêm 2 tầng, hồ lô thếp vàng cùng 2 khoảng sân thoáng đón gió.
-  * **Khu 1:** Nhà 3 Gian Bắc Bộ ($9\text{m} \times 5\text{m}$) thờ tổ tiên uy nghiêm, hè dài $9\text{m}$ sát trục đường chính, cụm vườn hồng, chuối phong thủy và lối đi $1\text{m}$.
+* **Góc nhìn quan sát:** Đứng đối diện cổng sắt tự động 4m nhìn thẳng vào khuôn viên.
+* **Mặt tiền & Cổng chính (18.0m):**
+  * **Cổng sắt tự động 4.0m:** Cánh cổng trượt trên ray ngầm âm sàn, mô tơ tự động điều khiển từ xa, 2 trụ đá granite gắn đèn LED.
+  * **Đại lộ trung tâm 8.0m:** Đường chính rộng thênh thang 8.0m kéo dài thông suốt 37.0m từ cổng vào đến cuối đất.
+  * **Tường mặt trước song sắt & Cây xanh:** Hệ song sắt nghệ thuật kéo ra 2m mỗi bên cổng: Sau song sắt bên phải trồng **Cây Bưởi** trĩu quả vàng tài lộc; Sau song sắt bên trái trồng **Cây Lộc Vừng** hoa buông rủ đỏ rực may mắn.
+* **Bên tay trái (Dãy Trái - Rộng 5.0m, Dài 37.0m):**
+  * **Khoảng lùi 2m (Y = 0 -> 2m):** Thụt vào 2m tính từ tường cổng để trồng **Hàng Cau Ta** truyền thống (4 cây cau thẳng tắp cao 4m, thảm cỏ, đá bước dạo).
+  * **Căn 1 (6×4m, Y = 2 -> 8m):** Nhà nghỉ dưỡng khép kín, nội thất giường King-size, tủ áo, bàn làm việc, WC riêng.
+  * **Căn 2 (6×4m, Y = 8 -> 14m):** Nhà nghỉ dưỡng liền kề Căn 1, view hướng ao, sofa bàn trà me tây, WC riêng.
+  * **Cái Ao Cá Quê Xanh Biếc (5×4.5m, Y = 14 -> 19m):** Mặt nước xanh dương tươi mát, đàn cá chép, hoa sen, **Cầu ao ngắm cảnh** gỗ lim vươn ra lòng ao và **Bến giặt đồ xưa** với phiến đá đập giặt, thau đồng cổ truyền. Nằm đối diện trực tiếp Chòi Vuông 4x4 Dãy Phải.
+  * **Căn 3 (6×4m, Y = 19 -> 25m):** Nhà nghỉ biệt lập sau ao cá, cửa sổ kính mở ra ngắm cảnh ao và vườn cây.
+  * **Cái Vườn Cây Xanh (12×5m, Y = 25 -> 37m):** Vườn cây ăn trái bóng mát (bưởi Diễn, khế ngọt, hoa mộc), lối dạo đá sa thạch chạy suốt đến tường bao cuối đất (60 m²).
+* **Bên tay phải (Dãy Phải - Rộng 5.0m, Dài 37.0m):**
+  * **Khối Bếp Mở & WC (Y = 0 -> 2m, Rộng 5m):** Bếp mở dân dã ngày xưa 3.5m (bếp lò củi đôi đất nung) + WC kín 1.5m (cửa hướng nhà ăn).
+  * **Khoảng đệm 2m (Y = 2 -> 4m):** Sân đệm thoáng đãng trồng hàng cây kiểng thanh lịch.
+  * **Nhà Ăn Mái Lá Ở Quê (7×4m, Y = 4 -> 11m):** Cột gỗ lim, lợp mái lá dày mát mẻ, **không tường** mở toang 4 bề đón gió ao cá, bàn ăn gỗ me tây nguyên tấm 4.8m cho 10 người.
+  * **Mặt Kính Lấy Sáng Rọi Kỷ Vật (1×7m):** Dải thụt vào 1m có mái kính nối từ đầu tường rào ra mép mái nhà ăn, ánh nắng rọi sáng **Cối Xay Thóc Nan Tre** và **Cối Giã Gạo** chân đạp.
+  * **Khoảng chuyển tiếp & 2 sân thoáng đón gió:** Kết nối giữa Nhà Ăn và Chòi Vuông.
+  * **Chòi Vuông Sân Vườn (4×4m, Y = 17.5 -> 21.5m):** Mái chồng diêm 2 tầng 4 mái đỉnh đắp hồ lô thếp vàng uy nghi, bàn trà gỗ gụ thưởng trà ngắm sang ao cá.
+  * **Nhà 3 Gian Truyền Thống Bắc Bộ (4×9m, Y = 25.5 -> 34.5m):** Không gian thờ cội nguồn tổ tiên uy nghiêm (gian giữa thờ tổ sơn son thếp vàng ngũ sự đồng cổ, gian tả tiếp khách trường kỷ hạt cườm, gian hữu sập gụ khảm ốc gia phả).
+  * **Khu phụ trợ sau nhà:** Vườn hoa hồng Sa Pa, hàng chuối tiêu phong thủy "Trước cau sau chuối", WC phụ trợ và đường nối 1m.
 
 ---
 
@@ -26,9 +36,9 @@ Dự án quy hoạch tổng thể khuôn viên nhà thờ họ và quần thể 
 * **Xoay 360° tự do:** Hỗ trợ chuột và cảm ứng đa điểm trên điện thoại/máy tính bảng.
 * **Bóc Mái (Cutaway):** Ẩn toàn bộ mái ngói chỉ bằng 1 nút bấm để kiểm tra chi tiết nội thất.
 * **Tự Động Xoay (Auto-Rotate):** Camera bay lượn vòng quanh công trình mượt mà.
-* **8 Góc Nhìn Nhanh (Presets):** Nam, Bắc, Đông, Tây, Top-down, Nhà Khách, Nhà 3 Gian, Đài Lục Giác.
-* **Chế độ Ngày / Đêm:** Ánh nắng mặt trời đổ bóng viền mềm hoặc ánh đèn lồng ấm cúng ban đêm.
-* **Tương tác trực quan:** Click vào bất kỳ công trình 3D nào để hiển thị thông số và bản vẽ 2D.
+* **10 Góc Nhìn Nhanh (Presets):** Cổng sắt 4m, Hàng cau 2m, Căn 1, Căn 2, Ao cá quê, Căn 3, Vườn cây, Bếp mở, Nhà ăn mái lá, Chòi vuông, Nhà 3 Gian.
+* **Mặt Bằng 2D Blueprint SVG tương tác:** Click vào từng công trình để xem chi tiết thông số kỹ thuật và phối cảnh.
+* **Bộ 12 Phối Cảnh Cycles Raytracing Siêu Thực:** Xem phóng to toàn màn hình các góc chụp kiến trúc độ phân giải cao.
 
 ---
 
