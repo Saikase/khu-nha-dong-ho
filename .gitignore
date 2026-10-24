@@ -5,4 +5,7 @@ test_*.glb
 check_*.py
 export_web_3d.py
 make_all_in_one.js
+update_*.py
+update_*.js
+*.zip
 *.tmp
