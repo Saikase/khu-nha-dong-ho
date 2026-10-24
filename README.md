@@ -21,10 +21,11 @@ Dự án quy hoạch tổng thể khuôn viên nhà thờ họ và quần thể 
   * **Cái Ao Cá Quê 6×5 (Y = 15 -> 21m, Rộng 5m = 30 m²):** Mở rộng lấy luôn lối đi 1m, bờ nhỏ kè đá cuội tự nhiên, **bậc thang đá xanh đi xuống ao với nước ngập tầm giữa bậc 2** giống hệt ao quê xưa, bến giặt phiến đá, thau đồng, cọc tre, cá chép bơi lội và hoa sen nở ngát. Nằm đối diện trực tiếp Chòi Vuông 4x4m Dãy Phải.
   * **Khoảng đệm 1m (Y = 21 -> 22m):** Lối đi dạo ven bờ Bắc của ao.
   * **Căn 3 (6×4m, Y = 22 -> 28m):** Nhà nghỉ biệt lập view ao cá phía Nam và view hàng rào hoa phía Bắc.
-  * **Cái Vườn Rút Gọn 9m (Y = 28 -> 37m, Rộng 5m = 45 m²):**
-    * Mặt trước có hàng rào bụi hoa cao khoảng 70cm và đường đi vào ở giữa (hai bên lối vào trồng hoa).
-    * Nhìn vào từ lối đi: Bên phải trồng các **luống rau sạch** (cải bẹ, mồng tơi, rau muống, giàn mướp), bên trái trồng **cây ăn trái** (Bưởi Diễn, Khế ngọt, Hoa Mộc Hương).
-    * Cuối gần dãy tường bên phải vườn có **Chuồng Gà quê** truyền thống ($1.8\text{m} \times 2.2\text{m}$) khung tre gỗ mái ngói, lưới mắt cáo, ổ rơm đẻ trứng và đàn gà trống mái sinh động.
+  * **Cái Vườn 9m (Y = 28 -> 37m, Rộng 5m = 45 m²):**
+    * **Mặt trước của vườn đối diện trực tiếp Nhà 3 Gian Bắc Bộ qua đại lộ 8m**.
+    * Mặt trước có hàng rào bụi hoa cao khoảng 70cm và đường đi vào ở giữa (hai bên lối vào trồng hoa rực rỡ).
+    * Nhìn vào từ lối đi (hướng Tây): Bên phải (hướng Bắc) trồng các **luống rau sạch** (cải bẹ, mồng tơi, rau muống, giàn mướp), bên trái (hướng Nam) trồng **cây ăn trái** (Bưởi Diễn, Khế ngọt, Hoa Mộc Hương).
+    * Cuối gần dãy tường bên phải vườn (góc Bắc-Tây) có **Chuồng Gà quê** truyền thống ($1.8\text{m} \times 2.2\text{m}$) khung tre gỗ mái ngói, lưới mắt cáo, ổ rơm đẻ trứng và đàn gà trống mái sinh động.
 * **Bên tay phải (Dãy Phải - Rộng 5.0m, Dài 37.0m):**
   * **Khối Bếp Mở & WC (Y = 0 -> 2m, Rộng 5m):** Bếp mở dân dã ngày xưa 3.5m (bếp lò củi đôi đất nung) + WC kín 1.5m (cửa hướng nhà ăn).
   * **Khoảng đệm 2m (Y = 2 -> 4m):** Sân đệm thoáng đãng trồng hàng cây kiểng thanh lịch.

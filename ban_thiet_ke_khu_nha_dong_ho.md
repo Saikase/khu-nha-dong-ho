@@ -1,6 +1,6 @@
 # BẢN THUYẾT MINH THIẾT KẾ QUY HOẠCH TOÀN DIỆN KHU NHÀ DÒNG HỌ
 **Khuôn viên: 37.0m × 18.0m (Tổng diện tích: 666.0 m²)**
-*Phiên bản quy hoạch cập nhật mới nhất: Cụm 2 Phòng 2 WC Dựa Lưng Nhau, Ao Cá 6x5 Bậc Thang Đá (Nước Ngập Giữa Bậc 2), Vườn 9m (Luống Rau & Chuồng Gà)*
+*Phiên bản quy hoạch cập nhật mới nhất: Mặt Trước Của Vườn Đối Diện Trực Tiếp Nhà 3 Gian Bắc Bộ, Cụm 2 Phòng 2 WC Dựa Lưng Nhau, Ao Cá 6x5 Bậc Thang Đá (Nước Ngập Giữa Bậc 2), Vườn 9m (Rau, Cây & Chuồng Gà)*
 
 ---
 
@@ -31,12 +31,15 @@
     * **Khoảng cách 1m ($Y = 21.0 \rightarrow 22.0\text{m}$):** Lối đi dạo ven bờ Bắc của ao dẫn vào Căn 3.
     * **Căn 3 (6×4, $Y = 22.0 \rightarrow 28.0\text{m}$):** Nhà nghỉ biệt lập view ao cá phía Nam và view vườn hoa phía Bắc.
     * **Cái Vườn Cây Rút Gọn 9m ($Y = 28.0 \rightarrow 37.0\text{m}$, Rộng 5.0m = $45.0\text{ m}^2$):**
-      * **Mặt trước vườn:** Hàng rào bụi hoa cao khoảng **70cm** xén tỉa gọn gàng, ở giữa có **đường đi vào vườn** lát đá sa thạch.
-      * **Phần trước vườn:** Hai bên lối đi vào được trồng các bồn hoa rực rỡ sắc màu (hoa cúc, hoa hồng, mười giờ).
-      * **Đứng từ lối vào nhìn vào vườn:**
-        * **Bên phải (giáp đại lộ 8m):** **TRỒNG RAU SẠCH** (các luống rau cải, mồng tơi, rau muống và giàn mướp leo tre xanh tốt).
-        * **Bên trái (giáp tường ngoài):** **TRỒNG CÂY ĂN TRÁI** (Bưởi Diễn trĩu quả vàng, Khế ngọt trĩu cành, Hoa Mộc Hương ngát hương).
-        * **Cuối gần dãy tường bên phải vườn:** **CHUỒNG GÀ** quê truyền thống ($1.8\text{m} \times 2.2\text{m}$) khung tre gỗ mái ngói đỏ, lưới mắt cáo, ổ rơm đẻ trứng, sào tre đậu ngủ, máng ăn thóc và đàn gà trống thiến, gà mái mơ bới thóc sinh động.
+      * 🏛️ **MẶT TRƯỚC CỦA VƯỜN ĐỐI DIỆN TRỰC TIẾP NHÀ 3 GIAN BẮC BỘ:**
+        * Nằm dọc theo mép đại lộ chính 8.0m ($X = 5.0\text{m}$), nhìn thẳng sang hiên Nhà 3 Gian ($X = 13.0\text{m}$).
+        * **Hàng rào bụi hoa cao khoảng 70cm** chạy suốt chiều dài 9m mép đại lộ, nở hoa đỏ, vàng, tím rực rỡ.
+        * **Đường đi vào vườn ở giữa:** Mở lối từ đại lộ 8m đi sâu vào trong vườn.
+        * **Phần trước vườn hai bên lối đi:** Trồng các bồn hoa đa sắc rực rỡ (hoa cúc, hoa hồng, mười giờ).
+      * 🚶 **NHÌN VÀO TỪ LỐI ĐI VƯỜN (Hướng từ đại lộ 8m nhìn về phía Tây):**
+        * **Bên phải (hướng Bắc, $Y \in [33.2, 37.0\text{m}]$):** **TRỒNG RAU SẠCH** (các luống rau cải, mồng tơi, rau muống và giàn mướp leo tre xanh tốt).
+        * **Bên trái (hướng Nam, $Y \in [28.0, 32.0\text{m}]$):** **TRỒNG CÂY ĂN TRÁI** (Bưởi Diễn trĩu quả vàng, Khế ngọt trĩu cành, Hoa Mộc Hương ngát hương).
+        * **Cuối gần dãy tường bên phải vườn ($X \in [0.4, 2.2\text{m}], Y \in [34.6, 36.8\text{m}]$):** **CHUỒNG GÀ** quê truyền thống khung tre gỗ mái ngói đỏ, lưới mắt cáo, ổ rơm đẻ trứng, sào tre đậu ngủ, máng ăn thóc và đàn gà trống thiến, gà mái mơ bới thóc sinh động.
   * **Bên tay phải của bạn (Dãy Phải - Rộng 5.0m, Dài 37.0m):**
     * **Khu đất 14m Bếp & Ăn ($Y = 0.0 \rightarrow 14.0\text{m}$):**
       * Khối WC kín (1.5m × 2m, cửa hướng nhà ăn) & Bếp mở dân dã (3.5m × 2m, bếp lò củi đất nung, nồi gang đúc).
@@ -45,7 +48,7 @@
       * Dải 1m thụt vào có MẶT KÍNH lấy sáng rọi Cối Xay Nan Tre & Cối Giã Gạo chân đạp.
       * Khoảng chuyển tiếp 3m ($Y = 11.0 \rightarrow 14.0\text{m}$) kết nối ra sân thoáng.
     * **Khu 2 ($Y = 14.0 \rightarrow 25.5\text{m}$):** Chòi Vuông 4m × 4m mái chồng diêm 2 tầng 4 mái đỉnh hồ lô vàng uy nghi cùng 2 khoảng sân thoáng đón gió.
-    * **Khu 1 ($Y = 25.5 \rightarrow 37.0\text{m}$):** Nhà 3 Gian Bắc Bộ truyền thống thờ tổ tiên uy nghiêm, hè dài 9m sát đại lộ, cụm vườn hồng, chuối phong thủy và lối đi 1m.
+    * **Khu 1 ($Y = 25.5 \rightarrow 37.0\text{m}$):** Nhà 3 Gian Bắc Bộ truyền thống thờ tổ tiên uy nghiêm (đối diện trực tiếp mặt trước Vườn 9m qua đại lộ 8m).
 
 ---
 
@@ -64,7 +67,8 @@ flowchart TD
         direction TB
         ROAD_P1["Đoạn qua Hàng Cau, Căn 1, 2 (Trái) & Bếp, Nhà Ăn (Phải) - Dài 14.0m"]
         ROAD_P2["Đoạn qua Đệm 1m, Ao Cá 6x5, Đệm 1m, Căn 3 (Trái) & Chòi Vuông 4m (Phải)"]
-        ROAD_P3["Đoạn qua Vườn 9m Rau & Chuồng Gà (Trái) & Nhà 3 Gian (Phải) - Dài 9.0m"]
+        ROAD_P3["Đoạn qua Vườn 9m (Trái) & Nhà 3 Gian (Phải) - Dài 9.0m
+◄ HAI KHU VỰC ĐỐI DIỆN TRỰC TIẾP QUA ĐẠI LỘ 8M ►"]
         ROAD_P1 --> ROAD_P2 --> ROAD_P3
     end
 
@@ -94,14 +98,14 @@ flowchart TD
         C3["CĂN 3 (6m × 4m = 24m²) - Y = 22m -> 28m
 • Sau ao cá, view ao 6x5 & view rào hoa vườn 9m"]
 
-        subgraph VUON_9M["CÁI VƯỜN RÚT GỌN 9M (5m × 9m = 45m²) - Y = 28m -> 37m"]
-            RAO_HOA["Hàng rào hoa cao 70cm mặt trước & Lối vào ở giữa (hoa 2 bên)"]
-            subgraph TRONG_VUON["Bên Trong Vườn 9m"]
-                VUON_TRAI["BÊN TRÁI: Trồng Cây Ăn Trái
+        subgraph VUON_9M["CÁI VƯỜN 9M (MẶT TRƯỚC ĐỐI DIỆN NHÀ 3 GIAN QUA ĐẠI LỘ 8M)"]
+            RAO_HOA["MẶT TIỀN DỌC ĐẠI LỘ: Hàng rào hoa cao 70cm & Lối vào ở giữa (hoa 2 bên)"]
+            subgraph TRONG_VUON["Nhìn Vào Từ Lối Đi Vườn"]
+                VUON_TRAI["BÊN TRÁI (Phía Nam): Trồng Cây Ăn Trái
 (Bưởi Diễn, Khế ngọt, Mộc hương)"]
-                VUON_PHAI["BÊN PHẢI: Trồng Luống Rau Sạch
+                VUON_PHAI["BÊN PHẢI (Phía Bắc): Trồng Luống Rau Sạch
 (Cải bẹ, mồng tơi, muống, giàn mướp)"]
-                GA["CHUỒNG GÀ (Góc Cuối Bên Phải)
+                GA["CUỐI GẦN TƯỜNG BÊN PHẢI: Chuồng Gà
 (Khung tre mái ngói, ổ rơm, sào ngủ, đàn gà)"]
             end
             RAO_HOA --> TRONG_VUON
@@ -122,35 +126,12 @@ flowchart TD
             NHA_AN -.-> KY_VAT
         end
         K2["CHÒI VUÔNG 4m & 2 SÂN THOÁNG (Y = 14 -> 25.5m)"]
-        K1["NHÀ 3 GIAN BẮC BỘ (Y = 25.5 -> 37m)"]
+        K1["NHÀ 3 GIAN BẮC BỘ (Y = 25.5 -> 37m)
+◄ ĐỐI DIỆN MẶT TIỀN VƯỜN 9M QUA ĐẠI LỘ 8M ►"]
         DAT_14M --> K2 --> K1
     end
 
     OBSERVE --> GATE
     GATE --> DUONG_CHINH
+    VUON_9M <-.->|Đối diện qua Đại Lộ 8m| K1
 ```
-
----
-
-## 3. BẢNG TỔNG HỢP KÍCH THƯỚC & TỌA ĐỘ TOÀN KHU
-
-| STT | Phân Khu Công Năng | Kích thước ($D \times R$) | Tọa độ $Y$ | Tọa độ $X$ | Diện tích | Đặc điểm nổi bật |
-| :---: | :--- | :---: | :---: | :---: | :---: | :--- |
-| **0** | **Cổng Sắt Tự Động & Song Sắt** | $8.0\text{m} \times 2.3\text{m}$ | $Y = 0.0\text{m}$ | $5.0 \rightarrow 13.0\text{m}$ | $18.4\text{ m}^2$ | Cổng trượt 4m trên ray ngầm; Song sắt 2m trồng Cây Bưởi (phải) & Lộc Vừng (trái). |
-| **1** | **Khoảng lùi Hàng Cau Ta** | $2.0\text{m} \times 5.0\text{m}$ | $0.0 \rightarrow 2.0\text{m}$ | $0.0 \rightarrow 5.0\text{m}$ | $10.0\text{ m}^2$ | Thụt vào 2m trồng 4 cây cau ta truyền thống thẳng tắp, đá bước dạo sa thạch. |
-| **2** | **Căn 1 (Dãy Trái)** | $6.0\text{m} \times 4.0\text{m}$ | $2.0 \rightarrow 8.0\text{m}$ | $1.0 \rightarrow 5.0\text{m}$ | $24.0\text{ m}^2$ | **Cửa vào bên trái (gần cổng)**, **WC ở phía Bắc** tựa lưng vào vách $Y=8.0\text{m}$. |
-| **3** | **Căn 2 (Dãy Trái)** | $6.0\text{m} \times 4.0\text{m}$ | $8.0 \rightarrow 14.0\text{m}$ | $1.0 \rightarrow 5.0\text{m}$ | $24.0\text{ m}^2$ | **WC ở phía Nam dựa lưng WC Căn 1**, **cửa vào bên phải (gần ao)**, view ao cá. |
-| **4** | **Khoảng đệm 1** | $1.0\text{m} \times 5.0\text{m}$ | $14.0 \rightarrow 15.0\text{m}$ | $0.0 \rightarrow 5.0\text{m}$ | $5.0\text{ m}^2$ | Lối đi dạo kết nối đại lộ và bờ ao cá quê. |
-| **5** | **Cái Ao Cá Quê 6×5** | $6.0\text{m} \times 5.0\text{m}$ | $15.0 \rightarrow 21.0\text{m}$ | $0.0 \rightarrow 5.0\text{m}$ | $30.0\text{ m}^2$ | **Lấy luôn lối đi 1m**, bờ nhỏ kè đá, **bậc thang đá nước ngập giữa bậc 2**, đàn cá chép, hoa sen, bến giặt xưa. |
-| **6** | **Khoảng đệm 2** | $1.0\text{m} \times 5.0\text{m}$ | $21.0 \rightarrow 22.0\text{m}$ | $0.0 \rightarrow 5.0\text{m}$ | $5.0\text{ m}^2$ | Lối đi dạo ven bờ Bắc ao cá dẫn sang Căn 3. |
-| **7** | **Căn 3 (Dãy Trái)** | $6.0\text{m} \times 4.0\text{m}$ | $22.0 \rightarrow 28.0\text{m}$ | $1.0 \rightarrow 5.0\text{m}$ | $24.0\text{ m}^2$ | Nhà nghỉ dưỡng biệt lập, view ao cá phía Nam và view hàng rào hoa phía Bắc. |
-| **8** | **Cái Vườn Rút Gọn 9m** | $9.0\text{m} \times 5.0\text{m}$ | $28.0 \rightarrow 37.0\text{m}$ | $0.0 \rightarrow 5.0\text{m}$ | $45.0\text{ m}^2$ | Rào hoa 70cm mặt trước, lối vào giữa (hoa 2 bên); Bên phải trồng rau, bên trái trồng cây, cuối góc phải có chuồng gà. |
-| **9** | **Chuồng Gà Quê** | $2.2\text{m} \times 1.8\text{m}$ | $34.6 \rightarrow 36.8\text{m}$ | $3.1 \rightarrow 4.9\text{m}$ | $4.0\text{ m}^2$ | Cuối gần tường bên phải vườn: cột tre mái ngói, lưới mắt cáo, ổ rơm trứng gà, máng ăn thóc, đàn gà trống mái. |
-| **10** | **Khối Bếp & WC (Dãy Phải)** | $2.0\text{m} \times 5.0\text{m}$ | $0.0 \rightarrow 2.0\text{m}$ | $13.0 \rightarrow 18.0\text{m}$ | $10.0\text{ m}^2$ | Bếp mở dân dã lò củi 3.5m & WC kín 1.5m (cửa hướng nhà ăn). |
-| **11** | **Khoảng đệm cây xanh 2m** | $2.0\text{m} \times 5.0\text{m}$ | $2.0 \rightarrow 4.0\text{m}$ | $13.0 \rightarrow 18.0\text{m}$ | $10.0\text{ m}^2$ | Hàng cây cảnh nhỏ tạo vùng đệm thoáng đãng. |
-| **12** | **Nhà Ăn Mái Lá & Kính Kỷ Vật** | $7.0\text{m} \times 5.0\text{m}$ | $4.0 \rightarrow 11.0\text{m}$ | $13.0 \rightarrow 18.0\text{m}$ | $35.0\text{ m}^2$ | Nhà ăn mái lá 7x4m không tường + dải 1m có Mái Kính lấy sáng rọi Cối Xay & Cối Giã. |
-| **13** | **Sân chuyển tiếp 3m** | $3.0\text{m} \times 5.0\text{m}$ | $11.0 \rightarrow 14.0\text{m}$ | $13.0 \rightarrow 18.0\text{m}$ | $15.0\text{ m}^2$ | Sân thoáng kết nối giữa Nhà Ăn và Chòi Vuông. |
-| **14** | **Chòi Vuông 4m & Sân Thoáng** | $11.5\text{m} \times 5.0\text{m}$ | $14.0 \rightarrow 25.5\text{m}$ | $13.0 \rightarrow 18.0\text{m}$ | $57.5\text{ m}^2$ | Chòi vuông 4x4m mái chồng diêm đỉnh hồ lô vàng, 2 sân thoáng đón gió (đối diện ao cá 6x5!). |
-| **15** | **Nhà 3 Gian Bắc Bộ** | $11.5\text{m} \times 5.0\text{m}$ | $25.5 \rightarrow 37.0\text{m}$ | $13.0 \rightarrow 18.0\text{m}$ | $57.5\text{ m}^2$ | Gian giữa thờ tổ uy nghiêm, gian tả trường kỷ, gian hữu sập gụ gia phả, vườn hồng, chuối và đường 1m. |
-| **16** | **Đại Lộ Trung Tâm 8m** | $37.0\text{m} \times 8.0\text{m}$ | $0.0 \rightarrow 37.0\text{m}$ | $5.0 \rightarrow 13.0\text{m}$ | $296.0\text{ m}^2$ | Trục đường chính lát đá tự nhiên kết nối toàn khu. |
-| **TỔNG**| **Toàn Khuôn Viên** | **$37.0\text{m} \times 18.0\text{m}$** | **$0.0 \rightarrow 37.0\text{m}$** | **$0.0 \rightarrow 18.0\text{m}$** | **$666.0\text{ m}^2$** | **Tổng diện tích đất chuẩn phong thủy gia tộc.** |

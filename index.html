@@ -403,7 +403,7 @@
         </div>
         <h1 class="header-title">Quy Hoạch & Mô Phỏng 3D Khu Nhà Dòng Họ (37.0m × 18.0m)</h1>
         <p class="header-desc">
-          Góc nhìn: Đứng đối diện cổng sắt tự động 4m nhìn vào (kèm 2m song sắt cây lộc vừng & cây bưởi 2 bên). Đại lộ trung tâm 8.0m chạy suốt 37.0m. Dãy Trái gồm hàng cau 2m, Căn 1 (cửa trái) & Căn 2 (cửa phải) có 2 WC dựa lưng nhau, đệm 1m, Ao cá quê 6x5 (bậc thang đá nước ngập giữa bậc 2), Căn 3 và Vườn 9m (hoa, luống rau, cây ăn trái & chuồng gà cuối góc phải). Dãy Phải gồm Bếp mở & Nhà ăn mái lá (14m), Chòi Vuông 4m và Nhà 3 Gian Bắc Bộ.
+          Góc nhìn: Đứng đối diện cổng sắt tự động 4m nhìn vào (kèm 2m song sắt cây lộc vừng & cây bưởi 2 bên). Đại lộ trung tâm 8.0m chạy suốt 37.0m. Dãy Trái gồm hàng cau 2m, Căn 1 (cửa trái) & Căn 2 (cửa phải) có 2 WC dựa lưng nhau, đệm 1m, Ao cá quê 6x5 (bậc thang đá nước ngập giữa bậc 2), Căn 3 và Vườn 9m (mặt trước đối diện Nhà 3 Gian có hàng rào hoa 70cm, lối vào giữa, hoa 2 bên, bên phải trồng rau, bên trái trồng cây, cuối góc phải chuồng gà). Dãy Phải gồm Bếp mở & Nhà ăn mái lá (14m), Chòi Vuông 4m và Nhà 3 Gian Bắc Bộ.
         </p>
       </div>
 
@@ -565,7 +565,7 @@
                 <span style="color: #166534;">2. Cái Vườn 9m: Luống Rau, Cây Trái & Chuồng Gà</span>
                 <span class="badge badge-green">Vườn Quê Sinh Thái</span>
               </div>
-              <p class="photo-card-desc">Hàng rào hoa 70cm mặt trước, hoa 2 bên lối vào; nhìn vào: bên phải trồng rau sạch tươi tốt, bên trái cây ăn trái (bưởi, khế, mộc hương), cuối góc phải là chuồng gà quê với đàn gà đang bới thóc.</p>
+              <p class="photo-card-desc">Mặt trước vườn đối diện trực tiếp Nhà 3 Gian qua đại lộ 8m: Hàng rào hoa 70cm chạy dọc mép đường, lối vào ở giữa (hoa 2 bên); nhìn vào: bên phải trồng rau sạch, bên trái cây ăn trái (bưởi, khế, mộc hương), cuối gần tường bên phải là chuồng gà quê.</p>
               <img src="./blender_12_vuon_chuong_ga.png" alt="Vườn 9m luống rau và chuồng gà" onclick="openModal(this)">
             </div>
 
@@ -909,56 +909,65 @@
               </g>
 
               <!-- CÁI VƯỜN RÚT GỌN 9M (Y in [28, 37m] -> y in [44, 206], RỘNG 5M = 45m²) -->
+              <!-- MẶT TRƯỚC CỦA VƯỜN ĐỐI DIỆN TRỰC TIẾP NHÀ 3 GIAN QUA ĐẠI LỘ 8M! -->
               <g id="zone-vuon" class="zone-hover" onclick="selectZone('vuon')">
                 <rect x="60" y="44" width="90" height="162" fill="url(#garden-grass)" stroke="#16a34a" stroke-width="2" rx="2"/>
 
-                <!-- A. HÀNG RÀO HOA CAO 70CM MẶT TRƯỚC (y = 206) & LỐI VÀO Ở GIỮA -->
-                <line x1="60" y1="206" x2="98" y2="206" stroke="#e11d48" stroke-width="3"/>
-                <line x1="112" y1="206" x2="150" y2="206" stroke="#e11d48" stroke-width="3"/>
-                <text x="78" y="203" text-anchor="middle" fill="#be123c" font-size="4.5" font-weight="bold">RÀO HOA 70cm</text>
-                <text x="132" y="203" text-anchor="middle" fill="#be123c" font-size="4.5" font-weight="bold">RÀO HOA 70cm</text>
+                <!-- A. MẶT TIỀN VƯỜN (x = 150): HÀNG RÀO HOA CAO 70CM DỌC MÉP ĐẠI LỘ (ĐỐI DIỆN NHÀ 3 GIAN) -->
+                <!-- Đoạn rào hoa phía Nam (y: 134..206) -->
+                <line x1="148" y1="134" x2="148" y2="206" stroke="#e11d48" stroke-width="3"/>
+                <text x="144" y="170" text-anchor="middle" transform="rotate(-90, 144, 170)" fill="#be123c" font-size="4.5" font-weight="bold">RÀO HOA 70cm (ĐỐI DIỆN NHÀ 3 GIAN)</text>
 
-                <!-- B. ĐƯỜNG ĐI VÀO Ở GIỮA (x: 98..112) -->
-                <rect x="99" y="48" width="12" height="158" fill="#fed7aa" stroke="#fb923c" stroke-width="0.8" stroke-dasharray="2,2"/>
-                <text x="105" y="198" text-anchor="middle" fill="#9a3412" font-size="4" font-weight="bold">LỐI VÀO</text>
+                <!-- Đoạn rào hoa phía Bắc (y: 44..112) -->
+                <line x1="148" y1="44" x2="148" y2="112" stroke="#e11d48" stroke-width="3"/>
+                <text x="144" y="78" text-anchor="middle" transform="rotate(-90, 144, 78)" fill="#be123c" font-size="4.5" font-weight="bold">RÀO HOA 70cm</text>
 
-                <!-- C. HOA 2 BÊN PHẦN TRƯỚC LỐI ĐI VÀO -->
-                <circle cx="92" cy="190" r="3" fill="#ef4444"/>
-                <circle cx="86" cy="186" r="2.5" fill="#eab308"/>
-                <circle cx="118" cy="190" r="3" fill="#a855f7"/>
-                <circle cx="124" cy="186" r="2.5" fill="#ef4444"/>
+                <!-- B. ĐƯỜNG ĐI VÀO Ở GIỮA MẶT TIỀN (Từ đại lộ x: 150 vào sâu x: 65, y: 118..130) -->
+                <rect x="68" y="118" width="82" height="12" fill="#fed7aa" stroke="#fb923c" stroke-width="0.8" stroke-dasharray="2,2"/>
+                <text x="156" y="125" text-anchor="start" fill="#9a3412" font-size="5" font-weight="bold">◄ LỐI VÀO</text>
 
-                <!-- D. NHÌN VÀO: BÊN TRÁI TRỒNG CÂY (x: 60..98) -->
+                <!-- C. HOA 2 BÊN PHẦN TRƯỚC LỐI ĐI VÀO (x: 122..146) -->
+                <!-- Hoa bên trái lối vào (Nam) -->
+                <circle cx="134" cy="136" r="3" fill="#ef4444"/>
+                <circle cx="140" cy="138" r="2.5" fill="#eab308"/>
+                <!-- Hoa bên phải lối vào (Bắc) -->
+                <circle cx="134" cy="112" r="3" fill="#a855f7"/>
+                <circle cx="140" cy="110" r="2.5" fill="#ef4444"/>
+
+                <!-- D. NHÌN VÀO TỪ LỐI ĐI: BÊN TRÁI TRỒNG CÂY ĂN TRÁI (Phía Nam y: 134..206) -->
                 <g id="cay-an-trai">
-                  <circle cx="78" cy="165" r="9" fill="#15803d" stroke="#166534" stroke-width="0.8"/>
-                  <circle cx="80" cy="163" r="2" fill="#eab308"/>
-                  <text x="78" y="152" text-anchor="middle" fill="#15803d" font-size="4.5" font-weight="bold">BƯỞI DIỄN</text>
+                  <circle cx="100" cy="175" r="9" fill="#15803d" stroke="#166534" stroke-width="0.8"/>
+                  <circle cx="102" cy="173" r="2" fill="#eab308"/>
+                  <text x="100" y="162" text-anchor="middle" fill="#15803d" font-size="4.5" font-weight="bold">BƯỞI DIỄN</text>
 
-                  <circle cx="78" cy="115" r="9" fill="#15803d" stroke="#166534" stroke-width="0.8"/>
-                  <text x="78" y="102" text-anchor="middle" fill="#15803d" font-size="4.5" font-weight="bold">KHẾ NGỌT</text>
+                  <circle cx="125" cy="182" r="8" fill="#15803d" stroke="#166534" stroke-width="0.8"/>
+                  <text x="125" y="171" text-anchor="middle" fill="#15803d" font-size="4.5" font-weight="bold">KHẾ NGỌT</text>
 
-                  <circle cx="78" cy="65" r="8" fill="#16a34a" stroke="#15803d" stroke-width="0.8"/>
-                  <text x="78" y="53" text-anchor="middle" fill="#15803d" font-size="4.5" font-weight="bold">MỘC HƯƠNG</text>
+                  <circle cx="80" cy="155" r="7.5" fill="#16a34a" stroke="#15803d" stroke-width="0.8"/>
+                  <text x="80" y="144" text-anchor="middle" fill="#15803d" font-size="4.5" font-weight="bold">MỘC HƯƠNG</text>
                 </g>
 
-                <!-- E. NHÌN VÀO: BÊN PHẢI TRỒNG RAU (x: 112..150, y: 95..175) -->
+                <!-- E. NHÌN VÀO TỪ LỐI ĐI: BÊN PHẢI TRỒNG RAU (Phía Bắc y: 44..112, x: 104..146) -->
                 <g id="luong-rau">
-                  <rect x="114" y="140" width="32" height="30" fill="url(#veggie-rows)" stroke="#ca8a04" stroke-width="1"/>
-                  <text x="130" y="136" text-anchor="middle" fill="#854d0e" font-weight="bold" font-size="5">LUỐNG RAU CẢI</text>
+                  <rect x="105" y="78" width="40" height="24" fill="url(#veggie-rows)" stroke="#ca8a04" stroke-width="1"/>
+                  <text x="125" y="74" text-anchor="middle" fill="#854d0e" font-weight="bold" font-size="5">LUỐNG RAU CẢI</text>
 
-                  <rect x="114" y="98" width="32" height="30" fill="url(#veggie-rows)" stroke="#ca8a04" stroke-width="1"/>
-                  <text x="130" y="94" text-anchor="middle" fill="#854d0e" font-weight="bold" font-size="5">MỒNG TƠI / MUỐNG</text>
+                  <rect x="105" y="48" width="40" height="24" fill="url(#veggie-rows)" stroke="#ca8a04" stroke-width="1"/>
+                  <text x="125" y="44" text-anchor="middle" fill="#854d0e" font-weight="bold" font-size="5">MỒNG TƠI / MUỐNG</text>
+
+                  <line x1="102" y1="48" x2="102" y2="102" stroke="#65a30d" stroke-width="1.5"/>
+                  <text x="98" y="76" text-anchor="middle" transform="rotate(-90, 98, 76)" fill="#65a30d" font-size="4">GIÀN MƯỚP LEO</text>
                 </g>
 
-                <!-- F. CUỐI GẦN DÃY TƯỜNG BÊN PHẢI: CHUỒNG GÀ (x: 114..148, y: 48..84) -->
+                <!-- F. CUỐI GẦN DÃY TƯỜNG BÊN PHẢI VƯỜN: CHUỒNG GÀ (Góc cuối Bắc-Tây: x: 64..98, y: 48..84) -->
                 <g id="zone-chicken" class="zone-hover" onclick="selectZone('chicken')">
-                  <rect x="114" y="48" width="34" height="36" fill="url(#wood-coop)" stroke="#b45309" stroke-width="1.8" rx="2"/>
-                  <rect x="118" y="52" width="26" height="28" fill="#fef3c7" stroke="#ea580c" stroke-width="1"/>
-                  <circle cx="125" cy="60" r="3" fill="#ea580c"/>
-                  <circle cx="137" cy="60" r="3" fill="#eab308"/>
-                  <circle cx="131" cy="72" r="3.5" fill="#b45309"/>
-                  <text x="131" y="68" text-anchor="middle" fill="#78350f" font-weight="bold" font-size="5.5">CHUỒNG GÀ</text>
-                  <text x="131" y="78" text-anchor="middle" fill="#9a3412" font-size="4">[Gà Trống &amp; Mái Mơ]</text>
+                  <rect x="64" y="48" width="34" height="36" fill="url(#wood-coop)" stroke="#b45309" stroke-width="1.8" rx="2"/>
+                  <rect x="68" y="52" width="26" height="28" fill="#fef3c7" stroke="#ea580c" stroke-width="1"/>
+                  <circle cx="75" cy="60" r="3" fill="#ea580c"/>
+                  <circle cx="87" cy="60" r="3" fill="#eab308"/>
+                  <circle cx="81" cy="72" r="3.5" fill="#b45309"/>
+                  <text x="81" y="68" text-anchor="middle" fill="#78350f" font-weight="bold" font-size="5.5">CHUỒNG GÀ</text>
+                  <text x="81" y="78" text-anchor="middle" fill="#9a3412" font-size="4">[Góc Cuối Tường Phải]</text>
                 </g>
               </g>
 
@@ -1311,10 +1320,10 @@
         category: "Dãy Trái: Sinh Thái Sân Vườn",
         title: "Cái Vườn Rút Gọn 9m: Luống Rau, Cây Trái & Hàng Rào Hoa",
         badge: "9.0m × 5.0m (45.0 m²)",
-        desc: "Khu vườn rút gọn còn 9m (Y = 28.0m -> 37.0m). Mặt trước có hàng rào bụi hoa cao 70cm và đường đi vào ở giữa (hai bên lối vào trồng hoa). Đứng từ lối vào nhìn vào: Bên phải trồng các luống rau sạch, bên trái trồng cây ăn trái, cuối góc phải sát tường là Chuồng Gà quê.",
+        desc: "Khu vườn 9m (Y = 28.0m -> 37.0m) có MẶT TRƯỚC ĐỐI DIỆN TRỰC TIẾP NHÀ 3 GIAN BẮC BỘ qua đại lộ 8m. Mặt trước có hàng rào bụi hoa cao 70cm chạy dọc mép đường và lối đi vào ở giữa (hoa nở 2 bên). Nhìn vào từ lối đi: Bên phải trồng các luống rau sạch, bên trái trồng cây ăn trái, cuối gần dãy tường bên phải vườn là Chuồng Gà quê.",
         dimensions: "Dài 9.0m × Rộng 5.0m",
         area: "45.0 m² sinh thái",
-        heStat: "Hàng rào hoa 70cm & Lối vào ở giữa",
+        heStat: "Mặt trước đối diện Nhà 3 Gian (Đại lộ 8m)",
         setbackStat: "Chạy suốt đến tường bao cuối đất",
         features: [
           "Mặt trước vườn có hàng rào bụi hoa cao 70cm khoe sắc, ở giữa có đường đi vào lát đá sa thạch.",
@@ -1326,12 +1335,12 @@
       },
       chicken: {
         category: "Dãy Trái: Khu Chăn Nuôi Thôn Quê",
-        title: "Chuồng Gà Quê Truyền Thống (Cuối Góc Phải Vườn)",
-        badge: "1.8m × 2.2m (Góc Cuối Vườn)",
-        desc: "Chuồng gà thiết kế dân dã đúng chất làng quê Bắc Bộ: Khung cột tre gỗ mộc, lưới mắt cáo bảo vệ, mái dốc lợp ngói đỏ che mưa nắng. Bên trong có ổ rơm cho gà đẻ trứng, sào tre cho gà đậu ngủ, máng ăn thóc và máng nước uống.",
+        title: "Chuồng Gà Quê Truyền Thống (Cuối Gần Tường Bên Phải Vườn)",
+        badge: "1.8m × 2.2m (Cuối Góc Phải)",
+        desc: "Chuồng gà đặt ở cuối gần dãy tường bên phải vườn (tường bao cuối đất), đúng tập quán thôn quê: Khung cột tre gỗ mộc, lưới mắt cáo bảo vệ, mái dốc lợp ngói đỏ che mưa nắng. Bên trong có ổ rơm cho gà đẻ trứng, sào tre đậu ngủ, máng ăn thóc và đàn gà trống mái bới thóc.",
         dimensions: "Rộng 1.8m × Dài 2.2m × Cao 1.6m",
         area: "4.0 m² chuồng trại",
-        heStat: "Cuối gần dãy tường bên phải vườn 9m",
+        heStat: "Cuối gần dãy tường bên phải vườn",
         setbackStat: "Góc tường cuối khuôn viên",
         features: [
           "Kết cấu cột gỗ tre vững chãi, quây lưới thép mắt cáo thông thoáng, mái che mưa nắng mát mẻ.",
@@ -1877,8 +1886,8 @@
         nha2: { pos: [-3.0, 6.5, -11.0], target: [3.0, 1.2, -11.0] },
         ao: { pos: [-2.0, 6.0, -18.0], target: [2.5, 0.5, -18.0] },
         nha3: { pos: [-3.0, 6.5, -25.0], target: [3.0, 1.2, -25.0] },
-        vuon: { pos: [-3.5, 8.5, -32.5], target: [2.5, 1.0, -32.5] },
-        chicken: { pos: [0.5, 4.5, -35.5], target: [4.0, 1.0, -35.5] },
+        vuon: { pos: [9.0, 5.5, -32.5], target: [2.5, 1.2, -32.5] },
+        chicken: { pos: [4.5, 4.5, -35.5], target: [1.2, 1.0, -35.5] },
         bep: { pos: [18.0, 6.0, -1.5], target: [15.0, 1.2, -1.5] },
         wc2: { pos: [18.5, 4.5, -1.5], target: [17.5, 1.2, -1.5] },
         phongan: { pos: [20.0, 7.0, -8.0], target: [15.0, 1.5, -8.2] },

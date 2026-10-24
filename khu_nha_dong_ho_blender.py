@@ -1120,106 +1120,126 @@ def build_compound():
     build_custom_house_6x4("NhaKhach3_6x4", 22.0, door_pos="left", wc_pos="north", room_type="view_ao")
 
     # 7. CÁI VƯỜN RÚT GỌN 9M (Y = 28.0 -> 37.0m, Rộng 5.0m = 45 m²)
-    # Thảm cỏ nền vườn
+    # BỐ CỤC CHUẨN XÁC: MẶT TRƯỚC CỦA VƯỜN ĐỐI DIỆN TRỰC TIẾP VỚI NHÀ 3 GIAN BẮC BỘ!
+    # - Mặt trước nằm tại X = 5.0m (chạy dọc từ Y = 28.0 -> 37.0m đối diện Nhà 3 Gian qua đại lộ 8m)
+    # - Mặt trước có HÀNG RÀO BỤI HOA CAO 70CM chạy dọc mép đại lộ, có LỐI ĐI VÀO Ở GIỮA
+    # - Phần trước vườn hai bên lối vào TRỒNG HOA 2 BÊN rực rỡ
+    # - Nhìn vào từ lối đi (hướng Tây từ X = 5.0m vào sâu trong vườn):
+    #   + BÊN TRÁI (phía Nam Y: 28.0 -> 32.0m): TRỒNG CÂY ĂN TRÁI (Bưởi Diễn, Khế ngọt, Mộc hương)
+    #   + BÊN PHẢI (phía Bắc Y: 33.2 -> 37.0m): TRỒNG RAU SẠCH (các luống cải, muống, giàn mướp)
+    #   + CUỐI GẦN DÃY TƯỜNG BÊN PHẢI VƯỜN (X: 0.4 -> 2.2m, Y: 34.6 -> 36.8m): CHUỒNG GÀ QUÊ!
+    
+    # Thảm cỏ nền toàn bộ khu vườn 9m (X: 0.0 -> 5.0m, Y: 28.0 -> 37.0m)
     add_box("ThamCo_Vuon9m", (0.0, 28.0, 0.01), (5.0, 9.0, 0.03), mat_grass)
 
-    # A. HÀNG RÀO BỤI HOA CAO 70CM MẶT TRƯỚC VƯỜN (Y = 28.0 -> 28.3m)
-    # Đoạn rào hoa bên trái (X: 0.0 -> 2.2m)
-    add_box("HangRaoHoa_Trai_Goc", (0.0, 28.0, 0.02), (2.2, 0.30, 0.65), mat_grass)
-    for ifl in range(6):
-        fx = 0.20 + ifl * 0.35
-        add_sphere(f"HoaRao_Trai_{ifl}", (fx, 28.15, 0.68), radius=0.10, material=mat_flower_red if ifl % 2 == 0 else mat_flower_ylw)
+    # A. MẶT TIỀN VƯỜN: HÀNG RÀO BỤI HOA CAO 70CM TẠI X = 5.0M (ĐỐI DIỆN NHÀ 3 GIAN)
+    # 1. Đoạn rào hoa bên trái lối vào (Y: 28.0 -> 32.0m, dài 4.0m, cao 0.70m)
+    add_box("HangRaoHoa_MatTien_Nam", (4.70, 28.0, 0.02), (0.30, 4.0, 0.65), mat_grass)
+    for ifl in range(10):
+        fy = 28.20 + ifl * 0.40
+        add_sphere(f"HoaRao_Nam_{ifl}", (4.85, fy, 0.68), radius=0.10, material=mat_flower_red if ifl % 2 == 0 else mat_flower_ylw)
 
-    # Đoạn rào hoa bên phải (X: 2.8 -> 5.0m)
-    add_box("HangRaoHoa_Phai_Goc", (2.8, 28.0, 0.02), (2.2, 0.30, 0.65), mat_grass)
-    for ifl in range(6):
-        fx = 3.00 + ifl * 0.35
-        add_sphere(f"HoaRao_Phai_{ifl}", (fx, 28.15, 0.68), radius=0.10, material=mat_flower_pur if ifl % 2 == 0 else mat_flower_ylw)
+    # 2. Đoạn rào hoa bên phải lối vào (Y: 33.2 -> 37.0m, dài 3.8m, cao 0.70m)
+    add_box("HangRaoHoa_MatTien_Bac", (4.70, 33.2, 0.02), (0.30, 3.8, 0.65), mat_grass)
+    for ifl in range(9):
+        fy = 33.40 + ifl * 0.40
+        add_sphere(f"HoaRao_Bac_{ifl}", (4.85, fy, 0.68), radius=0.10, material=mat_flower_pur if ifl % 2 == 0 else mat_flower_ylw)
 
-    # B. ĐƯỜNG ĐI VÀO VƯỜN Ở GIỮA (X = 2.2 -> 2.8m, Y = 28.0 -> 36.5m)
-    garden_path_y = [28.2, 29.2, 30.3, 31.5, 32.7, 33.9, 35.1, 36.3]
-    for idx, py in enumerate(garden_path_y):
-        add_cylinder(f"DaLoiDiVuon_{idx}", (2.5, py, 0.03), 0.28, 0.03, mat_blue_stone)
+    # B. ĐƯỜNG ĐI VÀO VƯỜN Ở GIỮA MẶT TIỀN (Từ X = 5.0m vào sâu X = 0.5m, tại Y ~ 32.6m)
+    # Lối đi dạo lát đá sa thạch tự nhiên bước vào vườn
+    garden_path_x = [4.8, 4.2, 3.6, 3.0, 2.4, 1.8, 1.2, 0.6]
+    for idx, px in enumerate(garden_path_x):
+        add_cylinder(f"DaLoiDiVuon_{idx}", (px, 32.6, 0.03), 0.28, 0.03, mat_blue_stone)
 
-    # C. HOA TRỒNG 2 BÊN PHẦN TRƯỚC LỐI ĐI VÀO VƯỜN (Y: 28.3 -> 30.0m)
-    # Bên trái lối đi
-    add_box("BonHoa_Truoc_Trai", (1.2, 28.5, 0.02), (0.9, 1.4, 0.15), mat_soil)
-    for ih in range(4):
-        hx = 1.4 + (ih % 2) * 0.45
-        hy = 28.8 + (ih // 2) * 0.60
+    # C. HOA TRỒNG 2 BÊN PHẦN TRƯỚC LỐI ĐI VÀO (X: 3.6 -> 4.7m)
+    # Bồn hoa bên trái lối vào (phía Nam: Y = 30.8 -> 32.0m)
+    add_box("BonHoa_Truoc_Trai", (3.6, 30.8, 0.02), (1.1, 1.2, 0.15), mat_soil)
+    for ih in range(6):
+        hx = 3.8 + (ih % 3) * 0.40
+        hy = 31.0 + (ih // 3) * 0.50
         add_sphere(f"HoaBon_Trai_{ih}", (hx, hy, 0.28), radius=0.12, material=mat_flower_red if ih % 2 == 0 else mat_flower_ylw)
 
-    # Bên phải lối đi
-    add_box("BonHoa_Truoc_Phai", (2.9, 28.5, 0.02), (0.9, 1.4, 0.15), mat_soil)
-    for ih in range(4):
-        hx = 3.1 + (ih % 2) * 0.45
-        hy = 28.8 + (ih // 2) * 0.60
+    # Bồn hoa bên phải lối vào (phía Bắc: Y = 33.2 -> 34.4m)
+    add_box("BonHoa_Truoc_Phai", (3.6, 33.2, 0.02), (1.1, 1.2, 0.15), mat_soil)
+    for ih in range(6):
+        hx = 3.8 + (ih % 3) * 0.40
+        hy = 33.4 + (ih // 3) * 0.50
         add_sphere(f"HoaBon_Phai_{ih}", (hx, hy, 0.28), radius=0.12, material=mat_flower_pur if ih % 2 == 0 else mat_flower_ylw)
 
-    # D. NHÌN VÀO TỪ LỐI ĐI: BÊN TRÁI TRỒNG CÂY ĂN TRÁI (X: 0.0 -> 2.2m)
-    # Cây Bưởi Diễn trĩu quả
-    add_grapefruit_tree("CayBuoi_VuonTrai", (1.1, 31.0, 0.0), trunk_r=0.14, height=3.3, mat_wood=mat_wood_dark, mat_leaf=mat_grass, mat_fruit=mat_lotus_yellow)
-    # Cây Khế Ngọt hoa tím trĩu cành
-    add_tree("CayKhe_VuonTrai", (1.1, 33.6, 0.0), 0.16, 3.4, 1.6, mat_wood_dark, mat_grass)
-    # Cây Hoa Mộc Hương thơm ngát
-    add_tree("CayMoc_VuonTrai", (1.1, 36.0, 0.0), 0.15, 3.1, 1.4, mat_wood_dark, mat_grass)
+    # D. NHÌN VÀO TỪ LỐI ĐI: BÊN TRÁI TRỒNG CÂY ĂN TRÁI (Phía Nam Y: 28.0 -> 32.0m, X: 0.0 -> 4.5m)
+    # 1. Cây Bưởi Diễn trĩu quả vàng óng
+    add_grapefruit_tree("CayBuoi_VuonTrai", (2.0, 29.8, 0.0), trunk_r=0.15, height=3.4, mat_wood=mat_wood_dark, mat_leaf=mat_grass, mat_fruit=mat_lotus_yellow)
+    # 2. Cây Khế Ngọt hoa tím trĩu cành
+    add_tree("CayKhe_VuonTrai", (3.6, 29.4, 0.0), 0.16, 3.3, 1.5, mat_wood_dark, mat_grass)
+    # 3. Cây Hoa Mộc Hương ngát hương
+    add_tree("CayMoc_VuonTrai", (1.0, 31.0, 0.0), 0.14, 3.0, 1.3, mat_wood_dark, mat_grass)
+    # Thảm hoa cỏ nhung dưới tán cây
+    for ift in range(4):
+        tx = 1.2 + (ift % 2) * 1.5
+        ty = 28.6 + (ift // 2) * 1.6
+        add_cylinder(f"Khombuicay_Trai_{ift}", (tx, ty, 0.02), 0.25, 0.25, mat_grass)
 
-    # E. NHÌN VÀO TỪ LỐI ĐI: BÊN PHẢI TRỒNG RAU (X: 2.8 -> 5.0m, Y: 30.2 -> 34.2m)
-    # Luống rau cải xanh 1: Y = 30.3 -> 32.0m
-    add_box("LuongDat_Rau1", (3.0, 30.3, 0.02), (1.8, 1.7, 0.14), mat_soil)
+    # E. NHÌN VÀO TỪ LỐI ĐI: BÊN PHẢI TRỒNG RAU (Phía Bắc Y: 33.2 -> 37.0m, X: 2.2 -> 4.6m)
+    # 1. Luống rau cải xanh 1: Y = 33.8 -> 35.1m, X: 2.5 -> 4.6m
+    add_box("LuongDat_Rau1", (2.5, 33.8, 0.02), (2.1, 1.3, 0.14), mat_soil)
     for ir in range(12):
-        rx = 3.2 + (ir % 4) * 0.42
-        ry = 30.6 + (ir // 4) * 0.48
+        rx = 2.7 + (ir % 4) * 0.50
+        ry = 34.0 + (ir // 4) * 0.45
         add_cylinder(f"CayRauCai_{ir}", (rx, ry, 0.16), 0.12, 0.14, mat_veggie)
 
-    # Luống rau muống / mồng tơi 2: Y = 32.4 -> 34.1m
-    add_box("LuongDat_Rau2", (3.0, 32.4, 0.02), (1.8, 1.7, 0.14), mat_soil)
+    # 2. Luống rau muống / mồng tơi 2: Y = 35.5 -> 36.8m, X: 2.5 -> 4.6m
+    add_box("LuongDat_Rau2", (2.5, 35.5, 0.02), (2.1, 1.3, 0.14), mat_soil)
     for ir in range(12):
-        rx = 3.2 + (ir % 4) * 0.42
-        ry = 32.7 + (ir // 4) * 0.48
+        rx = 2.7 + (ir % 4) * 0.50
+        ry = 35.7 + (ir // 4) * 0.45
         add_cylinder(f"CayRauMuong_{ir}", (rx, ry, 0.16), 0.11, 0.15, mat_grass)
 
-    # F. CUỐI GẦN DÃY TƯỜNG BÊN PHẢI VƯỜN: CHUỒNG GÀ (X: 3.1 -> 4.9m, Y: 34.6 -> 36.8m)
+    # 3. Giàn mướp / bầu hoa vàng leo giàn tre bên cạnh luống rau
+    add_cylinder("GianTre_Cot1", (2.4, 33.8, 0.02), 0.035, 1.70, mat_bamboo)
+    add_cylinder("GianTre_Cot2", (2.4, 36.8, 0.02), 0.035, 1.70, mat_bamboo)
+    add_box("GianTre_XaNgang", (2.38, 33.8, 1.65), (0.05, 3.0, 0.04), mat_bamboo)
+
+    # F. CUỐI GẦN DÃY TƯỜNG BÊN PHẢI VƯỜN: CHUỒNG GÀ (Góc cuối Bắc-Tây: X: 0.4 -> 2.2m, Y: 34.6 -> 36.8m)
     # Nền đất cát chuồng gà
-    add_box("NenDat_ChuongGa", (3.1, 34.6, 0.02), (1.8, 2.2, 0.05), mat_soil)
+    add_box("NenDat_ChuongGa", (0.4, 34.6, 0.02), (1.8, 2.2, 0.05), mat_soil)
     # 4 Cột trụ chuồng gà gỗ tre
-    for (cx, cy) in [(3.15, 34.65), (4.80, 34.65), (3.15, 36.75), (4.80, 36.75)]:
+    for (cx, cy) in [(0.45, 34.65), (2.15, 34.65), (0.45, 36.75), (2.15, 36.75)]:
         add_cylinder(f"Cot_ChuongGa_{cx}_{cy}", (cx, cy, 0.02), 0.05, 1.60, mat_chicken_coop)
     # Khung xà giằng chuồng gà
-    add_box("Xa_ChuongGa_Duoi", (3.15, 34.65, 0.05), (1.65, 2.10, 0.06), mat_chicken_coop)
-    add_box("Xa_ChuongGa_Giua", (3.15, 34.65, 0.75), (1.65, 2.10, 0.05), mat_chicken_coop)
-    add_box("Xa_ChuongGa_Tren", (3.15, 34.65, 1.55), (1.65, 2.10, 0.06), mat_chicken_coop)
+    add_box("Xa_ChuongGa_Duoi", (0.45, 34.65, 0.05), (1.70, 2.10, 0.06), mat_chicken_coop)
+    add_box("Xa_ChuongGa_Giua", (0.45, 34.65, 0.75), (1.70, 2.10, 0.05), mat_chicken_coop)
+    add_box("Xa_ChuongGa_Tren", (0.45, 34.65, 1.55), (1.70, 2.10, 0.06), mat_chicken_coop)
     # Lưới mắt cáo bao quanh chuồng gà
-    add_box("Luoi_ChuongGa_Truoc", (3.18, 34.68, 0.06), (1.60, 0.02, 1.48), mat_wire_mesh)
-    add_box("Luoi_ChuongGa_Phai",  (4.78, 34.68, 0.06), (0.02, 2.05, 1.48), mat_wire_mesh)
-    # Mái che chuồng gà lợp mái lá / ngói dốc
-    add_gabled_roof("Mai_ChuongGa", 3.0, 4.95, 34.5, 36.9, 1.55, 1.95, overhang=0.15, material=mat_roof_red)
+    add_box("Luoi_ChuongGa_Truoc", (2.12, 34.68, 0.06), (0.02, 2.05, 1.48), mat_wire_mesh)
+    add_box("Luoi_ChuongGa_Nam",   (0.48, 34.68, 0.06), (1.64, 0.02, 1.48), mat_wire_mesh)
+    # Mái che chuồng gà lợp ngói đỏ dốc
+    add_gabled_roof("Mai_ChuongGa", 0.35, 2.25, 34.5, 36.9, 1.55, 1.95, overhang=0.15, material=mat_roof_red)
 
     # Nội thất chuồng gà:
     # Ổ rơm cho gà đẻ trứng
-    add_cylinder("ORom_DeTrung_1", (3.5, 36.3, 0.08), 0.25, 0.12, mat_straw)
-    add_cylinder("ORom_DeTrung_2", (4.2, 36.3, 0.08), 0.25, 0.12, mat_straw)
+    add_cylinder("ORom_DeTrung_1", (0.9, 36.3, 0.08), 0.25, 0.12, mat_straw)
+    add_cylinder("ORom_DeTrung_2", (1.6, 36.3, 0.08), 0.25, 0.12, mat_straw)
     # Vài quả trứng gà quê trắng hồng
-    add_sphere("TrungGa_1", (3.50, 36.30, 0.18), radius=0.035, scale=(0.85, 0.85, 1.15), material=mat_white_linen)
-    add_sphere("TrungGa_2", (4.18, 36.28, 0.18), radius=0.035, scale=(0.85, 0.85, 1.15), material=mat_white_linen)
+    add_sphere("TrungGa_1", (0.90, 36.30, 0.18), radius=0.035, scale=(0.85, 0.85, 1.15), material=mat_white_linen)
+    add_sphere("TrungGa_2", (1.58, 36.28, 0.18), radius=0.035, scale=(0.85, 0.85, 1.15), material=mat_white_linen)
     # Sào tre cho gà đậu ngủ
-    add_cylinder("SaoTre_GaDau", (4.0, 35.5, 0.55), 0.035, 1.70, mat_bamboo)
+    add_cylinder("SaoTre_GaDau", (1.3, 35.5, 0.55), 0.035, 1.70, mat_bamboo)
     # Máng ăn tre & máng nước cho gà
-    add_box("MangAn_ThocGa", (3.4, 34.9, 0.05), (0.80, 0.15, 0.08), mat_bamboo)
-    add_cylinder("MangNuoc_GaUong", (4.4, 35.0, 0.05), 0.12, 0.08, mat_blue_stone)
+    add_box("MangAn_ThocGa", (0.8, 34.9, 0.05), (0.80, 0.15, 0.08), mat_bamboo)
+    add_cylinder("MangNuoc_GaUong", (1.8, 35.0, 0.05), 0.12, 0.08, mat_blue_stone)
 
     # Đàn gà thôn quê sinh động:
     # 1. Chú Gà Trống Thiến oai vệ (lông tía đỏ, mào cờ)
-    add_sphere("GaTrong_Than", (3.7, 35.4, 0.22), radius=0.14, scale=(1.2, 0.85, 0.95), material=mat_chicken_body)
-    add_sphere("GaTrong_Co",   (3.6, 35.25, 0.32), radius=0.07, scale=(0.8, 0.8, 1.3), material=mat_chicken_body)
-    add_sphere("GaTrong_Dau",  (3.58, 35.20, 0.40), radius=0.055, material=mat_chicken_comb)
-    add_cone("GaTrong_Mao",    (3.58, 35.20, 0.46), 0.03, 0.06, mat_chicken_comb)
-    add_cone("GaTrong_Duoi",   (3.85, 35.60, 0.35), 0.08, 0.24, mat_chicken_body)
+    add_sphere("GaTrong_Than", (1.1, 35.4, 0.22), radius=0.14, scale=(1.2, 0.85, 0.95), material=mat_chicken_body)
+    add_sphere("GaTrong_Co",   (1.0, 35.25, 0.32), radius=0.07, scale=(0.8, 0.8, 1.3), material=mat_chicken_body)
+    add_sphere("GaTrong_Dau",  (0.98, 35.20, 0.40), radius=0.055, material=mat_chicken_comb)
+    add_cone("GaTrong_Mao",    (0.98, 35.20, 0.46), 0.03, 0.06, mat_chicken_comb)
+    add_cone("GaTrong_Duoi",   (1.25, 35.60, 0.35), 0.08, 0.24, mat_chicken_body)
 
     # 2. Cô Gà Mái Mơ vàng ươm đang mổ thóc
-    add_sphere("GaMai_Than", (4.3, 35.2, 0.18), radius=0.12, scale=(1.1, 0.8, 0.85), material=mat_chicken_gold)
-    add_sphere("GaMai_Dau",  (4.25, 35.05, 0.18), radius=0.05, material=mat_chicken_gold)
-    add_cone("GaMai_Mao",    (4.25, 35.05, 0.23), 0.02, 0.035, mat_chicken_comb)
+    add_sphere("GaMai_Than", (1.7, 35.2, 0.18), radius=0.12, scale=(1.1, 0.8, 0.85), material=mat_chicken_gold)
+    add_sphere("GaMai_Dau",  (1.65, 35.05, 0.18), radius=0.05, material=mat_chicken_gold)
+    add_cone("GaMai_Mao",    (1.65, 35.05, 0.23), 0.02, 0.035, mat_chicken_comb)
 
     # Ánh sáng ấm cho khu vực Vườn & Chuồng Gà
     add_light_source("Light_Vuon_ChuongGa", (2.5, 33.0, 3.5), energy=35.0, color=(1.0, 0.96, 0.88))
@@ -1304,7 +1324,7 @@ def build_compound():
     setup_camera("Cam_Huong_Tay", (-16.0, 18.5, 14.0), (9.0, 18.5, 2.0), focal_length=28)
 
     # 13. CẬN CẢNH VƯỜN RAU, CÂY ĂN TRÁI & CHUỒNG GÀ (Y = 28 -> 37m)
-    setup_camera("Cam_12_VuonRau_ChuongGa", (2.5, 26.5, 1.65), (2.8, 33.5, 1.25), focal_length=24)
+    setup_camera("Cam_12_VuonRau_ChuongGa", (8.5, 32.6, 1.75), (2.0, 33.5, 1.20), focal_length=24)
 
     blend_path = "d:/Work/Khu_Nha_Dong_Ho/khu_nha_dong_ho.blend"
     bpy.ops.wm.save_as_mainfile(filepath=blend_path)
